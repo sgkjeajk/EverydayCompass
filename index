@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en-SG">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Everyday Compass: a personal hub for learning, daily living and trusted Singapore resources.">
+<meta name="referrer" content="no-referrer">
+<title>Everyday Compass — Useful Tools & Resources</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23102540'/%3E%3Cpath d='M27 10L23 24L10 29L15 15Z' fill='%235ee0cb'/%3E%3Ccircle cx='20' cy='20' r='3' fill='%23102540'/%3E%3C/svg%3E">
+<style>
+:root{color-scheme:light;--ink:#102540;--muted:#526176;--blue:#174fc4;--teal:#096856;--line:#d7e0eb;--paper:#f4f7fb;--white:#fff}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:1rem}body{margin:0;font:1rem/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--paper)}a{color:var(--blue);text-underline-offset:4px}button,input,select{font:inherit}button,a,input,select{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #925300;outline-offset:4px}button,input,select{min-height:48px}a{overflow-wrap:anywhere}.wrap{max-width:1180px;margin:auto;padding:0 28px}.skip{position:absolute;top:-100px;left:16px;background:white;padding:12px;z-index:10}.skip:focus{top:12px}header{background:white;border-bottom:1px solid var(--line)}.header{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:92px}.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);font-weight:800;line-height:1.25}.mark{display:grid;place-items:center;background:var(--ink);color:#66e5cf;width:44px;height:44px;border-radius:12px;font-size:28px}.brand small{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--muted);margin-top:5px}nav{display:flex;gap:24px;flex-wrap:wrap}nav a{padding:12px 0;color:var(--ink);text-decoration:none;font-size:.94rem;font-weight:650}nav a:hover{text-decoration:underline}.intro{padding:42px 0 26px;display:flex;align-items:flex-end;justify-content:space-between;gap:30px}.eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--teal);margin:0 0 10px}h1{font-size:clamp(2rem,4.5vw,3.35rem);line-height:1.13;letter-spacing:-.045em;margin:0 0 16px;max-width:760px}h1 span{color:var(--blue)}.intro p:last-child{color:var(--muted);margin:0}.edition{font-size:.85rem;color:var(--muted);border-left:2px solid var(--line);padding-left:16px;flex-shrink:0}.section-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin:28px 0 16px}h2{font-size:1.5rem;letter-spacing:-.025em;line-height:1.3;margin:0}h3{line-height:1.3;margin:12px 0;font-size:1.22rem}.section-head p{margin:0;color:var(--muted);font-size:.9rem}.featured{display:grid;grid-template-columns:1fr 1fr;gap:22px}.feature{padding:28px 30px;border-radius:18px;background:var(--ink);color:white;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start}.feature:nth-child(2){background:#064e48}.feature h3{font-size:1.8rem;letter-spacing:-.025em;margin:20px 0 8px}.feature p{color:#e0e8f5;margin:0 0 20px;max-width:440px}.badge{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:750;display:inline-block;padding:4px 9px;background:#edf3ff;color:#214aa0;border-radius:5px}.feature .badge{background:#ffffff18;border:1px solid #ffffff60;color:white}.audience{font-size:.85rem;color:#d7e9ed;margin-bottom:24px}.feature a{display:inline-flex;align-items:center;justify-content:space-between;gap:30px;min-height:48px;background:white;color:var(--ink);text-decoration:none;padding:10px 18px;border-radius:8px;font-weight:750;margin-top:auto}.feature a:hover{background:#dbeaff}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.quick a{display:flex;align-items:center;gap:12px;background:white;border:1px solid var(--line);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--ink);font-weight:700}.quick a:hover{border-color:var(--blue);background:#edf3ff}.symbol{font-size:1.4rem;color:var(--blue);min-width:25px}.quick small{display:block;color:var(--muted);font-size:.75rem;font-weight:500}.library{margin-top:40px;background:white;border:1px solid var(--line);border-radius:18px;padding:28px}.library .section-head{margin:0 0 22px}.controls{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:16px}label{display:block;font-size:.88rem;font-weight:700;margin-bottom:6px}input,select{width:100%;border:1px solid #8090a5;background:white;border-radius:8px;padding:10px 12px;color:var(--ink)}input::placeholder{color:#606d7e}.filters{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}.filters button,.reset{border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink);padding:9px 14px;font-size:.88rem;font-weight:650}.filters button[aria-pressed=true]{background:var(--ink);color:white;border-color:var(--ink)}.filters button:hover,.reset:hover{border-color:var(--blue)}.resultbar{display:flex;justify-content:space-between;align-items:center;gap:16px;border-top:1px solid var(--line);padding-top:14px;margin-bottom:18px}.resultbar p{font-size:.88rem;color:var(--muted);margin:0}.reset{border:0;color:var(--blue);text-decoration:underline;padding:6px}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card{border:1px solid var(--line);border-radius:12px;padding:22px;display:flex;flex-direction:column;align-items:flex-start;min-width:0}.card .external{background:#edf2f5;color:#425469}.card p{margin:0 0 16px;color:var(--muted);font-size:.94rem}.card .source{font-size:.78rem;color:#54637a;overflow-wrap:anywhere}.card a{font-weight:750;text-decoration:none;margin-top:auto;padding:10px 0 0;min-height:44px}.card a:hover{text-decoration:underline}.card .category{font-size:.75rem;color:var(--teal);margin-bottom:10px}.empty{padding:32px;text-align:center;border:1px dashed #8090a5;border-radius:10px}.empty h3{margin-top:0}[hidden]{display:none!important}.bottom{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:32px 0 42px}.tips,.about{padding:26px;border-radius:14px;background:#e7f3ef}.about{background:#eaf0fa}.bottom h2{font-size:1.25rem}.bottom p,.bottom li{font-size:.9rem;color:#374c60}.bottom ul{padding-left:20px;margin-bottom:0}.bottom li+li{margin-top:9px}footer{border-top:1px solid var(--line);padding:24px 0;background:white}.footer{display:flex;justify-content:space-between;gap:24px;font-size:.8rem;color:var(--muted)}.footer p{margin:0}.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}noscript p{padding:20px;background:#fff2cf} @media(max-width:850px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.quick{grid-template-columns:repeat(2,1fr)}.edition{display:none}.header{flex-wrap:wrap;padding-top:20px;padding-bottom:12px;gap:10px}.intro{padding-top:30px}}@media(max-width:580px){.wrap{padding:0 18px}.header{padding:18px}.header nav{gap:20px}nav a{font-size:.86rem}.featured,.cards,.bottom,.controls{grid-template-columns:1fr}.feature{padding:24px}.feature h3{font-size:1.65rem}.quick{gap:8px}.quick a{padding:12px 10px;gap:7px;font-size:.87rem}.quick .symbol{display:none}.library{padding:20px 16px;margin-top:30px}.section-head{align-items:flex-start;flex-direction:column;gap:6px}.intro{padding-bottom:16px}.footer{flex-direction:column;gap:12px}.bottom{gap:16px}.filters{gap:7px}.filters button{font-size:.82rem;padding:8px 10px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}@media(forced-colors:active){.feature,.badge,.filters button[aria-pressed=true]{border:1px solid CanvasText}}@media print{nav,.controls,.filters,.reset,.quick{display:none}.cards{grid-template-columns:repeat(2,1fr)}.feature,.card{break-inside:avoid}.feature{background:white;color:black}.feature p,.audience{color:black}}
+
+/* Vibrant professional palette */
+:root{--ink:#17274a;--blue:#234bc8;--teal:#08745e;--paper:#f3f6ff;--line:#d1dbef}
+body{background:linear-gradient(135deg,#eef3ff 0%,#f7f9ff 45%,#ecfbf6 100%)}
+header{border-top:5px solid #315be7;box-shadow:0 3px 18px #244ac409}
+.mark{background:linear-gradient(135deg,#315be7,#6638bd);color:#fff}
+.intro{border-bottom:1px solid #d5def2;padding-bottom:32px}
+.feature{background:linear-gradient(125deg,#234bc8,#5630a3);box-shadow:0 12px 26px #234bc81a;border-top:5px solid #b7c8ff}
+.feature:nth-child(2){background:linear-gradient(125deg,#08715d,#086479);border-top-color:#6de8c4}
+.feature p,.audience{color:#fff}.feature .badge{background:#ffffff1f}
+.quick a:nth-child(1){background:#eaf0ff;border-top:3px solid #315be7}
+.quick a:nth-child(2){background:#edf9f4;border-top:3px solid #08745e}
+.quick a:nth-child(3){background:#f3edff;border-top:3px solid #7442be}
+.quick a:nth-child(4){background:#fff4e5;border-top:3px solid #ac5809}
+.quick a:hover{box-shadow:0 5px 15px #234bc41a;border-color:var(--blue)}
+.library{box-shadow:0 8px 30px #234bc409}.filters button[aria-pressed=true]{background:#234bc8;border-color:#234bc8}
+.card{border-top:3px solid #8caafa}.card:has(.external){border-top-color:#53b9a4}
+.card .external{background:#e0f5ed;color:#075c47}.tips{background:#ddf5ea;border-top:4px solid #08745e}.about{background:#e9eaff;border-top:4px solid #6740bc}
+nav a[aria-current=page]{color:var(--blue);text-decoration:underline;text-decoration-thickness:3px}
+textarea{font:inherit;display:block;width:100%;min-height:180px;resize:vertical;border:1px solid #8090a5;border-radius:8px;padding:12px;color:var(--ink)}
+textarea:focus-visible{outline:3px solid #925300;outline-offset:4px}
+.contact-layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:28px;margin:32px 0 48px;align-items:start}
+.contact-form{background:#fff;border:1px solid var(--line);border-top:5px solid #315be7;border-radius:16px;padding:30px;box-shadow:0 12px 30px #234bc40d}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field{margin:0 0 20px}.form-note{font-size:.88rem;color:var(--muted)}
+.send{min-height:50px;padding:12px 24px;border:0;border-radius:8px;background:#234bc8;color:white;font-weight:750}.send:hover{background:#193b9f}
+.contact-aside{background:#e4f7ef;border-top:5px solid #08745e;padding:26px;border-radius:16px}.contact-aside p{color:#374c60}.contact-aside a{display:inline-block;padding:8px 0}
+.contact-aside h2{font-size:1.3rem}.contact-form h2{margin-bottom:8px}
+@media(max-width:720px){.contact-layout,.form-row{grid-template-columns:1fr}.contact-form{padding:22px}.header nav{gap:16px}}
+
+/* Daily essentials and live weather */
+.essentials{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.weather{grid-column:1/-1;background:linear-gradient(120deg,#12346f,#08715d);color:white;border-radius:18px;padding:26px 28px;box-shadow:0 12px 28px #12346f20}.weather-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}.weather h3{font-size:1.45rem;margin:0 0 4px}.weather-kicker,.weather-updated{margin:0;color:#d9f5ef;font-size:.84rem}.weather-refresh{background:#fff;color:#12346f;border:0;border-radius:8px;padding:8px 14px;font-weight:750}.weather-refresh[aria-busy=true]{opacity:.72;cursor:wait}.weather-grid{display:grid;grid-template-columns:1.05fr 1fr 1fr;gap:14px;margin:20px 0}.weather-block{background:#ffffff14;border:1px solid #ffffff38;border-radius:12px;padding:17px}.weather-block h4{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;margin:0 0 10px;color:#d9f5ef}.weather-temp{font-size:2.5rem;font-weight:850;line-height:1;margin:0 0 8px}.weather-main{font-size:1.08rem;font-weight:750;margin:0 0 6px}.weather-meta{font-size:.85rem;color:#e8f4ff;margin:4px 0}.weather label{color:#fff}.weather select{min-height:44px;margin-bottom:8px}.psi-value{font-size:1.9rem;font-weight:850;line-height:1.1}.forecast-days{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.forecast-day{background:#ffffff12;border-radius:8px;padding:9px;font-size:.78rem}.forecast-day strong{display:block;font-size:.86rem}.weather-actions{display:flex;flex-wrap:wrap;gap:8px}.weather-actions a{display:inline-flex;align-items:center;min-height:44px;padding:8px 12px;border:1px solid #ffffff70;border-radius:8px;color:white;text-decoration:none;font-size:.86rem;font-weight:700}.weather-actions a:hover{background:#ffffff1e}.essential-card{background:white;border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:12px;padding:19px;display:flex;flex-direction:column;min-height:188px}.essential-card.emergency{border-top-color:#c23939}.essential-card.healthcare{border-top-color:var(--teal)}.essential-card.links{border-top-color:#7442be}.essential-icon{font-size:1.5rem}.essential-card h3{margin:7px 0}.essential-card p{font-size:.88rem;color:var(--muted);margin:0 0 12px}.essential-links{margin-top:auto;display:flex;flex-wrap:wrap;gap:10px}.essential-links a{font-size:.88rem;font-weight:750}.emergency-number{font-size:1.02rem!important;color:#8c1d1d!important;font-weight:800}
+@media(max-width:850px){.essentials{grid-template-columns:repeat(2,1fr)}.weather-grid{grid-template-columns:1fr 1fr}.weather-block:last-child{grid-column:1/-1}}
+@media(max-width:580px){.essentials,.weather-grid{grid-template-columns:1fr}.weather{padding:22px 18px}.weather-head{flex-direction:column}.weather-block:last-child{grid-column:auto}.forecast-days{grid-template-columns:repeat(2,1fr)}}
+@media(forced-colors:active){.weather,.essential-card{border:1px solid CanvasText}}
+@media print{.weather-refresh{display:none}.weather,.essential-card{break-inside:avoid}.weather{background:white;color:black}.weather-kicker,.weather-updated,.weather-meta{color:black}}
+
+
+/* Singapore What's On */
+.whats-on{margin:34px 0 8px;background:linear-gradient(125deg,#234bc8,#08745e);color:#fff;border-radius:18px;padding:26px 30px;box-shadow:0 12px 28px #234bc820;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center}
+.whats-on .eyebrow{color:#cffff1;margin-bottom:6px}.whats-on h2{font-size:1.65rem;margin:0 0 8px}.whats-on p{margin:0;color:#edf8f5;max-width:720px}
+.whats-on a{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:11px 18px;border-radius:9px;background:#fff;color:#17305c;text-decoration:none;font-weight:800;white-space:nowrap}
+.whats-on a:hover{background:#e9f3ff}
+@media(max-width:700px){.whats-on{grid-template-columns:1fr;padding:23px 20px}.whats-on a{width:100%}}
+@media print{.whats-on{background:white;color:black;border:1px solid var(--line)}.whats-on p{color:black}}
+
+
+.news-card{grid-column:1/-1;background:linear-gradient(120deg,#243b77,#5b3ea6);color:#fff;border-radius:18px;padding:24px 28px;box-shadow:0 12px 28px #234bc820}.news-head{display:flex;justify-content:space-between;gap:18px}.news-card h3{margin:0}.news-meta,.news-note{font-size:.84rem;color:#e8e9ff}.news-panels{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}.news-panel{background:#ffffff12;border:1px solid #ffffff38;border-radius:12px;padding:16px}.news-list{padding-left:25px}.news-list li{padding:9px 0;border-top:1px solid #ffffff25}.news-list a{color:#fff;font-weight:800}.news-summary{font-size:.84rem;margin:3px 0}.news-source{font-size:.75rem;color:#d8ddf7}.news-button{background:#fff;color:#243b77;border:0;border-radius:8px;padding:9px 14px;font-weight:800}@media(max-width:760px){.news-panels{grid-template-columns:1fr}.news-head{flex-direction:column}}
+.news-panels[hidden]{display:none!important}
+
+.news-card{background:linear-gradient(120deg,#12346f,#08715d);color:#fff;border-radius:18px;padding:26px 30px;box-shadow:0 12px 28px #234bc820}
+.news-head{align-items:center}.news-card h3{font-size:1.65rem;line-height:1.3;letter-spacing:-.025em;margin:0 0 8px;color:#fff}
+.news-card .weather-kicker{color:#cffff1;font-size:.78rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;margin:0 0 6px}
+.news-meta{margin:0!important;color:#edf8f5!important;font-size:.9rem!important}
+.news-button{min-height:50px;padding:11px 18px;border-radius:9px;background:#fff;color:#17305c;font-weight:800}.news-button:hover{background:#e9f3ff}
+.news-panel{background:#ffffff12;border:1px solid #ffffff38;border-radius:12px;padding:18px}.news-panel h4{font-size:1.08rem;margin:0 0 10px}
+.news-list a{font-size:1rem}.news-summary{font-size:.9rem!important;line-height:1.55}.news-source{font-size:.78rem}.news-note{color:#edf8f5!important}
+@media(max-width:700px){.news-card{padding:23px 20px}.news-actions{width:100%}.news-button{flex:1}}
+.news-schedule{margin-top:3px!important;font-weight:650}
+.navgroup{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.lang-toggle{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:white;color:var(--ink);border-radius:999px;padding:8px 15px;font-weight:750;font-size:.86rem;min-height:42px;white-space:nowrap}
+.lang-toggle:hover{border-color:var(--blue);background:#edf3ff}
+.lang-toggle .flag{font-size:1rem}
+[lang-hidden]{display:none!important}
+@media(max-width:580px){.navgroup{gap:12px;width:100%;justify-content:space-between}.lang-toggle{padding:7px 12px;font-size:.82rem}}
+.translate-wrap{position:relative}.translate-toggle{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:white;color:var(--ink);border-radius:999px;padding:8px 15px;font-weight:750;font-size:.86rem;min-height:42px;white-space:nowrap}.translate-toggle:hover{border-color:var(--blue);background:#edf3ff}.translate-menu{position:absolute;right:0;top:calc(100% + 8px);z-index:50;width:240px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;box-shadow:0 14px 34px #17274a26}.translate-menu label{margin-bottom:6px}.translate-menu select{min-height:44px}.translate-note{font-size:.76rem;color:var(--muted);margin:8px 2px 0}.translate-menu[hidden]{display:none!important}@media(max-width:580px){.translate-toggle{padding:7px 12px;font-size:.82rem}.translate-menu{position:fixed;left:18px;right:18px;top:auto;width:auto}}
+
+/* Readability adjustment: restore/increase text sizing after bilingual update */
+body{font-size:1.08rem}
+nav a{font-size:1rem}
+.eyebrow{font-size:.84rem}
+.section-head p{font-size:.98rem}
+.feature p{font-size:1rem}
+.audience{font-size:.94rem}
+.quick small{font-size:.84rem}
+.card p{font-size:1rem}
+.card .source{font-size:.86rem}
+.card .category{font-size:.82rem}
+.filters button,.reset{font-size:.95rem}
+.resultbar p{font-size:.95rem}
+.weather-kicker,.weather-updated{font-size:.92rem}
+.weather-block h4{font-size:.86rem}
+.weather-meta{font-size:.94rem}
+.weather-actions a{font-size:.94rem}
+.essential-card p,.essential-links a{font-size:.96rem}
+.news-meta,.news-note{font-size:.94rem!important}
+.news-summary{font-size:.96rem!important}
+.news-source{font-size:.84rem}
+.bottom p,.bottom li{font-size:.98rem}
+.footer{font-size:.88rem}
+.lang-toggle{font-size:.94rem}
+@media(max-width:580px){
+ nav a{font-size:.94rem}
+ .filters button{font-size:.9rem}
+ .quick a{font-size:.94rem}
+}
+
+</style>
+</head>
+<body id="top">
+<a class="skip" href="#main" data-i18n="skipLink">Skip to main content</a>
+<header><div class="wrap header"><a class="brand" href="#top" aria-label="Everyday Compass home"><span class="mark" aria-hidden="true">↗</span><span>Everyday Compass<small data-i18n="brandTag">Useful tools &amp; resources</small></span></a><div class="navgroup"><nav aria-label="Main navigation"><a href="#my-tools" data-i18n="navTools">My tools</a><a href="#daily-essentials" data-i18n="navEssentials">Daily essentials</a><a href="#library" data-i18n="navLibrary">Explore resources</a><a href="#about" data-i18n="navAbout">About</a><a href="https://jjkwan118-glitch.github.io/EverydayCompass/contact.html" data-i18n="navContact">Contact</a></nav><div class="translate-wrap"><button id="translate-toggle" class="translate-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="translate-menu">🌍 <span>Translate</span></button><div id="translate-menu" class="translate-menu" hidden><label for="translate-language">Translate page to</label><select id="translate-language"><option value="">Select language…</option><option value="ms">Bahasa Melayu</option><option value="zh-CN">中文（简体）</option><option value="zh-TW">中文（繁體）</option><option value="ta">தமிழ்</option><option value="id">Bahasa Indonesia</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="th">ไทย</option><option value="vi">Tiếng Việt</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="es">Español</option></select><p class="translate-note">Translation opens in a new tab so live features on this page remain unchanged.</p></div></div></div></div></header>
+<main class="wrap" id="main" tabindex="-1">
+<section class="intro" aria-labelledby="welcome"><div><p class="eyebrow" data-i18n="introEyebrow">A little help for every day</p><h1 id="welcome" data-i18n-html="introH1">Your starting point for<br><span>learning, living &amp; exploring.</span></h1><p data-i18n="introPara">Useful tools. Trusted resources. Everyday confidence.</p></div><div class="edition" data-i18n-html="editionText">Made for all generations<br>Rooted in Singapore</div></section>
+<section id="my-tools" aria-labelledby="tools-title"><div class="section-head"><h2 id="tools-title" data-i18n="toolsTitle">Two good places to start</h2><p data-i18n="toolsSub">My tools &middot; created for everyday life</p></div><div class="featured" id="featured"></div></section>
+<section id="daily-essentials" aria-labelledby="essentials-title"><div class="section-head"><h2 id="essentials-title" data-i18n="essentialsTitle">Daily Essentials</h2><p data-i18n="essentialsSub">Weather, travel, safety and health at a glance</p></div><div class="essentials">
+<article class="weather" aria-labelledby="weather-title"><div class="weather-head"><div><p class="weather-kicker" data-i18n="weatherKicker">Live official Singapore information</p><h3 id="weather-title">🌦 <span data-i18n="weatherTitle">Weather &amp; Haze</span></h3><p class="weather-updated" id="weather-status" role="status" aria-live="polite" data-i18n="weatherLoading">Loading the latest information…</p></div><button class="weather-refresh" id="weather-refresh" type="button" data-i18n="weatherRefresh">Refresh now</button></div>
+<div class="weather-grid"><section class="weather-block" aria-labelledby="current-weather-title"><h4 id="current-weather-title" data-i18n="wCurrent">Current conditions</h4><p class="weather-temp" id="weather-temp">—</p><p class="weather-main" id="weather-condition" data-i18n="wChecking">Checking forecast…</p><p class="weather-meta" id="weather-range" data-i18n="wStationReadings">Official station readings</p><p class="weather-meta" id="weather-high-low" data-i18n="wHighLowDash">High / low: —</p><p class="weather-meta" id="weather-humidity" data-i18n="wHumidityDash">Humidity: —</p></section>
+<section class="weather-block" aria-labelledby="two-hour-title"><h4 id="two-hour-title" data-i18n="wNext2h">Next 2 hours</h4><label for="weather-area" data-i18n="wChooseArea">Choose an area</label><select id="weather-area"><option data-i18n="wLoadingAreas">Loading areas…</option></select><p class="weather-main" id="weather-area-forecast">—</p><p class="weather-meta" id="weather-valid-period" data-i18n="wValidPeriodDash">Valid period: —</p></section>
+<section class="weather-block" aria-labelledby="psi-title"><h4 id="psi-title" data-i18n="wHazePsi">Haze / PSI</h4><p class="psi-value" id="weather-psi">—</p><p class="weather-main" id="weather-psi-status" data-i18n="wCheckingAir">Checking air quality…</p><p class="weather-meta" id="weather-psi-detail" data-i18n="wPsi24h">24-hour PSI across Singapore</p><h4 data-i18n="w4dayOutlook">4-day outlook</h4><div class="forecast-days" id="weather-four-day"><span data-i18n="wLoadingDots">Loading…</span></div></section></div>
+<div class="weather-actions"><a href="https://www.weather.gov.sg/weather-forecast-2hrnowcast-2/" target="_blank" rel="noopener noreferrer external" data-i18n="w2hLink">2-hour forecast ↗</a><a href="https://www.weather.gov.sg/weather-forecast-24hrforecast/" target="_blank" rel="noopener noreferrer external" data-i18n="w24hLink">24-hour forecast ↗</a><a href="https://www.weather.gov.sg/weather-forecast-4dayoutlook/" target="_blank" rel="noopener noreferrer external" data-i18n="w4dLink">4-day forecast ↗</a><a href="https://www.haze.gov.sg/" target="_blank" rel="noopener noreferrer external" data-i18n="wHazeLink">Haze / PSI ↗</a></div></article>
+<article class="news-card"><div class="news-head"><div><h3>📰 <span data-i18n="newsTitle">Daily News</span></h3><p id="news-status" class="news-meta" role="status" data-i18n="newsStatusInitial">Latest edition available · click Show News</p><p class="news-meta news-schedule" data-i18n="newsSchedule">Refresh daily 6:45 AM, 12:45 PM, 6:45 PM SGT</p></div><button id="news-refresh" class="news-button" type="button" aria-controls="news-panels" aria-expanded="false" data-i18n="newsShow">Show News</button></div><div class="news-panels" id="news-panels" hidden><section class="news-panel"><h4>🇸🇬 <span data-i18n="newsSgHead">15 Key Singapore Stories</span></h4><ol id="sg-news" class="news-list"></ol></section><section class="news-panel"><h4>🌍 <span data-i18n="newsWorldHead">15 Key World Stories</span></h4><ol id="world-news" class="news-list"></ol></section></div><p class="news-note" data-i18n="newsNote">Latest stories from CNA. Select a headline to open the original source.</p></article><article class="essential-card"><span class="essential-icon" aria-hidden="true">🚆</span><h3 data-i18n="transportTitle">Transport</h3><p data-i18n="transportDesc">Plan MRT, bus and accessible journeys around Singapore.</p><div class="essential-links"><a href="https://www.lta.gov.sg/content/ltagov/en/getting_around.html" target="_blank" rel="noopener noreferrer external" data-i18n="transportLink1">LTA journeys ↗</a><a href="#library" data-i18n="transportLink2">More transport</a></div></article>
+<article class="essential-card emergency"><span class="essential-icon" aria-hidden="true">🆘</span><h3 data-i18n="emergencyTitle">Emergency / SOS</h3><p class="emergency-number" data-i18n-html="emergencyNumbers">995 Ambulance &amp; Fire<br>999 Police</p><div class="essential-links"><a href="tel:995" data-i18n="call995">Call 995</a><a href="tel:999" data-i18n="call999">Call 999</a><a href="https://www.scdf.gov.sg/home/about-scdf/emergency-medical-services" target="_blank" rel="noopener noreferrer external" data-i18n="scdfLink">SCDF guidance ↗</a></div></article>
+<article class="essential-card healthcare"><span class="essential-icon" aria-hidden="true">🏥</span><h3 data-i18n="healthcareTitle">Healthcare</h3><p data-i18n="healthcareDesc">Reach trusted health information, services and caregiver support.</p><div class="essential-links"><a href="https://www.healthhub.sg/" target="_blank" rel="noopener noreferrer external" data-i18n="healthhubLink">HealthHub ↗</a><a href="https://www.aic.sg/" target="_blank" rel="noopener noreferrer external" data-i18n="aicLink">AIC ↗</a></div></article>
+<article class="essential-card links"><span class="essential-icon" aria-hidden="true">🔗</span><h3 data-i18n="usefulLinksTitle">Useful Links</h3><p data-i18n="usefulLinksDesc">Browse the organised, searchable collection of trusted Singapore resources.</p><div class="essential-links"><a href="#library" data-i18n="usefulLinksLink">Explore useful links ↓</a></div></article>
+</div></section>
+
+<section class="whats-on" id="whats-on" aria-labelledby="whats-on-title">
+  <div>
+    <p class="eyebrow" data-i18n="whatsOnEyebrow">Going out &amp; leisure</p>
+    <h2 id="whats-on-title">🎭 <span data-i18n="whatsOnTitle">Singapore What’s On</span></h2>
+    <p data-i18n="whatsOnDesc">Discover current and upcoming exhibitions, festivals, cultural events and weekend happenings — with brief overviews, dates, timings, admission prices, accessibility information and official links.</p>
+  </div>
+  <a href="https://jjkwan118-glitch.github.io/EverydayCompass/singapore-whats-on.html" data-i18n="whatsOnLink">See what’s on →</a>
+</section>
+
+<section class="library" id="library" aria-labelledby="library-title"><div class="section-head"><div><p class="eyebrow" data-i18n="libEyebrow">Find your next useful thing</p><h2 id="library-title" data-i18n="libTitle">Explore the resource library</h2></div><p data-i18n="libNewTab">All website links open in a new tab ↗</p></div>
+<div class="controls"><div><label for="search" data-i18n="searchLabel">Search tools &amp; resources</label><input id="search" type="search" placeholder="Try health, games, transport or caregiving" data-i18n-ph="searchPh" autocomplete="off" aria-controls="results"></div><div><label for="type" data-i18n="typeLabel">Resource type</label><select id="type" aria-controls="results"><option value="all" data-i18n="typeAll">All resources</option><option value="tool" data-i18n="typeTool">My tools</option><option value="external" data-i18n="typeExternal">External resources</option></select></div></div>
+<div class="filters" id="filters" role="group" aria-label="Filter by category"></div><div class="resultbar"><p id="count" role="status" aria-live="polite" aria-atomic="true"></p><button class="reset" id="reset" type="button" data-i18n="resetFilters">Reset filters</button></div><div id="results" class="cards"></div><div class="empty" id="empty" hidden><h3 data-i18n="emptyTitle">No matching resources</h3><p data-i18n="emptyPara">Try a broader search or use “Reset filters” to see everything.</p></div>
+<noscript><p data-i18n-html="noscriptText">Turn on JavaScript to use live weather, search and the resource library. You can still use the official forecast links above and visit <a href="https://jjkwan118-glitch.github.io/FunLearningWorld/">Fun Learning World</a>, <a href="https://jjkwan118-glitch.github.io/OneStopCompanion/">One Stop Companion</a>, <a href="https://www.healthhub.sg/">HealthHub</a> and <a href="https://www.aic.sg/">AIC</a>.</p></noscript></section>
+<div class="bottom"><section class="tips" aria-labelledby="tips-title"><p class="eyebrow" data-i18n="tipsEyebrow">Small tips, smoother days</p><h2 id="tips-title" data-i18n="tipsTitle">Make the most of your visit</h2><ul id="tips"></ul></section><section class="about" id="about" aria-labelledby="about-title"><p class="eyebrow" data-i18n="aboutEyebrow">A thoughtfully selected collection</p><h2 id="about-title" data-i18n="aboutTitle">One hub. Many ways to help.</h2><p data-i18n="aboutP1">Everyday Compass brings my independent tools together with useful Singapore resources for children, adults, seniors and caregivers.</p><p data-i18n-html="aboutP2"><strong>My Tool</strong> means a project from this collection. <strong>External Resource</strong> means a separately operated website. This is an independent hub, not a government website or endorsement.</p><p data-i18n="aboutP3">No accounts, cookies, analytics or tracking on this page. Search stays in your browser. The contact form uses FormSubmit to forward messages by email. Linked services have their own privacy policies.</p></section></div>
+</main><footer><div class="wrap footer"><p data-i18n-html="footerText"><strong>Everyday Compass</strong> · A useful place to begin.<br>External resource pages reviewed 21 September 2026. Services and availability can change.</p><a href="#top" data-i18n="backToTop">Back to top ↑</a></div></footer>
+<script>
+'use strict';
+// CONTENT GUIDE: use unique IDs; category IDs must match the categories array.
+// All destination URLs must be HTTPS. Nothing is fetched until a visitor opens a link.
+// Bilingual (EN / 简体中文) build — language toggle preserves all original functionality.
+
+const categories = [
+ {id:'learning',name:'Learning & Education',nameZh:'学习与教育'},
+ {id:'seniors',name:'Seniors & Daily Living',nameZh:'乐龄与日常生活'},
+ {id:'health',name:'Health & Wellness',nameZh:'健康与保健'},
+ {id:'transport',name:'Getting Around',nameZh:'交通出行'},
+ {id:'outings',name:'Singapore Outings',nameZh:'新加坡出游'},
+ {id:'games',name:'Games & Brain Activities',nameZh:'游戏与脑力活动'},
+ {id:'services',name:'Services & Digital Safety',nameZh:'服务与数码安全'}
+];
+const tools = [
+ {id:'learning-world',name:'Fun Learning World',nameZh:'趣味学习世界',description:'Discover playful activities in language, spelling, maths, matching and puzzles.',descriptionZh:'探索语言、拼写、数学、配对与拼图等趣味学习活动。',url:'https://jjkwan118-glitch.github.io/FunLearningWorld/',categories:['learning','games'],audience:'For children, parents, grandparents & educators',audienceZh:'适合儿童、家长、祖父母与教育工作者',keywords:'preschool kids mathematics spelling puzzles matching educational games',action:'Explore learning activities',actionZh:'探索学习活动',featured:true},
+ {id:'companion',name:'One Stop Companion',nameZh:'一站式生活伙伴',description:'Bring daily-life tools, useful contacts, health resources and ideas for outings together.',descriptionZh:'集合日常生活工具、实用联系方式、健康资源与出游建议。',url:'https://jjkwan118-glitch.github.io/OneStopCompanion/',categories:['seniors','health','transport','outings','games','learning'],audience:'For adults, seniors & caregivers',audienceZh:'适合成人、乐龄人士与照护者',keywords:'medicine reminders appointments emergency SOS cognitive games language discounts malls',action:'Open your daily companion',actionZh:'打开您的每日生活伙伴',featured:true},
+ // ADD NEW TOOL HERE — copy an object above, choose a unique id, and set featured:false. Provide *Zh fields too.
+];
+const resources = [
+ {id:'whats-on',name:'Singapore What’s On',nameZh:'新加坡活动资讯',description:'Find current and upcoming exhibitions, festivals, cultural events and weekend happenings in one easy-to-scan page.',descriptionZh:'一页浏览新加坡当前及即将举行的展览、节庆、文化活动与周末活动。',url:'https://jjkwan118-glitch.github.io/EverydayCompass/singapore-whats-on.html',categories:['outings'],source:'Everyday Compass',sourceZh:'Everyday Compass',keywords:'events exhibitions weekend happenings festivals culture singapore senior wheelchair free admission prices',note:'Includes event summaries, dates, prices, accessibility and official organiser links.',noteZh:'包含活动摘要、日期、票价、无障碍设施信息与官方主办方链接。'},
+ {id:'healthhub',name:'HealthHub',nameZh:'HealthHub 健康枢纽',description:'Explore health information, healthcare services and personal health e-services.',descriptionZh:'探索健康信息、医疗保健服务与个人健康电子服务。',url:'https://www.healthhub.sg/',categories:['health'],source:'Ministry of Health',sourceZh:'卫生部',keywords:'appointments medication hospital clinic wellness',note:'Some e-services require Singpass.',noteZh:'部分电子服务需要使用 Singpass 登入。'},
+ {id:'aic',name:'Agency for Integrated Care',nameZh:'综合护理机构 (AIC)',description:'Find care services, caregiver support and financial assistance information.',descriptionZh:'查找护理服务、照护者支持与经济援助资讯。',url:'https://www.aic.sg/',categories:['seniors','health'],source:'Agency for Integrated Care',sourceZh:'综合护理机构',keywords:'caregiving ageing elderly grants dementia'},
+ {id:'nlb',name:'National Library Board',nameZh:'国家图书馆管理局',description:'Discover libraries, reading resources, programmes and opportunities to keep learning.',descriptionZh:'探索图书馆、阅读资源、活动项目与持续学习的机会。',url:'https://www.nlb.gov.sg/main/home',categories:['learning'],source:'National Library Board',sourceZh:'国家图书馆管理局',keywords:'books ebooks children reading library'},
+ {id:'lta',name:'LTA · Getting Around',nameZh:'陆路交通局 · 交通出行',description:'Find official information on trains, buses and planning journeys around Singapore.',descriptionZh:'查找有关地铁、巴士及新加坡出行规划的官方资讯。',url:'https://www.lta.gov.sg/content/ltagov/en/getting_around.html',categories:['transport'],source:'Land Transport Authority',sourceZh:'陆路交通管理局',keywords:'MRT train bus public transport routes travel accessibility'},
+ {id:'nparks',name:'NParks',nameZh:'国家公园局',description:'Explore Singapore’s parks, gardens, nature and outdoor activities.',descriptionZh:'探索新加坡的公园、花园、自然景观与户外活动。',url:'https://www.nparks.gov.sg/',categories:['outings'],source:'National Parks Board',sourceZh:'国家公园局',keywords:'garden nature walks park outdoors'},
+ {id:'visit',name:'Visit Singapore',nameZh:'新加坡旅游局（Visit Singapore）',description:'Discover places to visit, local experiences, food and culture.',descriptionZh:'发现新加坡的景点、当地体验、美食与文化。',url:'https://www.visitsingapore.com/',categories:['outings'],source:'Singapore Tourism Board',sourceZh:'新加坡旅游局',keywords:'attractions sightseeing museum food events'},
+ {id:'enable',name:'SG Enable',nameZh:'SG Enable（新加坡残障关爱机构）',description:'Find disability support, services and resources for a more inclusive everyday life.',descriptionZh:'查找残障支持服务与资源，共建更具包容性的日常生活。',url:'https://www.sgenable.sg/',categories:['seniors','services'],source:'SG Enable',sourceZh:'新加坡残障关爱机构',keywords:'disability disabilities wheelchair caregiver accessibility inclusion'},
+ {id:'scamshield',name:'ScamShield',nameZh:'ScamShield（防骗盾牌）',description:'Learn to recognise scams and find official guidance if something seems suspicious.',descriptionZh:'学习识别诈骗手法，并在遇到可疑情况时获取官方指导。',url:'https://www.scamshield.gov.sg/',categories:['services'],source:'ScamShield · Singapore Government',sourceZh:'ScamShield 防骗盾牌 · 新加坡政府',keywords:'scam fraud security help safety digital',note:'ScamShield helpline: 1799 (24/7).',noteZh:'ScamShield 防骗热线：1799（24 小时）。'},
+ // ADD USEFUL LINK HERE — copy an object above; include the organisation in source/sourceZh.
+];
+const tips = [
+ {en:'Search by what you need, such as “caregiving” or “books”, then narrow by category.',zh:'按需求搜索，例如"照护"或"书籍"，再按类别缩小范围。'},
+ {en:'Use your browser’s zoom controls to make text larger. The layout will adapt.',zh:'使用浏览器的缩放功能放大文字，页面版式会自动调整。'},
+ {en:'Before an outing, check the destination’s opening hours, prices and access arrangements.',zh:'出游前，请先查看目的地的开放时间、票价与无障碍设施安排。'}
+];
+const all = [...tools.map(x=>({...x,type:'tool'})),...resources.map(x=>({...x,type:'external'}))];
+const $ = id=>document.getElementById(id);
+
+// ---------------------------------------------------------------
+// Language state
+let currentLang = 'en';
+localStorage.removeItem('ec-lang');
+
+const T = {
+en:{
+ brandTag:'Useful tools & resources',
+ navTools:'My tools', navEssentials:'Daily essentials', navLibrary:'Explore resources', navAbout:'About', navContact:'Contact',
+ introEyebrow:'A little help for every day',
+ introH1:'Your starting point for<br><span>learning, living &amp; exploring.</span>',
+ introPara:'Useful tools. Trusted resources. Everyday confidence.',
+ editionText:'Made for all generations<br>Rooted in Singapore',
+ toolsTitle:'Two good places to start', toolsSub:'My tools · created for everyday life',
+ essentialsTitle:'Daily Essentials', essentialsSub:'Weather, travel, safety and health at a glance',
+ weatherKicker:'Live official Singapore information', weatherTitle:'Weather &amp; Haze',
+ weatherLoading:'Loading the latest information…', weatherRefresh:'Refresh now',
+ wCurrent:'Current conditions', wChecking:'Checking forecast…', wStationReadings:'Official station readings',
+ wHighLowDash:'High / low: —', wHumidityDash:'Humidity: —',
+ wNext2h:'Next 2 hours', wChooseArea:'Choose an area', wLoadingAreas:'Loading areas…', wValidPeriodDash:'Valid period: —',
+ wHazePsi:'Haze / PSI', wCheckingAir:'Checking air quality…', wPsi24h:'24-hour PSI across Singapore', w4dayOutlook:'4-day outlook', wLoadingDots:'Loading…',
+ w2hLink:'2-hour forecast ↗', w24hLink:'24-hour forecast ↗', w4dLink:'4-day forecast ↗', wHazeLink:'Haze / PSI ↗',
+ wRefreshing:'Refreshing official information…', wSomeUnavailable:'Some information is temporarily unavailable. ',
+ wUpdatedPrefix:'Updated ', wJustNow:'just now', wSource:' · data.gov.sg / NEA',
+ wFullyUnavailable:'Weather information is temporarily unavailable. Use the official links below.',
+ wForecastUnavailable:'Forecast unavailable', wPeriodUnavailable:'period unavailable', wValidPrefix:'Valid ',
+ wStationRangePrefix:'Official station range ', wHighPrefix:'High ', wLowMid:'° / Low ', wDeg:'°',
+ wHumidityPrefix:'Humidity ', wHumiditySuffix:'%',
+ wHighestPsiPrefix:'Highest 24-hour PSI · ', wRegionSuffix:' region',
+ psiGood:'Good', psiModerate:'Moderate', psiUnhealthy:'Unhealthy', psiVeryUnhealthy:'Very unhealthy', psiHazardous:'Hazardous',
+ newsTitle:'Daily News', newsStatusInitial:'Latest edition available · click Show News',
+ newsSchedule:'Refresh daily 6:45 AM, 12:45 PM, 6:45 PM SGT',
+ newsShow:'Show News', newsHide:'Hide News',
+ newsSgHead:'15 Key Singapore Stories', newsWorldHead:'15 Key World Stories',
+ newsNote:'Latest stories from CNA. Select a headline to open the original source. Headlines remain in their original published language.',
+ newsLiveReviewChecked:'LIVE NEWS REVIEW · checked ', newsSgtSuffix:' SGT',
+ newsUnavailable:'News is temporarily unavailable. Please try Show News again.',
+ transportTitle:'Transport', transportDesc:'Plan MRT, bus and accessible journeys around Singapore.',
+ transportLink1:'LTA journeys ↗', transportLink2:'More transport',
+ emergencyTitle:'Emergency / SOS', emergencyNumbers:'995 Ambulance &amp; Fire<br>999 Police',
+ call995:'Call 995', call999:'Call 999', scdfLink:'SCDF guidance ↗',
+ healthcareTitle:'Healthcare', healthcareDesc:'Reach trusted health information, services and caregiver support.',
+ healthhubLink:'HealthHub ↗', aicLink:'AIC ↗',
+ usefulLinksTitle:'Useful Links', usefulLinksDesc:'Browse the organised, searchable collection of trusted Singapore resources.',
+ usefulLinksLink:'Explore useful links ↓',
+ whatsOnEyebrow:'Going out & leisure', whatsOnTitle:'Singapore What’s On',
+ whatsOnDesc:'Discover current and upcoming exhibitions, festivals, cultural events and weekend happenings — with brief overviews, dates, timings, admission prices, accessibility information and official links.',
+ whatsOnLink:'See what’s on →',
+ skipLink:'Skip to main content',
+ libEyebrow:'Find your next useful thing', libTitle:'Explore the resource library', libNewTab:'All website links open in a new tab ↗',
+ searchLabel:'Search tools & resources', searchPh:'Try health, games, transport or caregiving',
+ typeLabel:'Resource type', typeAll:'All resources', typeTool:'My tools', typeExternal:'External resources',
+ allCategories:'All categories',
+ resetFilters:'Reset filters', emptyTitle:'No matching resources', emptyPara:'Try a broader search or use “Reset filters” to see everything.',
+ noscriptText:'Turn on JavaScript to use live weather, search and the resource library. You can still use the official forecast links above and visit <a href="https://jjkwan118-glitch.github.io/FunLearningWorld/">Fun Learning World</a>, <a href="https://jjkwan118-glitch.github.io/OneStopCompanion/">One Stop Companion</a>, <a href="https://www.healthhub.sg/">HealthHub</a> and <a href="https://www.aic.sg/">AIC</a>.',
+ tipsEyebrow:'Small tips, smoother days', tipsTitle:'Make the most of your visit',
+ aboutEyebrow:'A thoughtfully selected collection', aboutTitle:'One hub. Many ways to help.',
+ aboutP1:'Everyday Compass brings my independent tools together with useful Singapore resources for children, adults, seniors and caregivers.',
+ aboutP2:'<strong>My Tool</strong> means a project from this collection. <strong>External Resource</strong> means a separately operated website. This is an independent hub, not a government website or endorsement.',
+ aboutP3:'No accounts, cookies, analytics or tracking on this page. Search stays in your browser. The contact form uses FormSubmit to forward messages by email. Linked services have their own privacy policies.',
+ footerText:'<strong>Everyday Compass</strong> · A useful place to begin.<br>External resource pages reviewed 21 September 2026. Services and availability can change.',
+ backToTop:'Back to top ↑',
+ badgeTool:'My Tool', badgeExternal:'External Resource', srNewTab:' (opens in a new tab)',
+ linkOpenTool:'Open tool', linkVisitResource:'Visit resource', independentProject:'Independent project',
+ toggleLabel:'中文', pageTitle:'Everyday Compass — Useful Tools & Resources', htmlLang:'en-SG'
+},
+zh:{
+ brandTag:'实用工具与资源',
+ navTools:'我的工具', navEssentials:'日常生活助手', navLibrary:'浏览资源', navAbout:'关于', navContact:'联系我们',
+ introEyebrow:'每天都用得上的小帮手',
+ introH1:'从这里开始<br><span>学习、生活与探索。</span>',
+ introPara:'实用工具。可信资源。让每一天更从容。',
+ editionText:'专为各年龄层设计<br>立足新加坡',
+ toolsTitle:'两个值得先从这里开始的地方', toolsSub:'我的工具 · 为日常生活而设计',
+ essentialsTitle:'日常生活要点', essentialsSub:'天气、交通、安全与健康，一目了然',
+ weatherKicker:'新加坡官方实时资讯', weatherTitle:'天气与烟霾',
+ weatherLoading:'正在载入最新资讯……', weatherRefresh:'立即刷新',
+ wCurrent:'当前天气状况', wChecking:'正在查询预报……', wStationReadings:'官方测站读数',
+ wHighLowDash:'最高 / 最低：—', wHumidityDash:'湿度：—',
+ wNext2h:'未来 2 小时', wChooseArea:'选择地区', wLoadingAreas:'正在载入地区……', wValidPeriodDash:'有效时段：—',
+ wHazePsi:'烟霾 / PSI 指数', wCheckingAir:'正在查询空气素质……', wPsi24h:'新加坡 24 小时 PSI 指数', w4dayOutlook:'未来 4 天展望', wLoadingDots:'载入中……',
+ w2hLink:'2 小时预报 ↗', w24hLink:'24 小时预报 ↗', w4dLink:'4 天预报 ↗', wHazeLink:'烟霾 / PSI 指数 ↗',
+ wRefreshing:'正在刷新官方资讯……', wSomeUnavailable:'部分资讯暂时无法取得。',
+ wUpdatedPrefix:'更新于 ', wJustNow:'刚刚', wSource:' · data.gov.sg / NEA',
+ wFullyUnavailable:'天气资讯暂时无法取得，请使用以下官方链接查询。',
+ wForecastUnavailable:'暂无预报资料', wPeriodUnavailable:'时段资料暂缺', wValidPrefix:'有效时段：',
+ wStationRangePrefix:'官方测站范围 ', wHighPrefix:'最高 ', wLowMid:'° / 最低 ', wDeg:'°',
+ wHumidityPrefix:'湿度 ', wHumiditySuffix:'%',
+ wHighestPsiPrefix:'24 小时最高 PSI · ', wRegionSuffix:' 区域',
+ psiGood:'良好', psiModerate:'中等', psiUnhealthy:'不健康', psiVeryUnhealthy:'非常不健康', psiHazardous:'危险',
+ newsTitle:'每日新闻', newsStatusInitial:'最新一期已可浏览 · 点击「显示新闻」查看',
+ newsSchedule:'每日更新：早上 6:45、中午 12:45、晚上 6:45（新加坡时间）',
+ newsShow:'显示新闻', newsHide:'隐藏新闻',
+ newsSgHead:'新加坡 15 大要闻', newsWorldHead:'国际 15 大要闻',
+ newsNote:'新闻摘自 CNA（亚洲新闻台）。点击标题可前往原始新闻来源。标题保留原始发布语言（通常为英文）。',
+ newsLiveReviewChecked:'即时新闻摘要 · 查阅于 ', newsSgtSuffix:'（新加坡时间）',
+ newsUnavailable:'新闻暂时无法取得，请稍后再次点击「显示新闻」重试。',
+ transportTitle:'交通', transportDesc:'规划新加坡的地铁、巴士与无障碍出行路线。',
+ transportLink1:'陆交局出行指南 ↗', transportLink2:'更多交通资讯',
+ emergencyTitle:'紧急求助 / SOS', emergencyNumbers:'995 救护车与消防<br>999 警察',
+ call995:'拨打 995', call999:'拨打 999', scdfLink:'民防部队指南 ↗',
+ healthcareTitle:'医疗保健', healthcareDesc:'获取可信的健康信息、医疗服务与照护者支持。',
+ healthhubLink:'HealthHub 健康枢纽 ↗', aicLink:'综合护理机构 (AIC) ↗',
+ usefulLinksTitle:'实用链接', usefulLinksDesc:'浏览经过整理、可搜索的新加坡可信资源合集。',
+ usefulLinksLink:'浏览实用链接 ↓',
+ whatsOnEyebrow:'外出与休闲', whatsOnTitle:'新加坡活动资讯',
+ whatsOnDesc:'探索新加坡当前及即将举行的展览、节庆、文化活动与周末活动——附有活动简介、日期、时间、票价、无障碍设施信息及官方链接。',
+ whatsOnLink:'查看活动详情 →',
+ skipLink:'跳至主要内容',
+ libEyebrow:'寻找下一个实用资源', libTitle:'浏览资源库', libNewTab:'所有网站链接将在新标签页中打开 ↗',
+ searchLabel:'搜索工具与资源', searchPh:'试试输入健康、游戏、交通或照护等关键词',
+ typeLabel:'资源类型', typeAll:'所有资源', typeTool:'我的工具', typeExternal:'外部资源',
+ allCategories:'所有类别',
+ resetFilters:'重置筛选', emptyTitle:'没有符合条件的资源', emptyPara:'请尝试更宽泛的搜索，或点击「重置筛选」查看全部内容。',
+ noscriptText:'请启用 JavaScript 以使用实时天气、搜索与资源库功能。您仍可使用上方的官方预报链接，并浏览 <a href="https://jjkwan118-glitch.github.io/FunLearningWorld/">Fun Learning World 趣味学习世界</a>、<a href="https://jjkwan118-glitch.github.io/OneStopCompanion/">One Stop Companion 一站式生活伙伴</a>、<a href="https://www.healthhub.sg/">HealthHub</a> 与 <a href="https://www.aic.sg/">AIC</a>。',
+ tipsEyebrow:'贴心小贴士，让每一天更顺畅', tipsTitle:'充分利用本站',
+ aboutEyebrow:'精心整理的资源合集', aboutTitle:'一个枢纽，多种帮助方式。',
+ aboutP1:'Everyday Compass 将我个人开发的独立工具，与新加坡多项适合儿童、成人、乐龄人士及照护者的实用资源汇集在一起。',
+ aboutP2:'<strong>我的工具</strong>指本合集内的自制项目。<strong>外部资源</strong>指由其他机构独立运营的网站。本站为个人独立整理的资讯枢纽，并非政府网站，亦不构成官方认可或背书。',
+ aboutP3:'本页面不设账户、Cookie、分析工具或追踪功能。搜索功能完全在您的浏览器本机运行。联系表单使用 FormSubmit 以电邮方式转发讯息。所链接的外部服务各自适用其本身的隐私政策。',
+ footerText:'<strong>Everyday Compass</strong> · 一个值得信赖的起点。<br>外部资源页面最近审核日期：2026 年 9 月 21 日。相关服务与可用性可能会有所变动。',
+ backToTop:'返回顶部 ↑',
+ badgeTool:'我的工具', badgeExternal:'外部资源', srNewTab:'（在新标签页中打开）',
+ linkOpenTool:'打开工具', linkVisitResource:'前往资源', independentProject:'独立项目',
+ toggleLabel:'EN', pageTitle:'Everyday Compass — 实用工具与资源', htmlLang:'zh-Hans-SG'
+}
+};
+
+const psiRegionZh = {north:'北部',south:'南部',east:'东部',west:'西部',central:'中部'};
+const weekdayZh = {MON:'周一',TUE:'周二',WED:'周三',THU:'周四',FRI:'周五',SAT:'周六',SUN:'周日'};
+
+function t(key){return (T[currentLang]&&T[currentLang][key]!==undefined)?T[currentLang][key]:(T.en[key]||'');}
+
+function element(tag,className,text){const el=document.createElement(tag);if(className)el.className=className;if(text!==undefined)el.textContent=text;return el;}
+function destination(item,text){const isLocal=!/^https?:/i.test(item.url);const url=isLocal?new URL(item.url,location.href):new URL(item.url);if(!isLocal&&url.protocol!=='https:')throw new Error('Only HTTPS links are supported');const a=element('a','',text+(isLocal?' →':' ↗'));a.href=isLocal?item.url:url.href;if(!isLocal){a.target='_blank';a.rel='noopener noreferrer external';a.append(element('span','sr',t('srNewTab')));}return a;}
+function badge(type){return element('span','badge'+(type==='external'?' external':''),type==='tool'?t('badgeTool'):t('badgeExternal'));}
+function localName(obj){return currentLang==='zh'&&obj.nameZh?obj.nameZh:obj.name;}
+function localDesc(obj){return currentLang==='zh'&&obj.descriptionZh?obj.descriptionZh:obj.description;}
+function catName(id){const c=categories.find(x=>x.id===id);if(!c)return'';return currentLang==='zh'&&c.nameZh?c.nameZh:c.name;}
+
+function renderFeatured(){
+ $('featured').replaceChildren();
+ tools.filter(x=>x.featured).forEach(x=>{
+  const c=element('article','feature');
+  const audience=currentLang==='zh'&&x.audienceZh?x.audienceZh:x.audience;
+  const action=currentLang==='zh'&&x.actionZh?x.actionZh:x.action;
+  c.append(badge('tool'),element('h3','',localName(x)),element('p','',localDesc(x)),element('span','audience',audience),destination(x,action));
+  $('featured').append(c);
+ });
+}
+function renderTips(){
+ $('tips').replaceChildren();
+ tips.forEach(x=>$('tips').append(element('li','',currentLang==='zh'?x.zh:x.en)));
+}
+let activeCategory='all';
+function renderFilters(){
+ $('filters').replaceChildren();
+ const btnAll=element('button','',t('allCategories'));
+ btnAll.type='button';btnAll.dataset.category='all';btnAll.setAttribute('aria-pressed',String(activeCategory==='all'));btnAll.setAttribute('aria-controls','results');
+ btnAll.addEventListener('click',()=>{activeCategory='all';render();});
+ $('filters').append(btnAll);
+ categories.forEach(c=>{
+  const b=element('button','',catName(c.id));
+  b.type='button';b.dataset.category=c.id;b.setAttribute('aria-pressed',String(c.id===activeCategory));b.setAttribute('aria-controls','results');
+  b.addEventListener('click',()=>{activeCategory=c.id;render();});
+  $('filters').append(b);
+ });
+}
+function render(){
+ const terms=$('search').value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+ const type=$('type').value;
+ const filtered=all.filter(r=>{
+  const haystack=[r.name,r.nameZh,r.description,r.descriptionZh,r.keywords,r.source,r.sourceZh,r.audience,r.audienceZh,...r.categories.flatMap(id=>{const c=categories.find(x=>x.id===id);return c?[c.name,c.nameZh]:[];})].filter(Boolean).join(' ').toLocaleLowerCase();
+  return(type==='all'||type===r.type)&&(activeCategory==='all'||r.categories.includes(activeCategory))&&terms.every(x=>haystack.includes(x));
+ });
+ $('filters').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.category===activeCategory)));
+ $('results').replaceChildren();
+ filtered.forEach(r=>{
+  const c=element('article','card');
+  c.append(badge(r.type),element('h3','',localName(r)),element('span','category',r.categories.map(id=>catName(id)).join(' · ')),element('p','',localDesc(r)));
+  const note=currentLang==='zh'&&r.noteZh?r.noteZh:r.note;
+  if(note)c.append(element('p','',note));
+  const source=(currentLang==='zh'&&r.sourceZh?r.sourceZh:r.source)||t('independentProject');
+  c.append(element('p','source',source+' · '+new URL(r.url,location.href).hostname),destination(r,r.type==='tool'?t('linkOpenTool'):t('linkVisitResource')));
+  $('results').append(c);
+ });
+ if(currentLang==='zh'){
+  $('count').textContent='共 '+all.length+' 项资源中的 '+filtered.length+' 项'+(activeCategory==='all'?'':' · '+catName(activeCategory));
+ }else{
+  $('count').textContent=filtered.length+' of '+all.length+' resources'+(activeCategory==='all'?'':' · '+catName(activeCategory));
+ }
+ $('empty').hidden=filtered.length!==0;
+}
+
+// ---------------------------------------------------------------
+// Language application
+function applyStaticText(){
+ document.documentElement.lang=t('htmlLang');
+ document.title=t('pageTitle');
+ document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(T.en[k]!==undefined)el.textContent=t(k);});
+ document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.getAttribute('data-i18n-html');if(T.en[k]!==undefined)el.innerHTML=t(k);});
+ document.querySelectorAll('[data-i18n-ph]').forEach(el=>{const k=el.getAttribute('data-i18n-ph');if(T.en[k]!==undefined)el.placeholder=t(k);});
+ const toggleLabelEl=$('lang-toggle-label');if(toggleLabelEl)toggleLabelEl.textContent=t('toggleLabel');
+}
+function reapplyWeatherLang(){
+ if(weatherRaw.temperature)updateTemperature(weatherRaw.temperature);
+ if(weatherRaw.twoHour)updateTwoHour(weatherRaw.twoHour);
+ if(weatherRaw.day)updateDay(weatherRaw.day);
+ if(weatherRaw.psi)updatePsi(weatherRaw.psi);
+ if(weatherRaw.fourDay)updateFourDay(weatherRaw.fourDay);
+ if(lastWeatherStatus)applyWeatherStatus(lastWeatherStatus);
+}
+function reapplyNewsLang(){
+ if(newsEdition)newsStatus(newsEdition);
+ const button=$('news-refresh');
+ if(button){
+  const panels=$('news-panels');
+  button.textContent=(panels&&!panels.hidden)?t('newsHide'):t('newsShow');
+ }
+}
+function applyLanguage(){
+ applyStaticText();
+ renderFeatured();
+ renderTips();
+ renderFilters();
+ render();
+ reapplyWeatherLang();
+ reapplyNewsLang();
+}
+function setLanguage(lang){
+ currentLang=(lang==='zh')?'zh':'en';
+ localStorage.setItem('ec-lang',currentLang);
+ applyLanguage();
+}
+const langToggleBtn=document.getElementById('lang-toggle');
+if(langToggleBtn)langToggleBtn.addEventListener('click',()=>setLanguage(currentLang==='en'?'zh':'en'));
+
+// ---------------------------------------------------------------
+const weatherEndpoints = {
+ temperature:'https://api-open.data.gov.sg/v2/real-time/api/air-temperature',
+ twoHour:'https://api-open.data.gov.sg/v2/real-time/api/two-hr-forecast',
+ day:'https://api-open.data.gov.sg/v2/real-time/api/twenty-four-hr-forecast',
+ fourDay:'https://api-open.data.gov.sg/v2/real-time/api/four-day-outlook',
+ psi:'https://api-open.data.gov.sg/v2/real-time/api/psi'
+};
+let latestTwoHour=null;
+let weatherRaw={temperature:null,twoHour:null,day:null,psi:null,fourDay:null};
+let lastWeatherStatus=null; // {kind:'ok',successes,total,latest} | {kind:'fail'}
+const formatSgTime=value=>new Intl.DateTimeFormat(currentLang==='zh'?'zh-Hans-SG':'en-SG',{timeZone:'Asia/Singapore',day:'numeric',month:'short',hour:'numeric',minute:'2-digit'}).format(new Date(value))+' SGT';
+const cleanForecast=text=>String(text||'').replace(/\s*\([^)]*\)\s*/g,' ').trim();
+function psiBand(value){if(value<=50)return t('psiGood');if(value<=100)return t('psiModerate');if(value<=200)return t('psiUnhealthy');if(value<=300)return t('psiVeryUnhealthy');return t('psiHazardous');}
+async function fetchWeather(url){const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),12000);try{const response=await fetch(url,{signal:controller.signal,cache:'no-store'});if(!response.ok)throw new Error('Request failed');const json=await response.json();if(json.code!==0||!json.data)throw new Error('Data unavailable');return json.data;}finally{clearTimeout(timer);}}
+function showAreaForecast(){if(!latestTwoHour)return;const item=latestTwoHour.items?.[0];const selected=$('weather-area').value;const match=item?.forecasts?.find(x=>x.area===selected);$('weather-area-forecast').textContent=match?.forecast||t('wForecastUnavailable');$('weather-valid-period').textContent=t('wValidPrefix')+(item?.valid_period?.text||t('wPeriodUnavailable'));}
+function updateTwoHour(data){latestTwoHour=data;weatherRaw.twoHour=data;const forecasts=data.items?.[0]?.forecasts||[];const select=$('weather-area');const previous=select.value;select.replaceChildren(...forecasts.map(item=>{const option=document.createElement('option');option.value=item.area;option.textContent=item.area;return option;}));const preferred=forecasts.some(x=>x.area===previous)?previous:(forecasts.some(x=>x.area==='Queenstown')?'Queenstown':forecasts[0]?.area);if(preferred)select.value=preferred;showAreaForecast();}
+function updateTemperature(data){weatherRaw.temperature=data;const readings=data.readings?.[0]?.data?.map(x=>Number(x.value)).filter(Number.isFinite)||[];if(!readings.length)return;const sorted=[...readings].sort((a,b)=>a-b);const middle=Math.floor(sorted.length/2);const median=sorted.length%2?sorted[middle]:(sorted[middle-1]+sorted[middle])/2;$('weather-temp').textContent=Math.round(median)+'°C';$('weather-range').textContent=t('wStationRangePrefix')+Math.min(...readings).toFixed(1)+'–'+Math.max(...readings).toFixed(1)+'°C';}
+function updateDay(data){weatherRaw.day=data;const record=data.records?.[0];const general=record?.general;if(!general)return;$('weather-condition').textContent=cleanForecast(general.forecast?.text)||t('wForecastUnavailable');$('weather-high-low').textContent=t('wHighPrefix')+general.temperature?.high+t('wLowMid')+general.temperature?.low+t('wDeg');$('weather-humidity').textContent=t('wHumidityPrefix')+general.relativeHumidity?.low+'–'+general.relativeHumidity?.high+t('wHumiditySuffix');}
+function updatePsi(data){weatherRaw.psi=data;const item=data.items?.[0];const readings=item?.readings?.psi_twenty_four_hourly;if(!readings)return;const highest=Object.entries(readings).sort((a,b)=>b[1]-a[1])[0];const regionKey=String(highest[0]).toLowerCase();const regionLabel=currentLang==='zh'?(psiRegionZh[regionKey]||highest[0]):(highest[0][0].toUpperCase()+highest[0].slice(1));$('weather-psi').textContent=String(highest[1]);$('weather-psi-status').textContent=psiBand(highest[1]);$('weather-psi-detail').textContent=t('wHighestPsiPrefix')+regionLabel+(currentLang==='zh'?t('wRegionSuffix'):t('wRegionSuffix'));}
+function updateFourDay(data){weatherRaw.fourDay=data;const forecasts=data.records?.[0]?.forecasts||[];const container=$('weather-four-day');container.replaceChildren(...forecasts.slice(0,4).map(item=>{const card=element('div','forecast-day');const abbr=String(item.day||'').slice(0,3).toUpperCase();const dayLabel=currentLang==='zh'?(weekdayZh[abbr]||item.day.slice(0,3)):item.day.slice(0,3);card.append(element('strong','',dayLabel),document.createTextNode(cleanForecast(item.forecast?.text)+' · '+item.temperature?.low+'–'+item.temperature?.high+'°'));return card;}));}
+function applyWeatherStatus(status){
+ if(status.kind==='fail'){$('weather-status').textContent=t('wFullyUnavailable');return;}
+ $('weather-status').textContent=(status.successes<status.total?t('wSomeUnavailable'):'')+t('wUpdatedPrefix')+(status.latest?formatSgTime(status.latest):t('wJustNow'))+t('wSource');
+}
+async function loadWeather(){const button=$('weather-refresh');button.setAttribute('aria-busy','true');button.disabled=true;$('weather-status').textContent=t('wRefreshing');const entries=Object.entries(weatherEndpoints);const results=await Promise.allSettled(entries.map(([,url])=>fetchWeather(url)));const stamps=[];let successes=0;results.forEach((result,index)=>{if(result.status!=='fulfilled')return;successes++;const [name]=entries[index];const data=result.value;if(name==='temperature'){updateTemperature(data);if(data.readings?.[0]?.timestamp)stamps.push(data.readings[0].timestamp);}if(name==='twoHour'){updateTwoHour(data);if(data.items?.[0]?.update_timestamp)stamps.push(data.items[0].update_timestamp);}if(name==='day'){updateDay(data);if(data.records?.[0]?.updatedTimestamp)stamps.push(data.records[0].updatedTimestamp);}if(name==='fourDay'){updateFourDay(data);if(data.records?.[0]?.updatedTimestamp)stamps.push(data.records[0].updatedTimestamp);}if(name==='psi'){updatePsi(data);if(data.items?.[0]?.updatedTimestamp)stamps.push(data.items[0].updatedTimestamp);}});if(!successes){lastWeatherStatus={kind:'fail'};}else{const latest=stamps.sort((a,b)=>new Date(b)-new Date(a))[0];lastWeatherStatus={kind:'ok',successes,total:entries.length,latest};}applyWeatherStatus(lastWeatherStatus);button.removeAttribute('aria-busy');button.disabled=false;}
+
+
+function drawNews(id,items){const l=$(id);l.replaceChildren(...items.map(x=>{const li=document.createElement("li"),a=document.createElement("a");a.textContent=x.title;a.href=x.url||"#";if(x.url&&x.url!=="#"){a.target="_blank";a.rel="noopener noreferrer external"}li.append(a,element("p","news-summary",x.summary),element("span","news-source",x.source));return li}))}
+let newsEdition;
+function validateNews(d){
+ if(!d || !Number.isFinite(Date.parse(d.generated_at)))throw new Error('Invalid news timestamp');
+ for(const key of ['singapore','world']){
+  if(!Array.isArray(d[key]) || d[key].length!==15)throw new Error('Incomplete edition');
+  if(d[key].some(x=>!x.title || !/^https:\/\//.test(x.url)))throw new Error('Invalid story');
+ }
+ return d;
+}
+function newsStatus(d){
+ const checked=new Intl.DateTimeFormat(currentLang==='zh'?'zh-Hans-SG':'en-SG',{timeZone:'Asia/Singapore',hour:'numeric',minute:'2-digit',hour12:true}).format(new Date(d.generated_at)).toUpperCase();
+ $('news-status').textContent=t('newsLiveReviewChecked')+checked+t('newsSgtSuffix');
+}
+
+async function fetchDailyNewsJson(){
+ const urls=['https://jjkwan118-glitch.github.io/EverydayCompass/data/daily-news.json?ts='+Date.now(),'https://raw.githubusercontent.com/jjkwan118-glitch/EverydayCompass/main/data/daily-news.json?ts='+Date.now()];
+ let lastError=null;
+ for(const url of urls){
+  try{
+   const response=await fetch(url,{cache:'no-store'});
+   if(!response.ok)throw new Error('HTTP '+response.status);
+   return await response.json();
+  }catch(error){lastError=error;}
+ }
+ throw lastError||new Error('News unavailable');
+}
+
+async function loadNews(show=true){
+ const button=$('news-refresh');
+ button.disabled=true;
+ try{
+  const newsData=await fetchDailyNewsJson();
+  newsEdition=validateNews(newsData);
+  newsStatus(newsEdition);
+  if(show){
+   drawNews('sg-news',newsEdition.singapore);
+   drawNews('world-news',newsEdition.world);
+   $('news-panels').hidden=false;
+   button.textContent=t('newsHide');
+   button.setAttribute('aria-expanded','true');
+  }
+ }catch(error){
+  $('news-status').textContent=t('newsUnavailable');
+ }finally{button.disabled=false;}
+}
+$('weather-area').addEventListener('change',showAreaForecast);$('weather-refresh').addEventListener('click',loadWeather);$('news-refresh').addEventListener('click',async function(){
+  const panels=$('news-panels');
+  if(!panels.hidden){
+    panels.hidden=true;
+    this.textContent=t('newsShow');
+    this.setAttribute('aria-expanded','false');
+    return;
+  }
+  await loadNews();
+});$('search').addEventListener('input',render);$('type').addEventListener('change',render);$('reset').addEventListener('click',()=>{$('search').value='';$('type').value='all';activeCategory='all';render();$('search').focus();});
+applyStaticText();
+renderFeatured();
+renderTips();
+renderFilters();
+render();
+loadNews(false);
+loadWeather();
+setInterval(loadWeather,15*60*1000);
+
+// Optional full-page translation. Opens Google Translate in a new tab so this page's live widgets remain intact.
+const translateToggle=$('translate-toggle');
+const translateMenu=$('translate-menu');
+const translateLanguage=$('translate-language');
+if(translateToggle&&translateMenu&&translateLanguage){
+ translateToggle.addEventListener('click',()=>{
+  const opening=translateMenu.hidden;
+  translateMenu.hidden=!opening;
+  translateToggle.setAttribute('aria-expanded',String(opening));
+  if(opening)translateLanguage.focus();
+ });
+ translateLanguage.addEventListener('change',()=>{
+  const lang=translateLanguage.value;
+  if(!lang)return;
+  const pageUrl=(location.protocol==='http:'||location.protocol==='https:')?location.href:'https://jjkwan118-glitch.github.io/EverydayCompass/';
+  const u='https://translate.google.com/translate?sl=auto&tl='+encodeURIComponent(lang)+'&u='+encodeURIComponent(pageUrl);
+  window.open(u,'_blank','noopener,noreferrer');
+  translateLanguage.value='';
+  translateMenu.hidden=true;
+  translateToggle.setAttribute('aria-expanded','false');
+ });
+ document.addEventListener('click',e=>{if(!e.target.closest('.translate-wrap')){translateMenu.hidden=true;translateToggle.setAttribute('aria-expanded','false');}});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){translateMenu.hidden=true;translateToggle.setAttribute('aria-expanded','false');translateToggle.focus();}});
+}
+</script>
+
+</body>
+</html>
