@@ -183,7 +183,7 @@ const $ = id=>document.getElementById(id);
 // ---------------------------------------------------------------
 // Language state
 let currentLang = 'en';
-localStorage.removeItem('ec-lang');
+
 
 const T = {
 en:{
@@ -510,6 +510,18 @@ loadNews(false);
 loadWeather();
 setInterval(loadWeather,15*60*1000);
 
+// First visit: English. After a visitor explicitly selects a translation language,
+// remember that choice for later direct visits to the hosted Everyday Compass home page.
+(function(){
+ const saved=localStorage.getItem('ec-translate-lang');
+ const hosted=/^https?:$/.test(location.protocol);
+ const translated=/\.translate\.goog$/i.test(location.hostname);
+ if(saved && hosted && !translated){
+  const canonical='https://jjkwan118-glitch.github.io/EverydayCompass/';
+  location.replace('https://translate.google.com/translate?sl=en&tl='+encodeURIComponent(saved)+'&u='+encodeURIComponent(canonical));
+ }
+})();
+
 // Optional full-page translation. Opens Google Translate in a new tab so this page's live widgets remain intact.
 const translateToggle=$('translate-toggle');
 const translateMenu=$('translate-menu');
@@ -523,9 +535,9 @@ if(translateToggle&&translateMenu&&translateLanguage){
  });
  translateLanguage.addEventListener('change',()=>{
   const lang=translateLanguage.value;
-  if(!lang)return;
+  if(!lang)return; localStorage.setItem('ec-translate-lang',lang);
   const pageUrl=(location.protocol==='http:'||location.protocol==='https:')?location.href:'https://jjkwan118-glitch.github.io/EverydayCompass/';
-  const u='https://translate.google.com/translate?sl=auto&tl='+encodeURIComponent(lang)+'&u='+encodeURIComponent(pageUrl);
+  const u='https://translate.google.com/translate?sl=en&tl='+encodeURIComponent(lang)+'&u='+encodeURIComponent(pageUrl);
   window.open(u,'_blank','noopener,noreferrer');
   translateLanguage.value='';
   translateMenu.hidden=true;
