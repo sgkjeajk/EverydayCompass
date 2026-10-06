@@ -147,6 +147,11 @@ nav a{font-size:1rem}
 /* tablets: two across, third spans the row */
 @media(min-width:581px) and (max-width:999px){.feature:nth-child(3){grid-column:1/-1}.feature:nth-child(3) .feature-img{aspect-ratio:1100/380;object-position:center 78%}}
 </style>
+<style id="stock-card-layout-v1">
+/* Four featured tools: 2 x 2 so Stock / ETF Monitor sits next to Exercise Studio. */
+@media(min-width:581px){.featured{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.feature:nth-child(3){grid-column:auto}.feature:nth-child(3) .feature-img{aspect-ratio:1100/560;object-position:center}}
+.feature:nth-child(4){background:linear-gradient(125deg,#1769d2,#274690);border-top-color:#a9d2ff}
+</style>
 </head>
 <body id="top">
 <a class="skip" href="#main" data-i18n="skipLink">Skip to main content</a>
