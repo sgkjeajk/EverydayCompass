@@ -1,8 +1,8 @@
 name: Update Stock ETF Monitor
 on:
   schedule:
-    # SGT main: 06:45, 12:45, 18:45; backups: 08:45, 14:45, 20:45
-    - cron: '45 22,0,4,6,10,12 * * *'
+    # SGT: 06:45, 12:45, 18:45 (3 scheduled refreshes daily)
+    - cron: '45 22,4,10 * * *'
   workflow_dispatch:
 permissions:
   contents: write
