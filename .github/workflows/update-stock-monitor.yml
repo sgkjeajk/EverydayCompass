@@ -1,0 +1,29 @@
+name: Update Stock ETF Monitor
+on:
+  schedule:
+    # SGT main: 06:45, 12:45, 18:45; backups: 08:45, 14:45, 20:45
+    - cron: '45 22,0,4,6,10,12 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: stock-etf-monitor-update
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch market reference data
+        run: python scripts/update_stock_monitor.py
+      - name: Commit changed data
+        run: |
+          if git diff --quiet -- data/stock-monitor.json; then echo "No data change"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/stock-monitor.json
+          git commit -m "Update Stock ETF Monitor data"
+          git push
