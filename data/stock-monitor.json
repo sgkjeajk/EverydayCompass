@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-10-06T02:15:00Z",
+  "source": "Yahoo Finance chart data",
+  "ath_since": "2000-01-01",
+  "instruments": [
+    {"ticker":"SPY","name":"SPDR S&P 500 ETF Trust","prev_close":null,"prev_day_pct_change":null,"current_price":null,"current_pct_change":null,"ath":null,"drawdown_pct":null},
+    {"ticker":"VOO","name":"Vanguard S&P 500 ETF","prev_close":null,"prev_day_pct_change":null,"current_price":null,"current_pct_change":null,"ath":null,"drawdown_pct":null},
+    {"ticker":"QQQ","name":"Invesco QQQ Trust","prev_close":null,"prev_day_pct_change":null,"current_price":null,"current_pct_change":null,"ath":null,"drawdown_pct":null},
+    {"ticker":"QQQM","name":"Invesco NASDAQ 100 ETF","prev_close":null,"prev_day_pct_change":null,"current_price":null,"current_pct_change":null,"ath":null,"drawdown_pct":null},
+    {"ticker":"URTH","name":"iShares MSCI World ETF","prev_close":null,"prev_day_pct_change":null,"current_price":null,"current_pct_change":null,"ath":null,"drawdown_pct":null},
+    {"ticker":"AAPL","name":"Apple","prev_close":null,"prev_day_pct_change":null,"current_price":null,"current_pct_change":null,"ath":null,"drawdown_pct":null},
+    {"ticker":"MSFT","name":"Microsoft","prev_close":null,"prev_day_pct_change":null,"current_price":null,"current_pct_change":null,"ath":null,"drawdown_pct":null},
+    {"ticker":"NVDA","name":"NVIDIA","prev_close":null,"prev_day_pct_change":null,"current_price":null,"current_pct_change":null,"ath":null,"drawdown_pct":null},
+    {"ticker":"AMZN","name":"Amazon","prev_close":null,"prev_day_pct_change":null,"current_price":null,"current_pct_change":null,"ath":null,"drawdown_pct":null},
+    {"ticker":"GOOGL","name":"Alphabet Class A","prev_close":null,"prev_day_pct_change":null,"current_price":null,"current_pct_change":null,"ath":null,"drawdown_pct":null},
+    {"ticker":"META","name":"Meta Platforms","prev_close":null,"prev_day_pct_change":null,"current_price":null,"current_pct_change":null,"ath":null,"drawdown_pct":null},
+    {"ticker":"TSLA","name":"Tesla","prev_close":null,"prev_day_pct_change":null,"current_price":null,"current_pct_change":null,"ath":null,"drawdown_pct":null}
+  ]
+}
