@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T01:49:31.847518Z",
+  "generated_at": "2026-10-07T11:21:59.751442Z",
   "source": "Yahoo Finance chart data",
   "ath_since": "2000-01-01",
   "instruments": [
@@ -26,8 +26,8 @@
       "prev_day_pct_change": -0.7179775256667353,
       "current_price": 716.2,
       "current_pct_change": 1.9559832588332382,
-      "ath": 718.4600219726562,
-      "drawdown_pct": -0.31456475009575824
+      "ath": 718.469970703125,
+      "drawdown_pct": -0.31594510497126027
     },
     {
       "region": "US",
