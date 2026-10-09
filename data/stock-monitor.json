@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-08T19:01:18.619088Z",
+  "generated_at": "2026-10-09T02:34:46.344082Z",
   "source": "Yahoo Finance chart data",
   "ath_since": "2000-01-01",
   "instruments": [
@@ -11,10 +11,10 @@
       "enabled": true,
       "prev_close": 763.99,
       "prev_day_pct_change": -1.9381620011765355,
-      "current_price": 772.85,
-      "current_pct_change": 1.1597010432073729,
+      "current_price": 773.93,
+      "current_pct_change": 1.3010641500543096,
       "ath": 781.6199951171875,
-      "drawdown_pct": -1.1220279895568175
+      "drawdown_pct": -0.9838534281655154
     },
     {
       "region": "US",
@@ -24,10 +24,10 @@
       "enabled": true,
       "prev_close": 702.35,
       "prev_day_pct_change": -1.9338190409060818,
-      "current_price": 710.365,
-      "current_pct_change": 1.1411689328682195,
+      "current_price": 711.28,
+      "current_pct_change": 1.271445860326037,
       "ath": 718.469970703125,
-      "drawdown_pct": -1.1280876075019708
+      "drawdown_pct": -1.0007336418095036
     },
     {
       "region": "US",
@@ -37,10 +37,10 @@
       "enabled": true,
       "prev_close": 742.03,
       "prev_day_pct_change": -2.320771630438012,
-      "current_price": 746.55,
-      "current_pct_change": 0.6091397921916819,
+      "current_price": 747.58,
+      "current_pct_change": 0.747948196164594,
       "ath": 762.8599853515625,
-      "drawdown_pct": -2.138005094610662
+      "drawdown_pct": -2.0029868711124887
     },
     {
       "region": "US",
@@ -50,10 +50,10 @@
       "enabled": true,
       "prev_close": 305.57,
       "prev_day_pct_change": -2.298890376366536,
-      "current_price": 307.38,
-      "current_pct_change": 0.5923356350427067,
+      "current_price": 307.85,
+      "current_pct_change": 0.746146545799653,
       "ath": 314.114990234375,
-      "drawdown_pct": -2.1441161497417704
+      "drawdown_pct": -1.9944894160257687
     },
     {
       "region": "Global",
@@ -63,10 +63,10 @@
       "enabled": true,
       "prev_close": 205.84,
       "prev_day_pct_change": -1.8547636517346588,
-      "current_price": 207.615,
-      "current_pct_change": 0.862320248736892,
+      "current_price": 207.87,
+      "current_pct_change": 0.9862028760202035,
       "ath": 211.94000244140625,
-      "drawdown_pct": -2.0406730166958154
+      "drawdown_pct": -1.9203559472126819
     },
     {
       "region": "US",
@@ -76,10 +76,10 @@
       "enabled": true,
       "prev_close": 330.32,
       "prev_day_pct_change": -0.9921184648770232,
-      "current_price": 341.36,
-      "current_pct_change": 3.3422136110438316,
+      "current_price": 340.42,
+      "current_pct_change": 3.057641075320916,
       "ath": 345.3399963378906,
-      "drawdown_pct": -1.1524863555035347
+      "drawdown_pct": -1.4246818758510527
     },
     {
       "region": "US",
@@ -89,10 +89,10 @@
       "enabled": true,
       "prev_close": 512.8,
       "prev_day_pct_change": -3.117322534196365,
-      "current_price": 521.98,
-      "current_pct_change": 1.790171606864277,
+      "current_price": 522.61,
+      "current_pct_change": 1.9130265210608455,
       "ath": 555.4500122070312,
-      "drawdown_pct": -6.025746956785749
+      "drawdown_pct": -5.912325409183872
     },
     {
       "region": "US",
@@ -102,10 +102,10 @@
       "enabled": true,
       "prev_close": 230.86,
       "prev_day_pct_change": -3.502760951660111,
-      "current_price": 230.11,
-      "current_pct_change": -0.32487221692800716,
+      "current_price": 230.48,
+      "current_pct_change": -0.16460192324353473,
       "ath": 243.3699951171875,
-      "drawdown_pct": -5.448492165520458
+      "drawdown_pct": -5.2964602768639235
     },
     {
       "region": "US",
@@ -115,10 +115,10 @@
       "enabled": true,
       "prev_close": 248.23,
       "prev_day_pct_change": -3.1448781755802013,
-      "current_price": 254.49,
-      "current_pct_change": 2.521854731499018,
+      "current_price": 254.06,
+      "current_pct_change": 2.3486282882810405,
       "ath": 287.20001220703125,
-      "drawdown_pct": -11.389279532290509
+      "drawdown_pct": -11.539000974394774
     },
     {
       "region": "US",
@@ -128,10 +128,10 @@
       "enabled": true,
       "prev_close": 338.24,
       "prev_day_pct_change": -2.715138309550136,
-      "current_price": 347.94,
-      "current_pct_change": 2.8677861873226185,
+      "current_price": 348.29,
+      "current_pct_change": 2.9712630085146685,
       "ath": 408.6099853515625,
-      "drawdown_pct": -14.847895921917543
+      "drawdown_pct": -14.7622396696116
     },
     {
       "region": "US",
@@ -141,10 +141,10 @@
       "enabled": true,
       "prev_close": 725.93,
       "prev_day_pct_change": -1.752653312748187,
-      "current_price": 719.38,
-      "current_pct_change": -0.9022908544900954,
+      "current_price": 720.89,
+      "current_pct_change": -0.6942818178061194,
       "ath": 796.25,
-      "drawdown_pct": -9.654003139717426
+      "drawdown_pct": -9.464364207221355
     },
     {
       "region": "US",
@@ -154,10 +154,10 @@
       "enabled": true,
       "prev_close": 354.11,
       "prev_day_pct_change": -6.979613635332404,
-      "current_price": 371.67,
-      "current_pct_change": 4.958911072830485,
+      "current_price": 375.0,
+      "current_pct_change": 5.899296828669054,
       "ath": 498.8299865722656,
-      "drawdown_pct": -25.49164845643134
+      "drawdown_pct": -24.82408634315859
     }
   ]
 }
