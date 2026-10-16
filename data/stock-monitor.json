@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-16T00:46:45.438113Z",
+  "generated_at": "2026-10-16T09:18:33.284031Z",
   "source": "Yahoo Finance chart data",
   "ath_since": "2000-01-01",
   "instruments": [
@@ -49,7 +49,7 @@
       "type": "ETF",
       "enabled": true,
       "prev_close": 307.85,
-      "prev_day_pct_change": 0.21484994737732688,
+      "prev_day_pct_change": 0.551997752049882,
       "current_price": 299.79,
       "current_pct_change": -2.6181581939256127,
       "ath": 314.114990234375,
@@ -140,7 +140,7 @@
       "type": "Stock",
       "enabled": true,
       "prev_close": 720.89,
-      "prev_day_pct_change": -2.970553101101925,
+      "prev_day_pct_change": -5.457049180327866,
       "current_price": 736.72,
       "current_pct_change": 2.195896738753489,
       "ath": 796.25,
