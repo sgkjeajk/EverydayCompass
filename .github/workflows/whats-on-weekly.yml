@@ -1,0 +1,124 @@
+name: What's On Weekly Refresh
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - sources.json
+      - scripts/update_events.py
+      - scripts/run_whats_on.py
+      - tests/**
+      - .github/workflows/whats-on-weekly.yml
+  workflow_dispatch:
+  schedule:
+    # Monday 6:45 AM Singapore = Sunday 10:45 PM UTC
+    - cron: '45 22 * * 0'
+    # Backup 1 Monday 8:45 AM Singapore = Monday 12:45 AM UTC.
+    - cron: '45 0 * * 1'
+    # Backup 2 Monday 9:45 AM Singapore = Monday 1:45 AM UTC.
+    - cron: '45 1 * * 1'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: everyday-compass-pages
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    outputs:
+      reader_review: ${{ steps.update.outputs.reader_review }}
+      reader_review_details: ${{ steps.update.outputs.reader_review_details }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4 pytest playwright
+      - name: Install browser for public JavaScript event listings
+        run: python -m playwright install --with-deps chromium
+      - name: Check whether backup refresh is needed
+        id: refresh_check
+        env:
+          GITHUB_EVENT_SCHEDULE: ${{ github.event.schedule }}
+        shell: python
+        run: |
+          import json, os
+          from datetime import datetime, timezone, timedelta
+
+          needed = True
+          scheduled = os.environ.get("GITHUB_EVENT_SCHEDULE", "")
+          backup_crons = {"45 0 * * 1", "45 1 * * 1"}
+          if os.environ.get("GITHUB_EVENT_NAME") == "schedule" and scheduled in backup_crons:
+              sgt = timezone(timedelta(hours=8))
+              now = datetime.now(sgt)
+              target = now.replace(hour=6, minute=45, second=0, microsecond=0)
+              try:
+                  with open("events.json", encoding="utf-8") as fh:
+                      feed = json.load(fh)
+                  updated = datetime.fromisoformat(feed["updated_at"])
+                  needed = updated < target or feed.get("all_sources_failed", False) or any(
+                      row.get("status") != "ok" for row in feed.get("sources", [])
+                  )
+              except Exception:
+                  needed = True
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as fh:
+              fh.write(f"needed={'true' if needed else 'false'}\n")
+      - name: Safety tests
+        if: steps.refresh_check.outputs.needed == 'true'
+        run: pytest -q
+      - name: Update feed
+        id: update
+        if: steps.refresh_check.outputs.needed == 'true'
+        run: python scripts/run_whats_on.py
+      - name: Commit changed feed
+        if: steps.refresh_check.outputs.needed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add events.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update What's On events"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      # Runs AFTER the feed is saved, so finished events are still removed.
+      # Failing here marks the run red on the Actions page and triggers GitHub's failure notification.
+      - name: Fail the run if every source returned zero events
+        if: steps.refresh_check.outputs.needed == 'true' && steps.update.outputs.all_sources_failed == 'true'
+        run: |
+          echo "::error::Every What's On source returned zero events. Previous events were kept and finished events removed. Check the source list and the websites."
+          exit 1
+
+  reader-enhancement-alert:
+    name: Enhancement review - source may need a custom reader
+    needs: refresh
+    if: always() && needs.refresh.outputs.reader_review == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Flag source reader review for GitHub failure email
+        env:
+          READER_REVIEW_DETAILS: ${{ needs.refresh.outputs.reader_review_details }}
+        shell: python
+        run: |
+          import json, os, html
+          rows = json.loads(os.environ["READER_REVIEW_DETAILS"])
+          lines = [
+              "What's On refresh completed its source checks.",
+              "Additional enhancement review: these sites returned no usable events.",
+              "Check whether there are genuinely no current events or a custom reader is needed.",
+              "Other sources were still processed; valid fallback events were preserved.",
+          ]
+          for row in rows:
+              lines.append(f"{row['name']} | {row['url']} | {row['error']}")
+          message = "\n".join(lines)
+          print(message)
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as fh:
+              fh.write("<pre>" + html.escape(message) + "</pre>\n")
+          # Native Actions failure notifications link to this named job and its source details.
+          raise SystemExit(1)
