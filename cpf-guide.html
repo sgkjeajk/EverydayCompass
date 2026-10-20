@@ -1,0 +1,1706 @@
+<!DOCTYPE html>
+<html lang="en" data-size="1">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CPF answered plainly: CPF LIFE for seniors, growing CPF for adults</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EFF3FE; --ink:#1A2647; --muted:#556074; --card:#FFFFFF; --line:#D3DAED;
+  --blue:#2D4AC0; --blue-soft:#E4E9FB; --green:#33725F; --green-soft:#E3F0EB; --strip:#BAC7FA;
+  --seniors:var(--green); --seniors-soft:var(--green-soft);
+  --adults:var(--blue); --adults-soft:var(--blue-soft);
+  --warn-bg:#FFF1DC; --warn-ink:#7A4300; --warn-line:#EFCF9A;
+  --accent:var(--seniors); --accent-soft:var(--seniors-soft);
+  box-sizing:border-box;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{-webkit-text-size-adjust:100%; font-size:16px}
+html[data-size="2"]{font-size:20px}
+html[data-size="3"]{font-size:23px}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-size:1.125rem; line-height:1.6;
+  padding:env(safe-area-inset-top,0) 0 calc(90px + env(safe-area-inset-bottom,0));
+}
+body[data-cat="adults"]{--accent:var(--adults); --accent-soft:var(--adults-soft)}
+.wrap{max-width:780px; margin:0 auto; padding:16px}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid #E58A00; outline-offset:2px; border-radius:6px}
+
+/* header */
+.top{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:14px}
+h1{font-size:clamp(1.7rem,5.4vw,2.35rem); line-height:1.15; margin:0 0 6px; letter-spacing:-.01em}
+.sub{margin:0; color:var(--muted); font-size:.95rem}
+.gear{flex:none; min-width:52px; min-height:52px; border:2px solid var(--line); background:#fff; border-radius:14px; font:inherit; font-weight:700; cursor:pointer; color:var(--ink); padding:6px 12px}
+.gear span{display:block; font-size:.72rem; line-height:1.1}
+.gear b{font-size:1.3rem; line-height:1}
+
+/* tabs */
+.tabs{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:6px 0 18px}
+.tab{font:inherit; text-align:left; cursor:pointer; padding:12px 14px; min-height:64px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink)}
+.tab strong{display:block; font-size:1.15rem; line-height:1.2}
+.tab small{display:block; font-size:.9rem; color:var(--muted)}
+.tab[data-cat="seniors"]{--c:var(--seniors)}
+.tab[data-cat="adults"]{--c:var(--adults)}
+.tab[aria-selected="true"]{background:var(--c); border-color:var(--c); color:#fff}
+.tab[aria-selected="true"] small{color:#fff}
+.panel-intro{margin:0 0 6px; font-size:1.02rem}
+.panel-intro b{color:var(--accent)}
+
+/* items */
+.item{background:var(--card); border:2px solid var(--line); border-radius:16px; margin:12px 0; overflow:hidden}
+.item.open{border-color:var(--accent)}
+.qbtn{all:unset; box-sizing:border-box; width:100%; display:flex; gap:12px; align-items:center; padding:14px 16px; min-height:64px; cursor:pointer; font-weight:700; font-size:1.06rem; line-height:1.3}
+.qbtn:focus-visible{outline:3px solid #E58A00; outline-offset:-3px}
+.num{flex:none; width:38px; height:38px; border-radius:50%; background:var(--accent-soft); color:var(--accent); display:grid; place-items:center; font-size:1rem}
+.qtext{flex:1}
+.chev{flex:none; transition:transform .2s; color:var(--muted)}
+.item.open .chev{transform:rotate(180deg)}
+.body{display:none; padding:2px 16px 18px}
+.item.open .body{display:block}
+
+.label{font-weight:700; font-size:.95rem; margin:14px 0 6px}
+.kws{display:flex; flex-wrap:wrap; gap:8px}
+.kw{font:inherit; font-size:.92rem; cursor:pointer; padding:7px 14px; min-height:48px; border-radius:999px; border:2px solid var(--accent); background:#fff; color:var(--accent)}
+.kw[aria-pressed="true"]{background:var(--accent); color:#fff}
+.answer{background:var(--accent-soft); border-radius:12px; padding:14px 16px; margin-top:12px}
+.answer p{margin:0 0 8px; font-weight:700}
+.answer ul{margin:0; padding-left:20px}
+.answer li{margin:6px 0}
+.badge{margin-top:12px; padding:10px 14px; border-radius:12px; background:var(--warn-bg); color:var(--warn-ink); border:1.5px solid var(--warn-line); font-size:.95rem}
+.actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+.btn{font:inherit; font-weight:700; font-size:1rem; text-decoration:none; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:50px; padding:10px 18px; border-radius:12px; border:2px solid var(--accent); background:#fff; color:var(--accent)}
+.btn.primary{background:var(--accent); color:#fff}
+.listen{display:none}
+body.audio-on .listen{display:inline-flex}
+.src{margin:12px 0 0; font-size:.85rem; color:var(--muted); word-break:break-all}
+.src a{color:var(--muted)}
+
+/* demo */
+.demo{display:none; margin-top:14px}
+.demo.show{display:block}
+.frame{border:2px solid #B4C2CD; border-radius:16px; overflow:hidden; background:#fff}
+.urlbar{display:flex; gap:8px; align-items:center; background:#E8EDF1; padding:8px 10px}
+.urlpill{flex:1; min-width:0; background:#fff; border-radius:999px; padding:6px 14px; font-size:.85rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.screen{min-height:262px; padding:12px 14px; position:relative}
+.site-head{display:flex; justify-content:space-between; align-items:center; background:#DCE4EA; border-radius:8px; padding:6px 10px; font-size:.78rem; color:var(--muted)}
+.sbox{margin-top:14px; border:2px solid #9DAEBC; border-radius:12px; padding:10px 14px; min-height:50px; display:flex; align-items:center; background:#fff; font-size:1.02rem}
+.sbox.hl{border-color:var(--accent); box-shadow:0 0 0 4px var(--accent-soft)}
+.ph{color:#7B8B99}
+.caret{display:inline-block; width:2px; height:1.2em; background:var(--ink); margin-left:2px}
+.sk{height:10px; border-radius:6px; background:#E2E8ED; margin:9px 0}
+.result{border:2px solid #E0E6EB; border-radius:10px; padding:8px 12px; margin-top:10px; position:relative}
+.result.target{border-color:var(--accent); background:var(--accent-soft)}
+.tap{position:absolute; right:10px; bottom:4px; font-size:1.6rem}
+.pg-title{margin:16px 0 8px; font-size:1.05rem; line-height:1.3}
+.found{display:inline-block; padding:6px 12px; border-radius:8px; background:var(--accent); color:#fff; font-size:.88rem; font-weight:700; margin-bottom:6px}
+.fakebtn{margin-top:14px; display:inline-block; padding:12px 18px; border-radius:10px; background:#fff; border:2px solid var(--accent); color:var(--accent); font-weight:700; box-shadow:0 0 0 4px var(--accent-soft)}
+.hint{color:var(--muted); text-align:center; margin-top:70px}
+.caption{background:var(--accent-soft); padding:12px 14px; font-weight:700; min-height:5.2em}
+.dctrl{display:flex; gap:8px; align-items:center; justify-content:space-between; padding:10px; border-top:2px solid #E0E6EB; background:#fff}
+.dctrl .btn{min-height:46px; padding:8px 14px}
+.dnote{font-size:.82rem; color:var(--muted); margin:8px 2px 0}
+
+/* settings sheet */
+.sheet{position:fixed; inset:0; background:rgba(12,22,32,.5); display:none; align-items:flex-end; justify-content:center; z-index:30}
+.sheet.open{display:flex}
+.sheet-card{background:#fff; width:min(540px,100%); border-radius:20px 20px 0 0; padding:20px 20px calc(24px + env(safe-area-inset-bottom,0)); max-height:90vh; overflow:auto}
+@media(min-width:620px){.sheet{align-items:center}.sheet-card{border-radius:20px}}
+.sheet h2{margin:0 0 10px; font-size:1.35rem}
+.row{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 0; border-top:1.5px solid var(--line)}
+.row small{display:block; color:var(--muted); font-size:.88rem; line-height:1.4}
+.switch{flex:none; width:68px; height:38px; border-radius:999px; border:none; background:#8D9DAA; position:relative; cursor:pointer}
+.switch::after{content:""; position:absolute; top:4px; left:4px; width:30px; height:30px; border-radius:50%; background:#fff; transition:left .15s}
+.switch[aria-checked="true"]{background:var(--seniors)}
+.switch[aria-checked="true"]::after{left:34px}
+.seg{display:flex; gap:8px}
+.seg button{font:inherit; font-weight:700; min-height:48px; padding:8px 16px; border-radius:12px; border:2px solid var(--seniors); background:#fff; color:var(--seniors); cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--seniors); color:#fff}
+.sheet .btn{border-color:var(--seniors); color:var(--seniors)}
+.sheet .btn.primary{background:var(--seniors); color:#fff}
+
+/* speaking pill + toast */
+.pill{position:fixed; left:50%; transform:translateX(-50%); bottom:calc(16px + env(safe-area-inset-bottom,0)); background:var(--ink); color:#fff; border-radius:999px; padding:8px 8px 8px 18px; display:none; align-items:center; gap:12px; z-index:20; font-weight:700}
+.pill.on{display:flex}
+.pill button{font:inherit; font-weight:700; min-height:44px; padding:6px 16px; border-radius:999px; border:none; background:#fff; color:var(--ink); cursor:pointer}
+.toast{position:fixed; left:50%; transform:translateX(-50%); bottom:calc(76px + env(safe-area-inset-bottom,0)); background:#fff; border:2px solid var(--ink); border-radius:12px; padding:10px 16px; display:none; z-index:40; max-width:90%; font-size:.95rem}
+.toast.on{display:block}
+
+footer{margin-top:26px; padding-top:16px; border-top:2px solid var(--line); color:var(--muted); font-size:.9rem}
+footer p{margin:0 0 8px}
+
+/* language + size options */
+html[lang="zh-Hans"] body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC","Hiragino Sans GB",system-ui,sans-serif}
+html[lang="ta"] body{font-family:"Nirmala UI","Noto Sans Tamil","Latha","Tamil Sangam MN",system-ui,sans-serif; line-height:1.8}
+html[lang="ms"] body{font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.opts{display:flex; flex-wrap:wrap; gap:12px 22px; margin:0 0 14px}
+.opt{display:flex; flex-direction:column; gap:4px}
+.optlbl{font-weight:700; font-size:.88rem; color:var(--muted)}
+.seg2{display:flex; flex-wrap:wrap; gap:6px}
+.seg2 button{font:inherit; font-weight:700; font-size:.95rem; min-height:48px; min-width:48px; padding:6px 14px; border-radius:12px; border:2px solid var(--ink); background:#fff; color:var(--ink); cursor:pointer}
+.seg2 button[aria-pressed="true"]{background:var(--ink); color:#fff}
+/* Everyday Compass look: navy header panel, teal / navy topic panels, white cards with provider + domain */
+.skip{position:absolute; left:-999px; top:8px; background:#fff; color:var(--ink); padding:12px 18px; border-radius:10px; font-weight:700; z-index:50}
+.skip:focus{left:12px}
+.prov{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:8px 0 2px; font-size:.92rem; color:var(--muted)}
+.pdot{width:10px; height:10px; border-radius:50%; background:var(--accent)}
+.prov strong{color:var(--ink)}
+.pdom{background:var(--accent-soft); color:var(--accent); padding:2px 10px; border-radius:999px; font-weight:700; font-size:.85rem}
+button.sbox,button.result,button.fakebtn{font:inherit; color:inherit; text-align:left; cursor:pointer}
+button.sbox,button.result{width:100%; display:block}
+button.result{background:#fff}
+button.result.target{background:var(--accent-soft)}
+button.sbox{display:flex}
+button.fakebtn{background:#fff}
+.sk{display:block}
+.caption{white-space:pre-line}
+.caption.wait{box-shadow:inset 0 0 0 3px var(--accent)}
+.seg{flex-wrap:wrap}
+.row.stack{flex-direction:column; align-items:stretch}
+/* Everyday Compass look: white header bar, periwinkle page, green eyebrow, blue accent headline, pill controls, white cards with lavender strip */
+body{background:var(--bg)}
+.bar{background:#fff; border-bottom:2px solid var(--line); position:sticky; top:0; z-index:15; padding-top:env(safe-area-inset-top,0)}
+.bar-in{max-width:780px; margin:0 auto; padding:10px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px}
+.brand{display:flex; align-items:center; gap:10px; min-width:0}
+.mark{flex:none; width:42px; height:42px; border-radius:12px; background:var(--blue); color:#fff; display:grid; place-items:center; font-weight:800; font-size:1.2rem}
+.bname strong{display:block; line-height:1.15; font-size:1.05rem}
+.bname small{display:block; color:var(--muted); font-size:.8rem; line-height:1.25}
+.gear{flex-direction:row; display:inline-flex; align-items:center; gap:8px; padding:6px 18px; border-radius:999px; min-width:0}
+.gear span{display:inline; font-size:.95rem; line-height:1}
+.gear b{font-size:1.1rem}
+.hero{padding:22px 0 6px}
+.eyebrow{margin:0 0 8px; color:var(--green); font-weight:800; font-size:.85rem; letter-spacing:.16em; text-transform:uppercase}
+html[lang="zh-Hans"] .eyebrow, html[lang="ta"] .eyebrow{letter-spacing:.04em; text-transform:none; font-size:.95rem}
+.hero h1{font-size:clamp(2rem,8vw,2.8rem); line-height:1.1; letter-spacing:-.025em; font-weight:800; margin:0 0 10px}
+.acc{color:var(--blue)}
+.hero .sub{color:var(--muted); font-size:1.02rem}
+.hero .opts{margin-top:16px}
+.seg2 button{border:2px solid var(--line); background:#fff; color:var(--ink); border-radius:999px}
+.seg2 button[aria-pressed="true"]{background:var(--blue); border-color:var(--blue); color:#fff}
+.btn{border-radius:999px}
+.tab{border-radius:18px}
+.item{border:2px solid var(--line); border-top:6px solid var(--strip); border-radius:22px; box-shadow:0 8px 24px rgba(45,74,192,.08)}
+.item.open{border-color:var(--accent); border-top-color:var(--accent)}
+.switch[aria-checked="true"]{background:var(--blue)}
+.seg button{border-color:var(--blue); color:var(--blue); border-radius:999px}
+.seg button[aria-pressed="true"]{background:var(--blue); color:#fff}
+.sheet .btn{border-color:var(--blue); color:var(--blue)}
+.sheet .btn.primary{background:var(--blue); color:#fff}
+@media (forced-colors:active){.item,.btn,.tab,.kw,.seg button,.seg2 button,.frame{border:2px solid CanvasText}}
+@media (prefers-reduced-motion:no-preference){
+  .sbox.hl{animation:pulse 1.6s ease-in-out infinite}
+  .caret{animation:blink 1s steps(1) infinite}
+  .tap{animation:nudge 1.2s ease-in-out infinite}
+}
+@keyframes pulse{50%{box-shadow:0 0 0 9px var(--accent-soft)}}
+@keyframes blink{50%{opacity:0}}
+@keyframes nudge{50%{transform:translateY(-5px)}}
+@media(max-width:420px){body{font-size:1.06rem}.tab strong{font-size:1.05rem}}
+@media(max-width:520px){html[data-size="3"] .tabs{grid-template-columns:1fr}}
+</style>
+</head>
+<body data-cat="seniors">
+<a class="skip" href="#list" data-i18n="skip">Skip to the questions</a>
+<header class="bar"><div class="bar-in">
+  <div class="brand"><span class="mark" aria-hidden="true">↗</span><span class="bname"><strong data-i18n="brand">CPF Guide</strong><small data-i18n="brandSub">Plain answers</small></span></div>
+  <button class="gear" id="openSettings" aria-haspopup="dialog" aria-label="Open settings"><b aria-hidden="true">⚙</b><span data-i18n="settingsBtn">Settings</span></button>
+</div></header>
+<div class="wrap">
+  <section class="hero">
+    <p class="eyebrow" data-i18n="eyebrow">A little help with your CPF</p>
+    <h1><span data-i18n="titleA">CPF,</span> <span class="acc" data-i18n="titleB">answered plainly</span></h1>
+    <p class="sub" data-i18n="sub">Summaries from CPF Board pages, checked 8 October 2026.</p>
+    <div class="opts">
+    <div class="opt" role="group" aria-labelledby="langLbl">
+      <span class="optlbl" id="langLbl" data-i18n="langLbl">Language</span>
+      <div class="seg2" id="langSeg">
+        <button data-lang="en" aria-pressed="true">English</button>
+        <button data-lang="zh" aria-pressed="false" lang="zh-Hans">中文</button>
+        <button data-lang="ms" aria-pressed="false" lang="ms">Melayu</button>
+        <button data-lang="ta" aria-pressed="false" lang="ta">தமிழ்</button>
+      </div>
+    </div>
+    <div class="opt" role="group" aria-labelledby="sizeLbl">
+      <span class="optlbl" id="sizeLbl" data-i18n="sizeLbl">Text size</span>
+      <div class="seg2" id="sizeSeg">
+        <button data-size="1" aria-pressed="true" style="font-size:1rem">A</button>
+        <button data-size="2" aria-pressed="false" style="font-size:1.3rem">A</button>
+        <button data-size="3" aria-pressed="false" style="font-size:1.65rem">A</button>
+      </div>
+    </div>
+  </div>
+
+
+  </section>
+
+  <div class="tabs" role="tablist" aria-label="Topics">
+    <button class="tab" role="tab" data-cat="seniors" aria-selected="true"><strong data-i18n="tabSeniors">Seniors</strong><small data-i18n="tabSeniorsSub">CPF LIFE</small></button>
+    <button class="tab" role="tab" data-cat="adults" aria-selected="false"><strong data-i18n="tabAdults">Adults</strong><small data-i18n="tabAdultsSub">Grow CPF</small></button>
+  </div>
+
+  <p class="panel-intro" id="intro"></p>
+  <div id="list"></div>
+
+  <footer>
+    <p data-i18n="f1"></p>
+    <p data-i18n="f2"></p>
+    <p data-i18n="f3"></p>
+    <p data-i18n="f4"></p>
+  </footer>
+</div>
+
+<!-- settings -->
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="sheet-card">
+    <h2 id="sheetTitle" data-i18n="settingsTitle">Settings</h2>
+    <div class="row">
+      <div><strong id="audioLbl" data-i18n="audioLbl">Read answers aloud</strong><small data-i18n="audioDesc"></small></div>
+      <button class="switch" id="audioSwitch" role="switch" aria-checked="false" aria-labelledby="audioLbl"></button>
+    </div>
+    <div class="row">
+      <div><strong data-i18n="speedLbl">Reading speed</strong><small data-i18n="speedDesc"></small></div>
+      <div class="seg" role="group">
+        <button id="spNormal" aria-pressed="true" data-i18n="normal">Normal</button>
+        <button id="spSlow" aria-pressed="false" data-i18n="slow">Slow</button>
+      </div>
+    </div>
+    <div class="row">
+      <div><strong data-i18n="voiceLbl">Voice</strong><small data-i18n="voiceDesc"></small></div>
+      <div class="seg" id="voiceSeg" role="group">
+        <button data-gender="any" aria-pressed="true" data-i18n="voiceAny">Any</button>
+        <button data-gender="female" aria-pressed="false" data-i18n="voiceFemale">Female</button>
+        <button data-gender="male" aria-pressed="false" data-i18n="voiceMale">Male</button>
+      </div>
+    </div>
+    <div class="row stack">
+      <div><strong data-i18n="timeLbl">Time on each demo screen</strong><small data-i18n="timeDesc"></small></div>
+      <div class="seg" id="timeSeg" role="group">
+        <button data-time="auto" aria-pressed="true">Auto</button>
+        <button data-time="3" aria-pressed="false">3 sec</button>
+        <button data-time="5" aria-pressed="false">5 sec</button>
+        <button data-time="8" aria-pressed="false">8 sec</button>
+        <button data-time="12" aria-pressed="false">12 sec</button>
+      </div>
+    </div>
+    <div class="row">
+      <div><strong id="waitLbl" data-i18n="waitLbl">Wait for me to tap</strong><small data-i18n="waitDesc"></small></div>
+      <button class="switch" id="waitSwitch" role="switch" aria-checked="true" aria-labelledby="waitLbl"></button>
+    </div>
+    <div class="row">
+      <div><strong data-i18n="testLbl">Try the voice</strong><small data-i18n="testDesc"></small></div>
+      <button class="btn" id="testVoice" data-i18n="testBtn">Play sample</button>
+    </div>
+    <div class="actions"><button class="btn primary" id="closeSettings" style="width:100%" data-i18n="done">Done</button></div>
+  </div>
+</div>
+
+<div class="pill" id="pill" role="status"><span data-i18n="reading">Reading aloud</span><button id="stopBtn" data-i18n="stop">Stop</button></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+
+/* ---------- content ---------- */
+const DATA = {
+  seniors: {
+    label: "Seniors: CPF LIFE",
+    intro: "<b>Seniors: CPF LIFE.</b> Twenty questions people ask about monthly payouts for life. Tap a question to open it.",
+    items: [
+      { id:"s1", q:"When will I start getting payouts, and can I wait?",
+        kw:["CPF LIFE payout age","when start CPF LIFE","defer payout 70"],
+        title:"When can I start receiving my CPF LIFE payouts?",
+        sum:"You can start CPF LIFE payouts at any age from 65 to 70. If you wait, your monthly payout rises by up to 7% for each year you defer.",
+        pts:["Starting at 70 can lift your payout by up to about 35% compared with starting at 65.","If you give no instruction, payouts start automatically at 70. You cannot defer past 70.","CPF writes to you about three months before your 65th birthday to explain your choices.","To defer, or to restart after deferring, use the “Plan my monthly payouts” service."],
+        url:"https://www.cpf.gov.sg/service/article/when-can-i-start-receiving-my-cpf-life-payouts",
+        links:[{t:"Should you defer? (CPF article)",u:"https://www.cpf.gov.sg/member/infohub/educational-resources/should-you-defer-your-cpf-life-payouts"}],
+        login:"You will need your Singpass to change when your payouts start." },
+      { id:"s2", q:"How much will I get every month?",
+        kw:["CPF LIFE payout estimator","how much per month","Standard vs Basic"],
+        title:"CPF LIFE payouts: see your monthly amount",
+        sum:"Your monthly payout depends on how much is in your Retirement Account, the plan you choose, the CPF interest rate, your sex, and your age when you start.",
+        pts:["CPF has an online estimator at cpf.gov.sg/payout that shows the monthly amount under each plan.","CPF’s own example (August 2026): a 55-year-old man with SGD$220,400 in his Retirement Account on the Standard Plan gets about SGD$600 more a month by starting at 70 instead of 65.","Topping up your Retirement Account or deferring both raise the estimate."],
+        url:"https://www.cpf.gov.sg/payout",
+        links:[{t:"How the Retirement Sum affects payouts",u:"https://www.cpf.gov.sg/member/infohub/educational-resources/how-the-cpf-retirement-sum-affects-your-payouts"}],
+        login:"Log in with Singpass to use your own Retirement Account balance in the estimate." },
+      { id:"s3", q:"If I pass away early, does my family get the money?",
+        kw:["CPF LIFE death benefit","CPF nomination","balance after death"],
+        title:"What happens to my savings used for CPF LIFE when I pass away?",
+        sum:"Yes. Any remaining CPF LIFE premium balance, plus your other remaining CPF savings, is paid to your beneficiaries.",
+        pts:["The premium balance is what was taken from your Retirement Account when you joined, minus the payouts you have already received.","It is paid out according to your CPF nomination, so make a nomination.","A CPF nomination does not cover property bought with CPF or CPF Investment Scheme investments.","You can see your premium balance in the “Monthly payouts” section of your Retirement Dashboard."],
+        url:"https://www.cpf.gov.sg/service/article/what-happens-to-my-savings-used-for-cpf-life-when-i-pass-away-will-it-go-to-my-beneficiaries",
+        links:[{t:"What a CPF nomination covers",u:"https://www.cpf.gov.sg/service/article/what-happens-to-my-cpf-savings-if-i-had-made-a-cpf-nomination"}],
+        login:"Log in with Singpass to see your own premium balance." },
+      { id:"s4", q:"Which plan should I pick: Standard, Basic or Escalating?",
+        kw:["CPF LIFE plans compare","Escalating plan 2%","Standard plan"],
+        title:"What are the CPF LIFE plans available and which is the right plan for me?",
+        sum:"There are three plans. Standard gives steady payouts that start higher. Escalating starts lower and grows by 2% every year. Basic gives lower payouts that fall further later.",
+        pts:["Basic is an older plan from 2009. About 10 to 20% of your savings becomes the premium, and payouts get lower once your combined CPF balances drop below SGD$60,000. CPF says many members find Standard or Escalating suits them better.","On every plan you are paid for life, your premium earns risk-free CPF interest, and any leftover premium goes to your beneficiaries.","If you give no instruction by 70, you are placed on the Standard Plan."],
+        url:"https://www.cpf.gov.sg/service/article/what-are-the-cpf-life-plans-available-and-which-is-the-right-plan-for-me",
+        links:[{t:"CPF LIFE brochure (PDF)",u:"https://www.cpf.gov.sg/content/dam/web/member/retirement/documents/OnlineBrochureEnglish.pdf"}] },
+      { id:"s5", q:"Can I take my money out in one lump sum?",
+        kw:["CPF withdrawal 55","withdraw SGD$5,000","withdraw excess RA"],
+        title:"How much CPF savings can I withdraw?",
+        sum:"Only part of it. From 55 you can withdraw SGD$5,000, or any OA and SA savings above your Full Retirement Sum. The rest is kept to pay your monthly payouts.",
+        pts:["If you were born in 1958 or later, you can withdraw up to 20% of your retirement savings at 65. This includes the SGD$5,000.","Property owners whose lease lasts to at least 95 can withdraw Retirement Account savings above the Basic Retirement Sum.","Cash top-ups, CPF transfers and government grants cannot be withdrawn, because they are meant to raise your payouts."],
+        url:"https://cpf.gov.sg/member/faq/retirement-income/retirement-withdrawals/how-much-cpf-savings-can-i-withdraw",
+        links:[{t:"Can you withdraw your CPF at 55?",u:"https://cpf.gov.sg/member/infohub/educational-resources/can-you-withdraw-your-cpf-at-55"}],
+        login:"Your Retirement Dashboard shows the exact amount you can withdraw. You need Singpass." },
+      { id:"s6", q:"What are BRS, FRS and ERS, and which should I set aside?",
+        kw:["Basic Retirement Sum","Full Retirement Sum","Enhanced Retirement Sum"],
+        title:"What are the Basic, Full and Enhanced Retirement Sums applicable to me?",
+        sum:"These are three levels of savings to set aside at 55. For those turning 55 in 2026: Basic SGD$110,200, Full SGD$220,400, Enhanced SGD$440,800.",
+        pts:["The Full Retirement Sum is double the Basic, and is the default amount to set aside.","The Enhanced Retirement Sum is four times the Basic (since 2025). It is the most you can top up to for higher payouts.","Your Basic and Full amounts are fixed for life by the year you turn 55. The Enhanced amount rises each year (SGD$456,400 in 2027).","For 2027 the Basic is SGD$114,100 and the Full is SGD$228,200."],
+        url:"https://www.cpf.gov.sg/member/infohub/educational-resources/how-the-cpf-retirement-sum-affects-your-payouts",
+        links:[{t:"Retirement sums by year (Ask.gov.sg, from CPF)",u:"https://ask.gov.sg/cpf/questions/cltr1sd6g0152bykzc716a9w3"}] },
+      { id:"s7", q:"Can I use my house to meet the Retirement Sum?",
+        kw:["property pledge","CPF housing charge","pledge house retirement sum"],
+        title:"Can you withdraw your CPF at 55?",
+        sum:"Yes, if you own a property with a lease lasting to at least age 95. You can pledge it and set aside only the Basic Retirement Sum, then withdraw savings above that.",
+        pts:["The trade-off is a smaller Retirement Account, so your monthly CPF LIFE payouts will be lower.","When you sell the property, you must refund the proceeds to your CPF and restore your Retirement Account up to the Full Retirement Sum."],
+        url:"https://cpf.gov.sg/member/infohub/educational-resources/can-you-withdraw-your-cpf-at-55",
+        links:[{t:"Quick facts on housing and CPF LIFE",u:"https://www.cpf.gov.sg/member/infohub/cpf-clarifies/clarifications/quick-facts-on-housing-withdrawals-and-cpf-life"}] },
+      { id:"s8", q:"Is CPF LIFE better than a private annuity?",
+        kw:["CPF LIFE vs annuity","is CPF LIFE worth it","CPF LIFE interest"],
+        title:"How to use CPF LIFE as the cornerstone of your retirement planning",
+        sum:"CPF compared its Standard Plan with three popular private retirement-income plans. It found CPF LIFE’s effective interest is higher in almost all cases after counting payouts and bequests.",
+        pts:["This is CPF’s own comparison, so also look at quotes from insurers for your age and amount.","CPF LIFE pays for life, and your premium earns CPF interest of up to 6% a year, risk-free.","CPF LIFE works by pooling risk, like insurance."],
+        url:"https://cpf.gov.sg/BenefitsCPFLIFETG",
+        links:[{t:"CPF LIFE brochure (PDF)",u:"https://www.cpf.gov.sg/content/dam/web/member/retirement/documents/OnlineBrochureEnglish.pdf"}] },
+      { id:"s9", q:"Can I change my plan or top up after joining?",
+        kw:["change CPF LIFE plan","top up RA","cash top-up"],
+        title:"Plan my monthly payouts",
+        sum:"You can use the “Plan my monthly payouts” service to change your plan, defer or restart your payouts. Topping up your Retirement Account raises your payouts.",
+        pts:["If you change plan, CPF takes your whole Retirement Account savings, including the premium refunded from your old plan, as the premium for the new plan.","You can top up your Retirement Account, in cash or by transfer, up to the Enhanced Retirement Sum.","Top-up money is meant for retirement and is paid out as monthly payouts. If your payouts have already started, check the service page for what applies to you."],
+        url:"https://www.cpf.gov.sg/member/tnc/planmymonthlypayouts",
+        links:[{t:"How to defer or restart payouts",u:"https://www.cpf.gov.sg/service/article/how-do-I-defer-or-restart-my-cpf-life-monthly-payouts"}],
+        login:"You will need your Singpass to make changes." },
+      { id:"s10", q:"Will my payouts keep up with rising prices?",
+        kw:["CPF LIFE inflation","Escalating plan 2%","payouts increase"],
+        title:"What are the CPF LIFE plans available and which is the right plan for me?",
+        sum:"The Escalating Plan is CPF’s answer to rising prices. It starts lower, then grows by 2% every year for life.",
+        pts:["The Standard Plan pays a steady amount. It starts higher than Escalating, but is lower in the later years.","CPF suggests Escalating if you worry about the cost of living, and Standard if you expect to spend less as you grow older.","Waiting until 70 to start also lifts your payout, by up to 7% for each year you defer."],
+        url:"https://www.cpf.gov.sg/service/article/what-are-the-cpf-life-plans-available-and-which-is-the-right-plan-for-me",
+        links:[{t:"What is the CPF LIFE payout age?",u:"https://www.cpf.gov.sg/member/infohub/educational-resources/what-is-the-cpf-life-payout-age"}] }
+    ]
+  },
+  adults: {
+    label: "Adults: Grow CPF",
+    intro: "<b>Adults: Grow CPF.</b> Twenty practical ways people build up their CPF. Tap a tip to open it.",
+    items: [
+      { id:"a1", q:"Top up my Special Account (or Retirement Account) to earn more",
+        kw:["CPF SA top up","cash top-up relief","how to top up CPF"],
+        title:"Top up to enjoy higher retirement payouts",
+        sum:"Savings in the Special, MediSave and Retirement Accounts earn 4% a year. The Ordinary Account earns 2.5%. So topping up your SA, or your RA once you are 55, grows your retirement money faster.",
+        pts:["Your Special Account closes at 55, so from then on top-ups go to your Retirement Account.","You can top up with cash by PayNow, or with small regular amounts by GIRO, at cpf.gov.sg/topup.","Top-ups are for retirement. They are paid out as monthly payouts later, not as cash for other uses."],
+        url:"https://www.cpf.gov.sg/member/growing-your-savings/saving-more-with-cpf/top-up-to-enjoy-higher-retirement-payouts",
+        links:[{t:"CPF interest rates",u:"https://www.cpf.gov.sg/service/article/what-are-the-cpf-interest-rates"}],
+        login:"You will need your Singpass to make a top-up." },
+      { id:"a2", q:"Get tax relief when I top up",
+        kw:["CPF tax relief","RSTU","cash top-up relief"],
+        title:"How much tax relief can I enjoy when I make cash top-ups?",
+        sum:"You can get up to SGD$8,000 of tax relief a year for cash top-ups to your own SA or RA, and another SGD$8,000 for top-ups to your loved ones. That is up to SGD$16,000 a year.",
+        pts:["Relief only applies to cash top-ups, up to the current year’s Full Retirement Sum.","The SGD$8,000 for your own account is shared with top-ups to your own MediSave Account.","Since 1 January 2025, cash top-ups that earn the MRSS matching grant no longer get tax relief."],
+        url:"https://www.cpf.gov.sg/service/article/how-much-tax-relief-can-i-enjoy-when-i-make-cash-top-ups",
+        links:[{t:"IRAS: CPF Cash Top-up Relief",u:"https://www.iras.gov.sg/taxes/individual-income-tax/basics-of-individual-income-tax/tax-reliefs-rebates-and-deductions/tax-reliefs/central-provident-fund-(cpf)-cash-top-up-relief"}] },
+      { id:"a3", q:"Top up my parents’ or family’s CPF",
+        kw:["top up parents CPF","Retirement Sum Topping-Up Scheme","top up for family"],
+        title:"How much tax relief can I enjoy when I make cash top-ups?",
+        sum:"You can top up the SA or RA of family members, and you get up to SGD$8,000 of tax relief a year for it, on top of the SGD$8,000 for your own account.",
+        pts:["The tax relief goes to you, the person giving the top-up.","Relief counts only up to the Full Retirement Sum of the person you top up.","Top-ups build the recipient’s retirement savings and are paid to them as monthly payouts in retirement.","If the recipient passes away, remaining top-ups go to their CPF nominees."],
+        url:"https://www.cpf.gov.sg/service/article/how-much-tax-relief-can-i-enjoy-when-i-make-cash-top-ups",
+        links:[{t:"Top up to enjoy higher payouts",u:"https://www.cpf.gov.sg/member/growing-your-savings/saving-more-with-cpf/top-up-to-enjoy-higher-retirement-payouts"}],
+        login:"You will need your Singpass to make a top-up." },
+      { id:"a4", q:"Earn the extra interest on my first SGD$60,000",
+        kw:["CPF extra interest","CPF 6% for seniors","CPF interest rates"],
+        title:"What are the CPF interest rates?",
+        sum:"The Government pays extra interest on the first SGD$60,000 of your combined CPF balances. Below 55, it is an extra 1%. From 55, it is an extra 2% on the first SGD$30,000 and an extra 1% on the next SGD$30,000.",
+        pts:["Only up to SGD$20,000 from your Ordinary Account counts towards this.","Extra interest earned on OA savings is paid into your SA or RA.","Together with the 4% base rate, CPF shows effective rates of up to 5% below 55, and up to 6% on the first SGD$30,000 from 55.","The rates on the CPF page I checked were for 1 July to 30 September 2026. They are reviewed every quarter."],
+        url:"https://www.cpf.gov.sg/service/article/what-are-the-cpf-interest-rates",
+        links:[{t:"Historical rates (PDF)",u:"https://www.cpf.gov.sg/content/dam/web/member/faq/documents/InterestRate.pdf"}] },
+      { id:"a5", q:"Move savings from my Ordinary Account to earn 4%",
+        kw:["OA to SA transfer","transfer OA to RA","CPF transfer irreversible"],
+        title:"Simple steps to make a CPF transfer from your OA to SA",
+        sum:"Moving money from your Ordinary Account (2.5%) to your Special or Retirement Account (4%) earns more interest. But the transfer is immediate and cannot be reversed.",
+        pts:["Under 55, you transfer OA to SA. From 55 your SA closes, so you transfer OA to your Retirement Account, up to the Enhanced Retirement Sum.","Keep enough OA savings for housing or other needs first, because you cannot move the money back.","On the website: log in with Singpass, choose CPF transfer, enter the amount, then review and confirm."],
+        url:"https://www.cpf.gov.sg/member/infohub/educational-resources/simple-steps-to-make-a-cpf-transfer-from-your-oa-to-sa",
+        links:[{t:"After 55: transfer to your RA",u:"https://cpf.gov.sg/member/faq/retirement-income/general-information-on-retirement/once-i-meet-my-full-retirement-sum--my-special-account-savings-w"}],
+        login:"You will need your Singpass to make a transfer." },
+      { id:"a6", q:"Reach the Full Retirement Sum early",
+        kw:["how to reach FRS","FRS top up","Full Retirement Sum 2026"],
+        title:"How the CPF Retirement Sum affects your payouts",
+        sum:"The Full Retirement Sum is the default amount to set aside for retirement. For those turning 55 in 2026 it is SGD$220,400, and it stays the same for life once you turn 55.",
+        pts:["At 55, CPF opens your Retirement Account and moves your Special Account savings first, then Ordinary Account savings, up to the Full Retirement Sum.","If you are short, cash top-ups and OA transfers can close the gap before payouts begin.","Once you have set it aside, you can withdraw OA and SA savings above it.","A property pledge lets you set aside only the Basic Retirement Sum (SGD$110,200 for 2026), but your payouts will be lower."],
+        url:"https://www.cpf.gov.sg/member/infohub/educational-resources/how-the-cpf-retirement-sum-affects-your-payouts",
+        links:[{t:"Retirement sums by year (Ask.gov.sg, from CPF)",u:"https://ask.gov.sg/cpf/questions/cltr1sd6g0152bykzc716a9w3"}] },
+      { id:"a7", q:"Delay my CPF LIFE payouts for a higher monthly amount",
+        kw:["defer CPF LIFE","higher payout later","CPF LIFE age 70"],
+        title:"Should you defer your CPF LIFE payouts?",
+        sum:"You can start between 65 and 70. For each year you wait, your monthly payout rises by up to 7%, which can add up to a 35% increase by 70.",
+        pts:["CPF’s example (August 2026): a 55-year-old man with SGD$220,400 in his Retirement Account on the Standard Plan gets about SGD$600 more a month starting at 70 than at 65.","Payouts begin automatically at 70, even if you do nothing.","Use the “Plan my monthly payouts” service to defer or restart."],
+        url:"https://www.cpf.gov.sg/member/infohub/educational-resources/should-you-defer-your-cpf-life-payouts",
+        links:[{t:"When can I start receiving my payouts?",u:"https://www.cpf.gov.sg/service/article/when-can-i-start-receiving-my-cpf-life-payouts"}],
+        login:"You will need your Singpass to change your start age." },
+      { id:"a8", q:"Top up to the Enhanced Retirement Sum",
+        kw:["ERS top up","increase CPF LIFE payout","Enhanced Retirement Sum"],
+        title:"Once I meet my Full Retirement Sum, how do I earn higher interest?",
+        sum:"From age 55 you can top up your Retirement Account up to the Enhanced Retirement Sum for higher monthly payouts. It is SGD$440,800 in 2026 and SGD$456,400 in 2027.",
+        pts:["Since 2025 the Enhanced Retirement Sum is four times the Basic Retirement Sum (it was SGD$308,700 in 2024, then SGD$426,000 in 2025).","The Retirement Account pays the same interest as the Special Account.","Top-ups and transfers are irreversible. After 55 you cannot take them out for housing, investing or other needs."],
+        url:"https://cpf.gov.sg/member/faq/retirement-income/general-information-on-retirement/once-i-meet-my-full-retirement-sum--my-special-account-savings-w",
+        links:[{t:"Retirement sums by year (Ask.gov.sg, from CPF)",u:"https://ask.gov.sg/cpf/questions/cltr1sd6g0152bykzc716a9w3"}],
+        login:"You will need your Singpass to top up." },
+      { id:"a9", q:"Keep working or earn more",
+        kw:["CPF contribution rates by age","CPF for senior workers","CPF salary ceiling"],
+        title:"CPF contribution changes from 1 January 2026",
+        sum:"From 1 January 2026, total CPF contributions are 37% of wages for age 55 and below, 34% above 55 to 60, 25% above 60 to 65, 16.5% above 65 to 70, and 12.5% above 70.",
+        pts:["Those aged above 55 to 65 saw their rates rise in 2026. The increase goes to the Retirement Account until the Full Retirement Sum is met, then to the Ordinary Account.","Age 55 and below: employer 17% and you 20%. Above 55 to 60: employer 16% and you 18%.","The monthly wage ceiling for CPF rose to SGD$8,000 in January 2026.","These rates apply to wages above SGD$750 a month."],
+        url:"https://www.cpf.gov.sg/conrate2023",
+        links:[{t:"Ask.gov.sg: senior worker rates",u:"https://ask.gov.sg/cpf/questions/cmjxi9x87008bdxj6htagerge"}] },
+      { id:"a10", q:"Get the Government’s matching grant (MRSS)",
+        kw:["MRSS","government matching top up","matching grant CPF"],
+        title:"Matching grant for seniors who top up",
+        sum:"If you qualify, the Government matches your cash top-ups to your Retirement Account dollar for dollar, up to SGD$2,000 a year, with a SGD$20,000 lifetime limit.",
+        pts:["It is for Singapore Citizens aged 55 and above with lower Retirement Account savings. The age cap of 70 was removed in 2025.","CPF checks your eligibility every year, so you do not need to apply. Check it on your Retirement Dashboard or at cpf.gov.sg/checkmrss.","Make your top-up by 31 December. The grant is credited at the start of the following year.","Top-ups that earn the match do not qualify for tax relief."],
+        url:"https://www.cpf.gov.sg/member/growing-your-savings/saving-more-with-cpf/matching-grant-for-seniors-who-top-up",
+        links:[{t:"MRSS main page",u:"https://cpf.gov.sg/MRSS"}],
+        login:"Log in with Singpass to check if you are eligible." }
+    ]
+  }
+};
+
+/* ---------- items 11 to 20 for each topic ---------- */
+DATA.seniors.items.push(
+  { id:"s11", q:"Am I automatically in CPF LIFE, and who can join?",
+    kw:["who can join CPF LIFE","CPF LIFE eligibility","automatically included CPF LIFE"],
+    title:"Who can join CPF LIFE?",
+    sum:"All CPF members aged 65 to 80 can join CPF LIFE. There is no minimum savings, but your payout depends on how much is in your Retirement Account when you join.",
+    pts:["You are included automatically if you were born on or after 1 January 1958 and have at least SGD$60,000 in your retirement savings when payouts start (Singapore Citizens and Permanent Residents).","If you are not included automatically, you can still choose to join. The latest age to join is one month before you turn 80.","The monthly payout estimator shows which plan suits you and your estimated payout."],
+    url:"https://www.cpf.gov.sg/service/article/who-can-join-cpf-life",
+    links:[{t:"Do I have to join CPF LIFE? (Ask.gov.sg, from CPF)",u:"https://ask.gov.sg/cpf/questions/cm0f52kyj00wrpz7a5wwv9rw6"}] },
+  { id:"s12", q:"What if I am not on CPF LIFE?",
+    kw:["Retirement Sum Scheme","RSS payouts","not on CPF LIFE"],
+    title:"How long will my monthly payouts last if I am not on CPF LIFE?",
+    sum:"If you are not in CPF LIFE, you stay on the Retirement Sum Scheme. You still get monthly payouts, but they stop when your retirement savings run out.",
+    pts:["Your payouts are worked out to last up to 20 years. The extra interest on your savings helps stretch them, up to age 90.","You can start any time from 65 to 70. If you were born before 1958, you are already past that age and can start any time.","You can join CPF LIFE later, any time from 65 up to one month before you turn 80, to get payouts for life."],
+    url:"https://www.cpf.gov.sg/service/article/how-long-will-my-monthly-payouts-last-if-i-am-not-on-cpf-life",
+    links:[{t:"When can I start if I am not on CPF LIFE?",u:"https://www.cpf.gov.sg/service/article/when-can-i-start-my-monthly-payouts-if-i-am-not-on-cpf-life"}],
+    login:"Log in with Singpass to start your payouts or join CPF LIFE." },
+  { id:"s13", q:"When and how will I be paid each month?",
+    kw:["CPF LIFE payout date","when receive CPF payout","CPF payout bank account"],
+    title:"When will I receive my monthly payouts?",
+    sum:"CPF takes your payout out on the 2nd of the month, and it is usually in your bank account by the 4th working day. It can arrive earlier if your bank supports FAST.",
+    pts:["Give CPF your bank account details so your payouts go to the right account.","If you do not give instructions by 70, payouts start automatically in the month you turn 70 and go to the bank account CPF has on record.","If you defer, CPF does not make back payments for the months you waited."],
+    url:"https://www.cpf.gov.sg/member/tnc/planmymonthlypayouts",
+    links:[{t:"When will I receive my payouts? (Ask.gov.sg, from CPF)",u:"https://ask.gov.sg/cpf/questions/cmfx6qdri00sfoh8xy78o6atf"},{t:"Do I need to give CPF my bank account?",u:"https://www.cpf.gov.sg/service/article/do-i-have-to-provide-my-bank-account-details-to-cpf-board-if-i-do-not-have-any-upcoming-payments-from-cpf-board"}],
+    login:"Log in with Singpass to check or update your bank account details." },
+  { id:"s14", q:"Can my payouts go up or down?",
+    kw:["CPF LIFE payout adjustment","CPF LIFE guaranteed","change CPF LIFE plan 30 days"],
+    title:"Plan my monthly payouts",
+    sum:"CPF LIFE pays you for life, but payouts are not fixed for ever. CPF says monthly payouts may be adjusted every year for factors such as interest rates and how long members are living.",
+    pts:["CPF says payouts are designed to be stable, and any adjustments are expected to be small and gradual.","After you get your policy letter, you have 30 days to change or cancel your plan.","Using more of your CPF savings to increase your payouts is a decision you cannot undo."],
+    url:"https://www.cpf.gov.sg/member/tnc/planmymonthlypayouts",
+    links:[{t:"Are CPF LIFE payouts guaranteed? (Ask.gov.sg, from CPF)",u:"https://ask.gov.sg/cpf/questions/cm0f52kyk00x5pz7a84o2tdus"}],
+    login:"You will need your Singpass to make changes." },
+  { id:"s15", q:"If I add money to my Retirement Account after payouts start, do my payouts go up?",
+    kw:["top up RA after payouts","CPF LIFE premium increase","Additional Monthly Payout AMP"],
+    title:"Will my AMP be converted to higher CPF LIFE monthly payouts automatically?",
+    sum:"Generally yes. Since November 2021, new money coming into your Retirement Account is used automatically to raise your CPF LIFE premium, so you receive higher payouts for life.",
+    pts:["On the Basic Plan, this happens when the revised monthly payout rises by at least SGD$10. CPF will tell you the new amount.","If you get an Additional Monthly Payout (AMP) from your Retirement Account, it is not part of CPF LIFE and stops when that balance runs out.","To avoid a sudden drop in income when AMP ends, you can ask CPF to use your remaining Retirement Account savings to raise your CPF LIFE premium."],
+    url:"https://www.cpf.gov.sg/service/article/i-am-currently-receiving-additional-monthly-payout-amp-will-my-amp-be-converted-to-higher-cpf-life-monthly-payouts-automatically",
+    links:[{t:"How the CPF LIFE Basic Plan works",u:"https://www.cpf.gov.sg/service/article/how-does-the-cpf-life-basic-plan-work"}] },
+  { id:"s16", q:"Do I pay tax on my CPF LIFE payouts?",
+    kw:["CPF LIFE tax","is CPF payout taxable","annuity tax Singapore"],
+    title:"Annuity (recurring annual payments)",
+    sum:"No. IRAS says annuities received in Singapore are generally not taxable, and it names CPF LIFE monthly payouts as an example.",
+    pts:["Some annuities are taxable, such as those from a business or partnership, SRS withdrawals, or a policy bought by your employer in place of a pension. CPF LIFE is not one of them.","If you also have other income, check with IRAS for your own situation."],
+    url:"https://www.iras.gov.sg/taxes/individual-income-tax/basics-of-individual-income-tax/what-is-taxable-what-is-not/annuity-(recurring-annual-payments)",
+    site:"iras.gov.sg", prov:"IRAS", links:[] },
+  { id:"s17", q:"Can I opt out of CPF LIFE and take my savings out?",
+    kw:["opt out CPF LIFE","exempt from CPF LIFE","withdraw all retirement savings"],
+    title:"Can I opt out of receiving CPF monthly payouts and withdraw all my retirement savings?",
+    sum:"Yes, if you have other sources of lifelong income. CPF also says you can be exempted from CPF LIFE if you have a pension or private annuity that pays the same or higher monthly amount.",
+    pts:["The CPF page says you can opt out of monthly payouts and withdraw all your retirement savings if you have other sources of lifelong income.","The CPF LIFE page says you can be exempted if your pension or private annuity guarantees monthly payouts that are the same as or higher than CPF LIFE.","CPF also suggests considering CPF LIFE on top of your other retirement income."],
+    url:"https://www.cpf.gov.sg/service/article/can-i-opt-out-of-receiving-cpf-monthly-payouts-and-withdraw-all-my-retirement-savings",
+    links:[{t:"CPF LIFE main page",u:"https://www.cpf.gov.sg/cpflife"},{t:"3 things you may not know about CPF LIFE",u:"https://www.cpf.gov.sg/member/infohub/educational-resources/3-things-you-may-not-know-about-cpf-life"}] },
+  { id:"s18", q:"Why are payouts different for men and women?",
+    kw:["CPF LIFE men women payout","how CPF LIFE payout calculated","CPF LIFE life expectancy"],
+    title:"How are the CPF LIFE payouts calculated?",
+    sum:"CPF LIFE pays for life, so a longer life expectancy means a lower monthly payout. Women live longer on average, so for the same savings, men receive higher payouts than women.",
+    pts:["Your payout is worked out from four things: your Retirement Account balance when you join, when you start (up to 7% more for each year you defer), CPF interest rates, and life expectancy.","The interest used has a floor of 4%, plus up to 2% extra interest on the first SGD$60,000 of your combined CPF balances."],
+    url:"https://www.cpf.gov.sg/service/article/how-are-the-cpf-life-payouts-calculated",
+    links:[] },
+  { id:"s19", q:"Why does the Retirement Sum go up every year?",
+    kw:["why retirement sum increase","CPF retirement sum 2027","Full Retirement Sum increase"],
+    title:"Why are the retirement sums increasing yearly?",
+    sum:"CPF gives three reasons: prices rise, people live longer, and living standards improve, so more savings are needed to keep the same lifestyle in retirement.",
+    pts:["If you are already 55, the yearly increase does not affect you. Your Basic and Full Retirement Sums are fixed for life by the year you turn 55.","CPF's example: the Full Retirement Sum was SGD$30,000 in 1987. If it had stayed there, it would give only about SGD$300 a month today."],
+    url:"https://www.cpf.gov.sg/service/article/why-are-the-retirement-sums-increasing-yearly",
+    links:[{t:"How the Retirement Sum affects payouts",u:"https://www.cpf.gov.sg/member/infohub/educational-resources/how-the-cpf-retirement-sum-affects-your-payouts"}] },
+  { id:"s20", q:"Is my money in CPF LIFE safe?",
+    kw:["is CPF LIFE safe","CPF LIFE guaranteed","CPF LIFE capital guaranteed"],
+    title:"What are the features of CPF LIFE?",
+    sum:"CPF LIFE savings are guaranteed by the Singapore Government. CPF also guarantees that your total payouts plus anything paid to your beneficiaries will be at least your CPF LIFE premium.",
+    pts:["Your premium earns CPF interest of up to 6% a year, risk free, and this is built into your payouts.","CPF LIFE is an insurance scheme, not an investment. It is non-profit and run by CPF Board.","It works by pooling risk: the interest on remaining premiums is pooled so that all members are paid for as long as they live."],
+    url:"https://www.cpf.gov.sg/service/article/what-are-the-features-of-cpf-life",
+    links:[{t:"Key facts of CPF LIFE",u:"https://www.cpf.gov.sg/member/infohub/educational-resources/key-facts-of-cpf-life-you-should-know"}] }
+);
+
+DATA.adults.items.push(
+  { id:"a11", q:"Top up my MediSave Account",
+    kw:["top up MediSave","MediSave tax relief","Basic Healthcare Sum 2026"],
+    title:"Do I get tax relief for voluntary top-ups to the MediSave Account?",
+    sum:"You can top up your own or a loved one's MediSave Account in cash and claim tax relief of up to SGD$8,000 a year. This SGD$8,000 is shared with your top-ups to your Special or Retirement Account.",
+    pts:["The most a MediSave Account can receive is the Basic Healthcare Sum minus the current balance. The Basic Healthcare Sum is SGD$79,000 in 2026 for members below 65.","A top-up to MediSave cannot be reversed or refunded. If it goes over the limit, the extra is returned to you without interest.","From 1 January 2026, eligible members get a matching grant of up to SGD$1,000 a year on MediSave top-ups. Matched top-ups do not get tax relief.","For a spouse or sibling to get your top-up with tax relief, their income in the previous year must be SGD$8,000 or less, or they must be handicapped."],
+    url:"https://www.cpf.gov.sg/service/article/do-i-get-tax-relief-for-voluntary-top-ups-to-the-medisave-account",
+    links:[{t:"Terms for topping up MediSave",u:"https://www.cpf.gov.sg/member/tnc/tnc-top-up-medisave-account"}],
+    login:"You will need your Singpass to make a top-up." },
+  { id:"a12", q:"Set up small regular top-ups with GIRO",
+    kw:["recurring top up CPF","GIRO CPF top up","regular CPF top up"],
+    title:"How can I make recurring monthly or yearly top-ups conveniently via GIRO?",
+    sum:"You do not need to top up in one big sum. You can set up small recurring cash top-ups by GIRO, so you do not fill in a form each time.",
+    pts:["It takes two steps: first set up a GIRO arrangement with your bank, then submit a request for recurring cash top-ups for retirement. Both steps must be done.","Members aged 55 and above can also set up small monthly transfers from their Ordinary Account to their own Retirement Account.","To change a recurring arrangement, delete it and create a new one.","Top-ups cannot be reversed and are generally credited within 7 working days of CPF receiving payment."],
+    url:"https://www.cpf.gov.sg/service/article/how-can-i-make-regular-monthly-or-yearly-top-ups-conveniently-via-giro",
+    links:[{t:"Manage recurring top-ups and transfers",u:"https://www.cpf.gov.sg/member/tools-and-services/forms-e-applications/manage-recurring-cash-top-ups-and-cpf-transfers-for-retirement"}],
+    login:"You will need your Singpass to set this up." },
+  { id:"a13", q:"Top up early in the year for more interest",
+    kw:["best time to top up CPF","top up January CPF","CPF compound interest"],
+    title:"When is the best time to top up to grow my savings?",
+    sum:"Topping up in January instead of December each year can earn up to 20% more interest on your top-ups over 10 years, because CPF interest is worked out monthly and compounds.",
+    pts:["CPF's example assumes the 4% interest floor, extra interest of up to 2% on the first SGD$60,000, an SGD$8,000 yearly top-up and a SGD$0 starting balance.","Top up early in the year so it is processed before year end. Processing can take longer in December when many people apply.","CPF suggests keeping at least SGD$20,000 in your Ordinary Account for future needs and its extra 1% interest."],
+    url:"https://www.cpf.gov.sg/service/article/when-is-the-best-time-to-top-up-to-grow-my-savings",
+    links:[{t:"4 ways to grow your retirement payouts",u:"https://cpf.gov.sg/member/infohub/educational-resources/4-ways-to-grow-your-retirement-payouts"}] },
+  { id:"a14", q:"Know where your CPF contributions go",
+    kw:["CPF allocation rates","CPF OA SA MA split","CPF contribution allocation"],
+    title:"CPF Allocation Rates from 1 January 2026",
+    sum:"Your CPF contributions are split between your Ordinary, Special (or Retirement) and MediSave accounts by age. Knowing the split helps you decide what to top up.",
+    pts:["Age 35 and below: about 62% to the Ordinary Account, 16% to the Special Account and 22% to MediSave. Above 35 to 45: about 57%, 19% and 24%.","The share going to retirement and MediSave rises as you get older. Above 55 to 60: about 35% Ordinary, 34% Retirement and 31% MediSave.","From 55, your contributions go to your Retirement Account first, up to the Full Retirement Sum."],
+    url:"https://www.cpf.gov.sg/service/sfc/servlet.shepherd/document/download/069IW000005qFrJYAU",
+    links:[] },
+  { id:"a15", q:"Invest my CPF with the CPF Investment Scheme",
+    kw:["CPFIS","invest CPF OA","CPF Investment Scheme"],
+    title:"CPF Investment Scheme: what you need to know",
+    sum:"CPFIS lets you invest part of your Ordinary and Special Account savings in products with different levels of risk. Your CPF savings keep earning risk-free interest if you choose not to invest.",
+    pts:["You can invest your Ordinary Account savings after setting aside SGD$20,000, and your Special Account savings after setting aside SGD$40,000.","From your Ordinary Account, you can put up to 35% of your investible savings into stocks and up to 10% into gold.","CPF says to invest only if you are confident of earning more than the risk-free CPF interest. CPFIS investments are not covered by CPF nomination."],
+    url:"https://cpf.gov.sg/member/infohub/educational-resources/cpf-investment-scheme-what-you-need-to-know-about-cpfis",
+    links:[{t:"CPFIS guide (PDF)",u:"https://cpf.gov.sg/content/dam/web/member/growing-your-savings/documents/CPFIS_SAT_M2.pdf"}] },
+  { id:"a16", q:"Check the Majulah Package if you were born in 1973 or earlier",
+    kw:["Majulah Package","Earn and Save Bonus","Retirement Savings Bonus"],
+    title:"Majulah Package",
+    sum:"The Majulah Package supports Singapore Citizens born in 1973 or earlier. Its Earn and Save Bonus gives eligible working seniors a CPF top-up of SGD$400 to SGD$1,000 a year, with lower-income workers getting more.",
+    pts:["It also has a one-time Retirement Savings Bonus (up to SGD$1,500) for those with lower CPF retirement savings, and a MediSave Bonus (up to SGD$2,000).","Every Singaporean born in 1973 or earlier gets at least one part of the package.","The MOM page explains who qualifies and when the money is credited. Check what applies to you."],
+    url:"https://www.mom.gov.sg/employment-practices/schemes-for-employers-and-employees/majulah-package",
+    site:"mom.gov.sg", prov:"MOM", links:[] },
+  { id:"a17", q:"Self-employed or freelancing? Build your CPF yourself",
+    kw:["self-employed CPF","MediSave self-employed","voluntary CPF contribution"],
+    title:"Why do I need to make MediSave contributions as a self-employed person?",
+    sum:"If you are self-employed and your net trade income is more than SGD$6,000 a year, you must contribute to MediSave. There is no employer to do it for you.",
+    pts:["You must still contribute to MediSave after reaching the Basic Healthcare Sum. MediSave savings above that sum flow to your Special or Retirement Account first, then to your Ordinary Account.","You can also make voluntary contributions under the CPF Self-Employed Scheme to build up your retirement and housing savings.","MediSave and voluntary contributions may give tax relief. IRAS explains the rules."],
+    url:"https://www.cpf.gov.sg/service/article/why-do-i-need-to-make-medisave-contributions-as-a-self-employed-person",
+    links:[{t:"MediSave once you reach the Basic Healthcare Sum",u:"https://www.cpf.gov.sg/service/article/do-i-still-have-to-contribute-to-medisave-as-a-self-employed-person-even-though-my-medisave-balance-has-reached-the-basic-healthcare-sum-bhs"},{t:"IRAS: compulsory and voluntary MediSave contributions",u:"https://www.iras.gov.sg/taxes/individual-income-tax/employees/deductions-for-individuals/personal-reliefs-and-tax-rebates/compulsory-and-voluntary-medisave-contributions"}] },
+  { id:"a18", q:"Know how bonuses count towards CPF",
+    kw:["CPF bonus","Additional Wage ceiling","CPF annual wage ceiling"],
+    title:"What is the Additional Wage (AW) ceiling?",
+    sum:"Bonuses and other extra pay count as Additional Wages. The amount that attracts CPF is limited each year: SGD$102,000 minus the Ordinary Wages that were subject to CPF that year.",
+    pts:["Example: if your Ordinary Wages subject to CPF are SGD$96,000 (SGD$8,000 a month), only SGD$6,000 of your bonus attracts CPF.","The ceiling applies per employer per calendar year.","If your bonus goes above the ceiling, the extra attracts no CPF. A cash top-up to your Special or Retirement Account is one way to add it to your retirement savings."],
+    url:"https://www.cpf.gov.sg/service/article/what-is-the-additional-wage-aw-ceiling",
+    links:[{t:"Contribution changes from 1 January 2026",u:"https://www.cpf.gov.sg/conrate2023"}] },
+  { id:"a19", q:"Use CPF for your home wisely",
+    kw:["CPF housing refund","CPF accrued interest","sell house CPF refund"],
+    title:"Quick facts on housing withdrawals and CPF LIFE",
+    sum:"When you sell a home bought with CPF, you refund the CPF you used, plus the interest that money would have earned, back to your own CPF account. So the money stays yours for retirement.",
+    pts:["If the sale price, after paying off the loan, is not enough to refund everything, you do not need to top up the difference, as long as the home is sold at market value.","If you are above 55, the refund goes towards your Full Retirement Sum in your Retirement Account, which gives you higher monthly payouts.","The interest is what your Ordinary Account savings would have earned. The Ordinary Account pays 2.5% a year."],
+    url:"https://www.cpf.gov.sg/member/infohub/cpf-clarifies/clarifications/quick-facts-on-housing-withdrawals-and-cpf-life",
+    links:[{t:"CPF interest rates",u:"https://www.cpf.gov.sg/service/article/what-are-the-cpf-interest-rates"}] },
+  { id:"a20", q:"Earn a lower wage? Get the Workfare Income Supplement",
+    kw:["Workfare Income Supplement","WIS CPF","WIS payout"],
+    title:"How much Workfare Income Supplement will I get?",
+    sum:"The Workfare Income Supplement (WIS) tops up the income and CPF savings of lower-income workers. If you are an employee, 60% of your WIS goes into your CPF and 40% is paid in cash.",
+    pts:["For Work Year 2025, the most you can get a year is SGD$2,450 (age 30 to 34), SGD$3,500 (35 to 44), SGD$4,200 (45 to 59) and SGD$4,900 (60 and above).","If you are self-employed, 10% is paid in cash and 90% goes into your MediSave Account.","Use CPF's online WIS calculator to estimate how much you could get."],
+    url:"https://www.cpf.gov.sg/service/article/how-much-workfare-income-supplement-will-i-get",
+    links:[{t:"About the Workfare Income Supplement",u:"https://www.cpf.gov.sg/member/growing-your-savings/government-support/workfare-income-supplement"}] }
+);
+
+/* ---------- languages & translations ---------- */
+const LANGS = {
+  en: { name:"English",       speech:["en-SG","en-GB","en-AU","en-US","en-IN"], prefix:"en", html:"en" },
+  zh: { name:"中文",           speech:["zh-SG","zh-CN","zh-HK","zh-TW"],          prefix:"zh", html:"zh-Hans" },
+  ms: { name:"Bahasa Melayu", speech:["ms-MY","ms-SG"],                           prefix:"ms", html:"ms" },
+  ta: { name:"தமிழ்",          speech:["ta-IN","ta-SG","ta-LK"],                   prefix:"ta", html:"ta" }
+};
+
+const UI = {
+  en: {
+    title:"CPF, answered plainly", sub:"Summaries from CPF Board pages, checked 8 October 2026.",
+    tabSeniors:"Seniors", tabSeniorsSub:"CPF LIFE", tabAdults:"Adults", tabAdultsSub:"Grow CPF",
+    introSeniors:"<b>Seniors: CPF LIFE.</b> Twenty questions people ask about monthly payouts for life. Tap a question to open it.",
+    introAdults:"<b>Adults: Grow CPF.</b> Twenty practical ways people build up their CPF. Tap a tip to open it.",
+    langLbl:"Language", sizeLbl:"Text size", sizeNormal:"Normal text", sizeLarge:"Large text", sizeXL:"Extra large text",
+    kwLabel:"Words to type in the CPF search box (tap one to try it in the demo)",
+    open:"Open on CPF website", listen:"🔊 Listen to this answer", stopRead:"⏹ Stop reading", demoBtn:"Show me how to find it",
+    source:"Source:", more:"More:", singpass:"Singpass:",
+    back:"◀ Back", next:"Next ▶", play:"▶ Play", pause:"⏸ Pause", replay:"↻ Replay", stepOf:"Step {n} of {total}: ",
+    siteHead:"CPF Board website (illustration)", hintUrl:"Your browser is open.<br>Type the address in the bar above.",
+    found:"Your answer is on this page", loginBtn:"Log in with Singpass",
+    note:"Illustration only. Page names are simplified, and the real CPF website may look different.",
+    c1:"Open your web browser and type cpf.gov.sg in the address bar.",
+    c2:"On the CPF home page, tap the search box.",
+    c3:"Type what you want to know. For example: “{kw}”. Search words work best in English.",
+    c4:"Tap Search. In the results, tap the page called “{title}”.",
+    c5:"The answer page opens. Check that the web address begins with cpf.gov.sg.",
+    c6:"To see your own numbers or make changes, tap Log in and sign in with Singpass.",
+    settingsBtn:"Settings", settingsTitle:"Settings", audioLbl:"Read answers aloud",
+    audioDesc:"Adds a Listen button to each answer and reads the demo steps out loud.",
+    speedLbl:"Reading speed", speedDesc:"Slow is easier to follow.", normal:"Normal", slow:"Slow",
+    testLbl:"Try the voice", testDesc:"Uses your device’s built-in voice.", testBtn:"Play sample", done:"Done",
+    testSpeech:"Hello. This is how I will read the answers to you.", reading:"Reading aloud", stop:"Stop",
+    noTts:"This browser can't read aloud. Try Chrome, Edge or Safari.",
+    audioFirst:"Turn on “Read answers aloud” first.",
+    noVoice:"No {lang} voice found on this device. Audio may not work for this language.",
+    f1:"This page summarises information from CPF Board, IRAS and Ask.gov.sg in plain language. It is general information, not financial or legal advice. Amounts, interest rates and rules change, so confirm on cpf.gov.sg before you act.",
+    f2:"Interest rates shown are from the CPF page for 1 July to 30 September 2026. CPF reviews them every quarter, so check the current figures.",
+    f3:"The “show me how” screens are simple illustrations. The real CPF website may look different.",
+    f4:"Translations are provided for convenience and have not been reviewed by a native speaker or by CPF Board. The English text and the CPF website are the reference."
+  },
+  zh: {
+    title:"公积金，一看就懂", sub:"内容摘自公积金局网页，核对日期：2026年10月8日。",
+    tabSeniors:"乐龄人士", tabSeniorsSub:"CPF LIFE（终身入息）", tabAdults:"成年人", tabAdultsSub:"增加公积金",
+    introSeniors:"<b>乐龄人士：CPF LIFE。</b>关于终身每月入息的二十个常见问题。点击问题即可展开。",
+    introAdults:"<b>成年人：增加公积金。</b>二十个增加公积金的实用方法。点击即可展开。",
+    langLbl:"语言", sizeLbl:"字体大小", sizeNormal:"标准字体", sizeLarge:"大字体", sizeXL:"特大字体",
+    kwLabel:"可在公积金网站搜索栏输入的词语（点一个词，在示范中试试）",
+    open:"前往公积金网站", listen:"🔊 听这个答案", stopRead:"⏹ 停止朗读", demoBtn:"教我怎么找到",
+    source:"来源：", more:"更多：", singpass:"Singpass：",
+    back:"◀ 上一步", next:"下一步 ▶", play:"▶ 播放", pause:"⏸ 暂停", replay:"↻ 重播", stepOf:"第{n}步，共{total}步：",
+    siteHead:"公积金局网站（示意图）", hintUrl:"浏览器已打开。<br>请在上方地址栏输入网址。",
+    found:"您要的答案就在这一页", loginBtn:"用 Singpass 登录",
+    note:"仅为示意图。页面名称已简化，公积金局网站的实际外观可能不同。",
+    c1:"打开网络浏览器，在地址栏输入 cpf.gov.sg。",
+    c2:"在公积金网站首页，点击搜索栏。",
+    c3:"输入您想了解的内容，例如：“{kw}”。搜索词用英文效果最好。",
+    c4:"点击“搜索”。在搜索结果中，点击名为“{title}”的页面。",
+    c5:"答案页面打开了。请确认网址以 cpf.gov.sg 开头。",
+    c6:"如要查看您自己的数字或办理更改，请点击“登录”并用 Singpass 登录。",
+    settingsBtn:"设置", settingsTitle:"设置", audioLbl:"朗读答案",
+    audioDesc:"每个答案旁会出现“听”按钮，示范步骤也会朗读出来。",
+    speedLbl:"朗读速度", speedDesc:"慢速更容易听懂。", normal:"正常", slow:"慢速",
+    testLbl:"试听声音", testDesc:"使用您设备内置的声音。", testBtn:"播放示例", done:"完成",
+    testSpeech:"您好。我会这样把答案读给您听。", reading:"正在朗读", stop:"停止",
+    noTts:"此浏览器无法朗读。请试试 Chrome、Edge 或 Safari。",
+    audioFirst:"请先开启“朗读答案”。",
+    noVoice:"此设备找不到{lang}语音，该语言的朗读可能无法使用。",
+    f1:"本页以通俗语言摘要公积金局、新加坡国内税务局（IRAS）和 Ask.gov.sg 的信息。内容仅为一般资料，并非财务或法律意见。金额、利率和规定会变动，办理前请到 cpf.gov.sg 核实。",
+    f2:"所列利率来自公积金局2026年7月1日至9月30日的网页。公积金局每季检讨利率，请查看最新数字。",
+    f3:"“教我怎么找到”的画面只是简单示意图，公积金局网站的实际外观可能不同。",
+    f4:"翻译仅供参考，未经母语人士或公积金局审核。内容以英文原文和公积金局网站为准。"
+  },
+  ms: {
+    title:"CPF, dijelaskan dengan mudah", sub:"Ringkasan daripada laman web Lembaga CPF, disemak pada 8 Oktober 2026.",
+    tabSeniors:"Warga emas", tabSeniorsSub:"CPF LIFE", tabAdults:"Orang dewasa", tabAdultsSub:"Kembangkan CPF",
+    introSeniors:"<b>Warga emas: CPF LIFE.</b> Dua puluh soalan lazim tentang bayaran bulanan seumur hidup. Ketik soalan untuk membukanya.",
+    introAdults:"<b>Orang dewasa: Kembangkan CPF.</b> Dua puluh cara praktikal untuk menambah CPF anda. Ketik satu petua untuk membukanya.",
+    langLbl:"Bahasa", sizeLbl:"Saiz teks", sizeNormal:"Teks biasa", sizeLarge:"Teks besar", sizeXL:"Teks sangat besar",
+    kwLabel:"Perkataan untuk ditaip dalam kotak carian CPF (ketik satu untuk mencubanya dalam demo)",
+    open:"Buka di laman web CPF", listen:"🔊 Dengar jawapan ini", stopRead:"⏹ Henti bacaan", demoBtn:"Tunjukkan cara mencarinya",
+    source:"Sumber:", more:"Lagi:", singpass:"Singpass:",
+    back:"◀ Kembali", next:"Seterusnya ▶", play:"▶ Main", pause:"⏸ Jeda", replay:"↻ Main semula", stepOf:"Langkah {n} daripada {total}: ",
+    siteHead:"Laman web Lembaga CPF (ilustrasi)", hintUrl:"Pelayar anda sudah dibuka.<br>Taip alamat dalam bar di atas.",
+    found:"Jawapan anda ada di halaman ini", loginBtn:"Log masuk dengan Singpass",
+    note:"Ilustrasi sahaja. Nama halaman dipermudahkan, dan laman web CPF yang sebenar mungkin kelihatan berbeza.",
+    c1:"Buka pelayar web anda dan taip cpf.gov.sg dalam bar alamat.",
+    c2:"Di laman utama CPF, ketik kotak carian.",
+    c3:"Taip perkara yang anda ingin tahu. Contohnya: “{kw}”. Perkataan carian paling berkesan dalam bahasa Inggeris.",
+    c4:"Ketik Cari. Dalam hasil carian, ketik halaman bernama “{title}”.",
+    c5:"Halaman jawapan dibuka. Pastikan alamat web bermula dengan cpf.gov.sg.",
+    c6:"Untuk melihat angka anda sendiri atau membuat perubahan, ketik Log masuk dan masuk dengan Singpass.",
+    settingsBtn:"Tetapan", settingsTitle:"Tetapan", audioLbl:"Bacakan jawapan",
+    audioDesc:"Menambah butang Dengar pada setiap jawapan dan membacakan langkah demo.",
+    speedLbl:"Kelajuan bacaan", speedDesc:"Perlahan lebih mudah diikuti.", normal:"Biasa", slow:"Perlahan",
+    testLbl:"Cuba suara", testDesc:"Menggunakan suara terbina dalam peranti anda.", testBtn:"Main sampel", done:"Selesai",
+    testSpeech:"Helo. Beginilah cara saya akan membacakan jawapan kepada anda.", reading:"Sedang membaca", stop:"Henti",
+    noTts:"Pelayar ini tidak boleh membaca dengan kuat. Cuba Chrome, Edge atau Safari.",
+    audioFirst:"Hidupkan “Bacakan jawapan” dahulu.",
+    noVoice:"Tiada suara {lang} ditemui pada peranti ini. Audio mungkin tidak berfungsi untuk bahasa ini.",
+    f1:"Halaman ini meringkaskan maklumat daripada Lembaga CPF, IRAS dan Ask.gov.sg dalam bahasa mudah. Ia maklumat am, bukan nasihat kewangan atau undang-undang. Jumlah, kadar faedah dan peraturan berubah, jadi sahkan di cpf.gov.sg sebelum bertindak.",
+    f2:"Kadar faedah yang ditunjukkan datang daripada halaman CPF untuk 1 Julai hingga 30 September 2026. CPF menyemaknya setiap suku tahun, jadi semak angka terkini.",
+    f3:"Skrin “tunjukkan cara” hanyalah ilustrasi ringkas. Laman web CPF yang sebenar mungkin kelihatan berbeza.",
+    f4:"Terjemahan disediakan untuk kemudahan dan belum disemak oleh penutur asli atau Lembaga CPF. Teks bahasa Inggeris dan laman web CPF ialah rujukan."
+  },
+  ta: {
+    title:"CPF – எளிய விளக்கம்", sub:"CPF வாரியப் பக்கங்களின் சுருக்கம், 2026 அக்டோபர் 8 அன்று சரிபார்க்கப்பட்டது.",
+    tabSeniors:"மூத்தோர்", tabSeniorsSub:"CPF LIFE", tabAdults:"வயதுவந்தோர்", tabAdultsSub:"CPF-ஐ வளர்க்க",
+    introSeniors:"<b>மூத்தோர்: CPF LIFE.</b> வாழ்நாள் முழுவதும் வரும் மாதாந்திரத் தொகை பற்றி மக்கள் கேட்கும் இருபது கேள்விகள். திறக்க ஒரு கேள்வியைத் தொடவும்.",
+    introAdults:"<b>வயதுவந்தோர்: CPF-ஐ வளர்க்க.</b> உங்கள் CPF சேமிப்பை அதிகரிக்க இருபது நடைமுறை வழிகள். திறக்க ஒரு குறிப்பைத் தொடவும்.",
+    langLbl:"மொழி", sizeLbl:"எழுத்தின் அளவு", sizeNormal:"வழக்கமான எழுத்து", sizeLarge:"பெரிய எழுத்து", sizeXL:"மிகப் பெரிய எழுத்து",
+    kwLabel:"CPF தேடல் பெட்டியில் தட்டச்சு செய்ய வேண்டிய சொற்கள் (செயல்விளக்கத்தில் முயல ஒன்றைத் தொடவும்)",
+    open:"CPF இணையத்தளத்தில் திற", listen:"🔊 இந்தப் பதிலைக் கேளுங்கள்", stopRead:"⏹ வாசிப்பை நிறுத்து", demoBtn:"எப்படிக் கண்டுபிடிப்பது என்று காட்டு",
+    source:"ஆதாரம்:", more:"மேலும்:", singpass:"Singpass:",
+    back:"◀ பின்", next:"அடுத்து ▶", play:"▶ இயக்கு", pause:"⏸ இடைநிறுத்து", replay:"↻ மீண்டும்", stepOf:"படி {n} / {total}: ",
+    siteHead:"CPF வாரிய இணையத்தளம் (விளக்கப்படம்)", hintUrl:"உங்கள் உலாவி திறந்துள்ளது.<br>மேலே உள்ள முகவரிப் பட்டையில் முகவரியைத் தட்டச்சு செய்யுங்கள்.",
+    found:"உங்கள் பதில் இந்தப் பக்கத்தில் உள்ளது", loginBtn:"Singpass மூலம் உள்நுழை",
+    note:"விளக்கத்திற்கு மட்டும். பக்கப் பெயர்கள் எளிமைப்படுத்தப்பட்டுள்ளன; உண்மையான CPF இணையத்தளம் வேறுபடலாம்.",
+    c1:"உங்கள் இணைய உலாவியைத் திறந்து, முகவரிப் பட்டையில் cpf.gov.sg என்று தட்டச்சு செய்யுங்கள்.",
+    c2:"CPF முகப்புப் பக்கத்தில், தேடல் பெட்டியைத் தொடவும்.",
+    c3:"நீங்கள் தெரிந்துகொள்ள விரும்புவதைத் தட்டச்சு செய்யுங்கள். எடுத்துக்காட்டு: “{kw}”. தேடல் சொற்கள் ஆங்கிலத்தில் சிறப்பாகச் செயல்படும்.",
+    c4:"தேடு என்பதைத் தொடவும். முடிவுகளில், “{title}” என்ற பக்கத்தைத் தொடவும்.",
+    c5:"பதில் பக்கம் திறக்கிறது. இணைய முகவரி cpf.gov.sg என்று தொடங்குகிறதா எனப் பாருங்கள்.",
+    c6:"உங்கள் சொந்த எண்களைப் பார்க்க அல்லது மாற்றங்களைச் செய்ய, உள்நுழை என்பதைத் தொட்டு Singpass மூலம் உள்நுழையுங்கள்.",
+    settingsBtn:"அமைப்புகள்", settingsTitle:"அமைப்புகள்", audioLbl:"பதில்களை உரக்கப் படி",
+    audioDesc:"ஒவ்வொரு பதிலிலும் கேட்கும் பொத்தானைச் சேர்த்து, செயல்விளக்கப் படிகளையும் உரக்கப் படிக்கும்.",
+    speedLbl:"வாசிக்கும் வேகம்", speedDesc:"மெதுவாக இருந்தால் பின்தொடர எளிது.", normal:"வழக்கம்", slow:"மெதுவாக",
+    testLbl:"குரலைச் சோதிக்க", testDesc:"உங்கள் சாதனத்தின் உள்ளமைந்த குரலைப் பயன்படுத்தும்.", testBtn:"மாதிரி இயக்கு", done:"முடிந்தது",
+    testSpeech:"வணக்கம். பதில்களை இப்படித்தான் உங்களுக்குப் படித்துக் காட்டுவேன்.", reading:"உரக்கப் படிக்கிறது", stop:"நிறுத்து",
+    noTts:"இந்த உலாவியால் உரக்கப் படிக்க முடியாது. Chrome, Edge அல்லது Safari முயலுங்கள்.",
+    audioFirst:"முதலில் “பதில்களை உரக்கப் படி” என்பதை இயக்குங்கள்.",
+    noVoice:"இந்தச் சாதனத்தில் {lang} குரல் இல்லை. இந்த மொழிக்கு ஒலி வேலை செய்யாமல் போகலாம்.",
+    f1:"இந்தப் பக்கம் CPF வாரியம், IRAS, Ask.gov.sg ஆகியவற்றின் தகவல்களை எளிய மொழியில் சுருக்கித் தருகிறது. இது பொதுத் தகவல் மட்டுமே; நிதி அல்லது சட்ட ஆலோசனை அல்ல. தொகைகள், வட்டி விகிதங்கள், விதிகள் மாறக்கூடும்; செயல்படும் முன் cpf.gov.sg-இல் உறுதிசெய்யுங்கள்.",
+    f2:"காட்டப்பட்ட வட்டி விகிதங்கள் 2026 ஜூலை 1 முதல் செப்டம்பர் 30 வரையிலான CPF பக்கத்திலிருந்து எடுக்கப்பட்டவை. CPF அவற்றை ஒவ்வொரு காலாண்டிலும் மறுஆய்வு செய்கிறது; சமீபத்திய எண்களைப் பாருங்கள்.",
+    f3:"“எப்படிக் கண்டுபிடிப்பது” திரைகள் எளிய விளக்கப்படங்கள் மட்டுமே. உண்மையான CPF இணையத்தளம் வேறுபடலாம்.",
+    f4:"மொழிபெயர்ப்புகள் வசதிக்காக மட்டுமே; தாய்மொழி பேசுபவரோ CPF வாரியமோ இவற்றைச் சரிபார்க்கவில்லை. ஆங்கிலப் பாடமும் CPF இணையத்தளமுமே அடிப்படை."
+  }
+};
+
+Object.assign(UI.en, {
+  skip:"Skip to the questions", providerName:"CPF Board",
+  voiceLbl:"Voice", voiceDesc:"Voice names vary by device. If your device has no match, the pitch is adjusted instead.",
+  voiceAny:"Any", voiceFemale:"Female", voiceMale:"Male",
+  noGender:"No {g} voice found for this language, so the pitch is adjusted instead.",
+  timeLbl:"Time on each demo screen", timeDesc:"Auto matches the length of the text and your reading speed. If audio is on, the demo also waits for the voice to finish.",
+  timeAuto:"Auto", sec:"{n} sec",
+  waitLbl:"Wait for me to tap", waitDesc:"When a step needs you to tap something, the demo stops and waits for you.",
+  actSearch:"Your turn: tap the search box.", actResult:"Your turn: tap the highlighted page.", actLogin:"Your turn: tap Log in with Singpass."
+});
+Object.assign(UI.zh, {
+  skip:"跳到问题", providerName:"公积金局",
+  voiceLbl:"声音", voiceDesc:"声音名称因设备而异。如果设备没有对应的声音，将改为调整音高。",
+  voiceAny:"任意", voiceFemale:"女声", voiceMale:"男声",
+  noGender:"此语言找不到{g}，已改为调整音高。",
+  timeLbl:"每个示范画面的停留时间", timeDesc:"“自动”会按文字长度和您的朗读速度调整。开启朗读时，示范也会等声音读完。",
+  timeAuto:"自动", sec:"{n}秒",
+  waitLbl:"等我点击", waitDesc:"当某一步需要您点击时，示范会暂停并等您。",
+  actSearch:"轮到您了：请点击搜索栏。", actResult:"轮到您了：请点击高亮的页面。", actLogin:"轮到您了：请点击“用 Singpass 登录”。"
+});
+Object.assign(UI.ms, {
+  skip:"Langkau ke soalan", providerName:"Lembaga CPF",
+  voiceLbl:"Suara", voiceDesc:"Nama suara berbeza mengikut peranti. Jika peranti anda tiada yang sepadan, nada suara (pic) akan dilaraskan.",
+  voiceAny:"Mana-mana", voiceFemale:"Perempuan", voiceMale:"Lelaki",
+  noGender:"Tiada suara {g} ditemui untuk bahasa ini, jadi nada suara dilaraskan.",
+  timeLbl:"Masa pada setiap skrin demo", timeDesc:"Auto menyesuaikan dengan panjang teks dan kelajuan bacaan anda. Jika audio dihidupkan, demo juga menunggu suara selesai.",
+  timeAuto:"Auto", sec:"{n} saat",
+  waitLbl:"Tunggu saya mengetik", waitDesc:"Apabila satu langkah memerlukan anda mengetik sesuatu, demo berhenti dan menunggu anda.",
+  actSearch:"Giliran anda: ketik kotak carian.", actResult:"Giliran anda: ketik halaman yang diserlahkan.", actLogin:"Giliran anda: ketik Log masuk dengan Singpass."
+});
+Object.assign(UI.ta, {
+  skip:"கேள்விகளுக்குச் செல்", providerName:"CPF வாரியம்",
+  voiceLbl:"குரல்", voiceDesc:"குரல் பெயர்கள் சாதனத்துக்குச் சாதனம் மாறும். பொருந்தும் குரல் இல்லையென்றால், குரலின் சுருதி மாற்றப்படும்.",
+  voiceAny:"ஏதேனும்", voiceFemale:"பெண்", voiceMale:"ஆண்",
+  noGender:"இந்த மொழிக்கு {g} குரல் இல்லை; எனவே சுருதி சரிசெய்யப்படுகிறது.",
+  timeLbl:"ஒவ்வொரு செயல்விளக்கத் திரையிலும் செலவிடும் நேரம்", timeDesc:"தானியங்கி என்பது உரையின் நீளத்துக்கும் உங்கள் வாசிப்பு வேகத்துக்கும் ஏற்ப இருக்கும். ஒலி இயக்கத்தில் இருந்தால், குரல் முடியும் வரை செயல்விளக்கமும் காத்திருக்கும்.",
+  timeAuto:"தானியங்கி", sec:"{n} வினாடி",
+  waitLbl:"நான் தொடும் வரை காத்திரு", waitDesc:"ஒரு படியில் நீங்கள் ஏதாவது தொட வேண்டியிருந்தால், செயல்விளக்கம் நின்று உங்களுக்காகக் காத்திருக்கும்.",
+  actSearch:"உங்கள் முறை: தேடல் பெட்டியைத் தொடவும்.", actResult:"உங்கள் முறை: ஒளிரும் பக்கத்தைத் தொடவும்.", actLogin:"உங்கள் முறை: “Singpass மூலம் உள்நுழை” என்பதைத் தொடவும்."
+});
+
+Object.assign(UI.en, { brand:"CPF Guide", brandSub:"Plain answers", eyebrow:"A little help with your CPF", titleA:"CPF,", titleB:"answered plainly" });
+Object.assign(UI.zh, { brand:"公积金指南", brandSub:"通俗易懂", eyebrow:"关于公积金的一点帮助", titleA:"公积金，", titleB:"一看就懂" });
+Object.assign(UI.ms, { brand:"Panduan CPF", brandSub:"Jawapan mudah", eyebrow:"Sedikit bantuan untuk CPF anda", titleA:"CPF,", titleB:"dijelaskan dengan mudah" });
+Object.assign(UI.ta, { brand:"CPF வழிகாட்டி", brandSub:"எளிய பதில்கள்", eyebrow:"உங்கள் CPF-க்கு ஒரு சிறு உதவி", titleA:"CPF –", titleB:"எளிய விளக்கம்" });
+
+const TX = {
+  zh: {
+    s1:{ q:"我什么时候开始领取入息？可以延后吗？",
+      sum:"您可以在65岁至70岁之间的任何年龄开始领取CPF LIFE入息。如果延后，每延后一年，每月入息最多增加7%。",
+      pts:["70岁才开始领取，与65岁开始相比，入息最多可增加约35%。","如果您没有作出指示，入息会在70岁自动开始。不能延后到70岁以后。","公积金局会在您65岁生日前约三个月来信，说明您的选择。","要延后，或延后后想重新开始领取，请使用“规划我的每月入息”服务。"],
+      login:"更改开始领取的时间需要使用Singpass。" },
+    s2:{ q:"我每个月能领多少？",
+      sum:"每月入息取决于您退休账户里的储蓄、所选的计划、公积金利率、您的性别，以及开始领取时的年龄。",
+      pts:["公积金局在cpf.gov.sg/payout提供网上估算工具，可显示各个计划下的每月入息。","公积金局的例子（2026年8月）：一名55岁男士的退休账户有SGD$220,400，选择标准计划，70岁才开始领取，每月比65岁开始领取多约SGD$600。","为退休账户增存，或延后领取，都会提高估算金额。"],
+      login:"请用Singpass登录，让估算采用您自己的退休账户余额。" },
+    s3:{ q:"如果我早逝，家人能拿到这笔钱吗？",
+      sum:"可以。CPF LIFE保费余额，加上您其他剩余的公积金储蓄，会付给您的受益人。",
+      pts:["保费余额是您加入时从退休账户扣除的金额，减去您已领取的入息。","这笔钱会按您的公积金提名分配，所以请作出提名。","公积金提名不涵盖用公积金购买的房产，以及公积金投资计划下的投资。","您可以在退休总览的“每月入息”部分查看保费余额。"],
+      login:"请用Singpass登录，查看您自己的保费余额。" },
+    s4:{ q:"标准、基本和递增计划，我该选哪一个？",
+      sum:"共有三个计划。标准计划的入息稳定，起步较高。递增计划起步较低，但每年增加2%。基本计划的入息较低，之后还会进一步减少。",
+      pts:["基本计划是2009年推出的旧计划。约10%至20%的储蓄成为保费，一旦您的公积金总余额降到SGD$60,000以下，入息就会减少。公积金局说，许多会员发现标准计划或递增计划更适合自己。","三个计划都让您终身领取入息，保费享有无风险的公积金利息，剩余保费会付给您的受益人。","如果到70岁您都没有作出指示，您会被安排在标准计划。"] },
+    s5:{ q:"我可以一次过把钱领出来吗？",
+      sum:"只能领一部分。55岁起，您可以提取SGD$5,000，或提取超出您全额退休存款额的普通账户和特别账户储蓄。其余部分留着发放每月入息。",
+      pts:["如果您在1958年或以后出生，65岁时可以提取最多20%的退休储蓄，其中包括那SGD$5,000。","拥有房产、而且地契年限至少能撑到95岁的人，可以提取超出基本退休存款额的退休账户储蓄。","现金增存、公积金转账和政府津贴不能提取，因为它们是用来提高您的入息的。"],
+      login:"您的退休总览会显示您确切可提取的金额。需要使用Singpass。" },
+    s6:{ q:"BRS、FRS和ERS是什么？我该预留哪一个？",
+      sum:"这是55岁时需要预留的三个储蓄水平。2026年满55岁的人：基本退休存款额SGD$110,200，全额退休存款额SGD$220,400，增强退休存款额SGD$440,800。",
+      pts:["全额退休存款额是基本退休存款额的两倍，是默认要预留的金额。","增强退休存款额是基本退休存款额的四倍（自2025年起）。这是您为了领取更高入息，最多可增存到的金额。","您的基本和全额退休存款额，由您满55岁那一年决定，终身不变。增强退休存款额则每年上调（2027年为SGD$456,400）。","2027年的基本退休存款额是SGD$114,100，全额是SGD$228,200。"] },
+    s7:{ q:"我可以用房子来满足退休存款额吗？",
+      sum:"可以，只要您拥有地契年限至少能撑到95岁的房产。您可以抵押房产，只预留基本退休存款额，然后提取超出的部分。",
+      pts:["代价是退休账户的钱变少，所以您的CPF LIFE每月入息会比较低。","出售房产时，您必须把所得款项归还公积金，并把退休账户补回全额退休存款额。"] },
+    s8:{ q:"CPF LIFE比私人年金更好吗？",
+      sum:"公积金局把标准计划与三个热门的私人退休入息计划作了比较。结果发现，把入息和遗产都算进去后，在几乎所有情况下，CPF LIFE的有效利率都更高。",
+      pts:["这是公积金局自己的比较，所以也应该看看保险公司按您的年龄和金额提供的报价。","CPF LIFE让您终身领取入息，您的保费享有最高每年6%的公积金利息，没有风险。","CPF LIFE靠分担风险运作，就像保险一样。"] },
+    s9:{ q:"加入后，我还能更改计划或增存吗？",
+      sum:"您可以使用“规划我的每月入息”服务来更改计划、延后或重新开始领取入息。为退休账户增存，会提高您的入息。",
+      pts:["如果更改计划，公积金局会把您整个退休账户的储蓄（包括旧计划退回的保费）当作新计划的保费。","您可以用现金或转账，为退休账户增存，最高增存到增强退休存款额。","增存的钱是为退休准备的，会以每月入息的方式发放。如果您已经开始领取入息，请到该服务页面了解适用的规定。"],
+      login:"更改需要使用Singpass。" },
+    s10:{ q:"我的入息能跟得上物价上涨吗？",
+      sum:"递增计划是公积金局应对物价上涨的办法。它起步较低，之后终身每年增加2%。",
+      pts:["标准计划发放稳定的金额。起步比递增计划高，但后期会比递增计划低。","公积金局建议：担心生活费上涨，可考虑递增计划；预计年纪大了开销会减少，可考虑标准计划。","等到70岁才开始领取，每延后一年，入息也最多增加7%。"] },
+    a1:{ q:"为特别账户（或退休账户）增存，赚取更多利息",
+      sum:"特别账户、医疗储蓄账户和退休账户的储蓄，每年赚取4%的利息。普通账户则是2.5%。所以为特别账户增存（满55岁后为退休账户增存），能让您的退休储蓄增长得更快。",
+      pts:["您的特别账户在55岁时关闭，所以之后的增存会存入退休账户。","您可以在cpf.gov.sg/topup用PayNow现金增存，或用GIRO定期小额增存。","增存的钱是为退休准备的。日后会以每月入息的方式发放，不能当作现金用于其他用途。"],
+      login:"增存需要使用Singpass。" },
+    a2:{ q:"增存时获得税务减免",
+      sum:"为自己的特别账户或退休账户现金增存，每年最多可获得SGD$8,000的税务减免；为亲人的账户增存，另可获得SGD$8,000。合共每年最多SGD$16,000。",
+      pts:["减免只适用于现金增存，上限为当年的全额退休存款额。","为自己账户增存的SGD$8,000减免额，与为自己的医疗储蓄账户增存共用。","自2025年1月1日起，能获得MRSS配对津贴的现金增存，不再享有税务减免。"] },
+    a3:{ q:"为父母或家人的公积金增存",
+      sum:"您可以为家人的特别账户或退休账户增存，每年可获得最多SGD$8,000的税务减免，这是在您为自己账户增存的SGD$8,000之外另计的。",
+      pts:["税务减免归您，也就是增存的人。","减免只计算到受惠人的全额退休存款额为止。","增存的钱会增加受惠人的退休储蓄，并在他们退休后以每月入息的方式发放给他们。","如果受惠人去世，剩余的增存款项会付给他们的公积金受益人。"],
+      login:"增存需要使用Singpass。" },
+    a4:{ q:"赚取头SGD$60,000的额外利息",
+      sum:"政府为您公积金总余额的头SGD$60,000支付额外利息。55岁以下，额外利息是1%。55岁起，头SGD$30,000额外2%，接下来的SGD$30,000额外1%。",
+      pts:["只有普通账户中最多SGD$20,000可计入。","普通账户储蓄赚取的额外利息，会存入您的特别账户或退休账户。","连同4%的基本利率，公积金局显示的有效利率，55岁以下最高5%，55岁起头SGD$30,000最高6%。","我查看的公积金网页上的利率，适用于2026年7月1日至9月30日。利率每季检讨。"] },
+    a5:{ q:"把普通账户的储蓄转出，赚取4%",
+      sum:"把钱从普通账户（2.5%）转到特别账户或退休账户（4%），能赚取更多利息。但转账立刻生效，而且不能撤回。",
+      pts:["55岁以下，从普通账户转到特别账户。满55岁后特别账户关闭，所以转到退休账户，最高转到增强退休存款额。","转账前，先为房屋或其他需要保留足够的普通账户储蓄，因为钱转出去后不能转回来。","在网站上：用Singpass登录，选择公积金转账，输入金额，然后检查并确认。"],
+      login:"转账需要使用Singpass。" },
+    a6:{ q:"及早存够全额退休存款额",
+      sum:"全额退休存款额是为退休预留的默认金额。2026年满55岁的人是SGD$220,400，而且一旦满55岁就终身不变。",
+      pts:["55岁时，公积金局会开设您的退休账户，先转入特别账户储蓄，再转入普通账户储蓄，直到全额退休存款额为止。","如果不足，可在开始领取入息前，用现金增存和普通账户转账补足。","预留好之后，您可以提取超出部分的普通账户和特别账户储蓄。","抵押房产，可以只预留基本退休存款额（2026年为SGD$110,200），但您的入息会比较低。"] },
+    a7:{ q:"延后领取CPF LIFE，换取更高的每月入息",
+      sum:"您可以在65岁至70岁之间开始领取。每延后一年，每月入息最多增加7%，到70岁最多可增加35%。",
+      pts:["公积金局的例子（2026年8月）：一名55岁男士的退休账户有SGD$220,400，选择标准计划，70岁开始领取，每月比65岁开始多约SGD$600。","入息会在70岁自动开始，即使您什么都没做。","请使用“规划我的每月入息”服务来延后或重新开始。"],
+      login:"更改开始领取的年龄需要使用Singpass。" },
+    a8:{ q:"增存到增强退休存款额",
+      sum:"55岁起，您可以为退休账户增存到增强退休存款额，换取更高的每月入息。2026年是SGD$440,800，2027年是SGD$456,400。",
+      pts:["自2025年起，增强退休存款额是基本退休存款额的四倍（2024年是SGD$308,700，2025年是SGD$426,000）。","退休账户的利率与特别账户相同。","增存和转账不能撤回。55岁后，您不能把它们取出来用于房屋、投资或其他需要。"],
+      login:"增存需要使用Singpass。" },
+    a9:{ q:"继续工作或赚多一点",
+      sum:"自2026年1月1日起，公积金总缴存率是：55岁及以下为工资的37%，55岁以上至60岁为34%，60岁以上至65岁为25%，65岁以上至70岁为16.5%，70岁以上为12.5%。",
+      pts:["55岁以上至65岁的缴存率在2026年上调。增加的部分会存入退休账户，直到存满全额退休存款额，之后存入普通账户。","55岁及以下：雇主17%，您20%。55岁以上至60岁：雇主16%，您18%。","2026年1月，公积金的每月工资上限提高到SGD$8,000。","这些缴存率适用于每月超过SGD$750的工资。"] },
+    a10:{ q:"获得政府的配对津贴（MRSS）",
+      sum:"如果符合资格，政府会为您的退休账户现金增存提供一对一的配对，每年最多SGD$2,000，终身上限SGD$20,000。",
+      pts:["适用于55岁及以上、退休账户储蓄较少的新加坡公民。70岁的年龄上限已在2025年取消。","公积金局每年都会审核您的资格，您不需要申请。可在您的退休总览或cpf.gov.sg/checkmrss查看。","请在12月31日前完成增存。津贴会在下一年年初存入。","获得配对的增存，不享有税务减免。"],
+      login:"请用Singpass登录，查看您是否符合资格。" }
+  },
+
+  ms: {
+    s1:{ q:"Bilakah saya mula menerima bayaran, dan bolehkah saya menunggu?",
+      sum:"Anda boleh mula menerima bayaran CPF LIFE pada bila-bila usia antara 65 hingga 70 tahun. Jika anda menunggu, bayaran bulanan anda meningkat sehingga 7% bagi setiap tahun anda menangguhkan.",
+      pts:["Bermula pada usia 70 boleh meningkatkan bayaran anda sehingga kira-kira 35% berbanding bermula pada usia 65.","Jika anda tidak memberi arahan, bayaran bermula secara automatik pada usia 70. Anda tidak boleh menangguh melebihi 70.","CPF akan menulis kepada anda kira-kira tiga bulan sebelum hari lahir ke-65 untuk menerangkan pilihan anda.","Untuk menangguh, atau memulakan semula selepas menangguh, gunakan perkhidmatan “Plan my monthly payouts” (Rancang bayaran bulanan saya)."],
+      login:"Anda memerlukan Singpass untuk mengubah bila bayaran anda bermula." },
+    s2:{ q:"Berapakah yang akan saya terima setiap bulan?",
+      sum:"Bayaran bulanan anda bergantung pada jumlah dalam Akaun Persaraan anda, pelan yang anda pilih, kadar faedah CPF, jantina anda, dan usia anda semasa bermula.",
+      pts:["CPF mempunyai penganggar dalam talian di cpf.gov.sg/payout yang menunjukkan jumlah bulanan bagi setiap pelan.","Contoh CPF (Ogos 2026): seorang lelaki berusia 55 tahun dengan SGD$220,400 dalam Akaun Persaraannya pada Pelan Standard menerima kira-kira SGD$600 lebih sebulan jika bermula pada usia 70 berbanding 65.","Menokok Akaun Persaraan anda atau menangguh bayaran kedua-duanya menaikkan anggaran."],
+      login:"Log masuk dengan Singpass untuk menggunakan baki Akaun Persaraan anda sendiri dalam anggaran." },
+    s3:{ q:"Jika saya meninggal dunia awal, adakah keluarga saya mendapat wang itu?",
+      sum:"Ya. Baki premium CPF LIFE yang tinggal, serta baki simpanan CPF anda yang lain, dibayar kepada benefisiari anda.",
+      pts:["Baki premium ialah jumlah yang diambil daripada Akaun Persaraan anda semasa anda menyertai, tolak bayaran yang telah anda terima.","Ia dibayar mengikut penamaan CPF anda, jadi buat penamaan.","Penamaan CPF tidak meliputi hartanah yang dibeli dengan CPF atau pelaburan di bawah Skim Pelaburan CPF.","Anda boleh melihat baki premium anda di bahagian “Monthly payouts” pada Papan Pemuka Persaraan anda."],
+      login:"Log masuk dengan Singpass untuk melihat baki premium anda sendiri." },
+    s4:{ q:"Pelan mana yang patut saya pilih: Standard, Asas atau Meningkat?",
+      sum:"Terdapat tiga pelan. Standard memberi bayaran tetap yang bermula lebih tinggi. Meningkat bermula lebih rendah dan naik 2% setiap tahun. Asas memberi bayaran lebih rendah yang menurun lagi kemudian.",
+      pts:["Asas ialah pelan lama dari 2009. Kira-kira 10 hingga 20% simpanan anda menjadi premium, dan bayaran menurun apabila baki CPF gabungan anda jatuh di bawah SGD$60,000. CPF berkata ramai ahli mendapati Standard atau Meningkat lebih sesuai.","Pada ketiga-tiga pelan, anda dibayar seumur hidup, premium anda memperoleh faedah CPF tanpa risiko, dan baki premium dibayar kepada benefisiari anda.","Jika anda tidak memberi arahan menjelang usia 70, anda ditempatkan pada Pelan Standard."] },
+    s5:{ q:"Bolehkah saya mengeluarkan wang saya sekali gus?",
+      sum:"Hanya sebahagian. Dari usia 55 anda boleh mengeluarkan SGD$5,000, atau sebarang simpanan Akaun Biasa dan Akaun Khas melebihi Jumlah Persaraan Penuh anda. Selebihnya disimpan untuk membayar bayaran bulanan anda.",
+      pts:["Jika anda lahir pada 1958 atau kemudian, anda boleh mengeluarkan sehingga 20% simpanan persaraan anda pada usia 65. Ini termasuk SGD$5,000 itu.","Pemilik hartanah yang baki pajakannya mencukupi sehingga sekurang-kurangnya usia 95 tahun boleh mengeluarkan simpanan Akaun Persaraan melebihi Jumlah Persaraan Asas.","Tokokan tunai, pindahan CPF dan geran kerajaan tidak boleh dikeluarkan, kerana ia bertujuan menaikkan bayaran anda."],
+      login:"Papan Pemuka Persaraan anda menunjukkan jumlah tepat yang boleh dikeluarkan. Anda memerlukan Singpass." },
+    s6:{ q:"Apakah BRS, FRS dan ERS, dan yang mana patut saya ketepikan?",
+      sum:"Ini ialah tiga tahap simpanan untuk diketepikan pada usia 55. Bagi yang berusia 55 pada 2026: Asas SGD$110,200, Penuh SGD$220,400, Dipertingkat SGD$440,800.",
+      pts:["Jumlah Persaraan Penuh ialah dua kali ganda Jumlah Asas, dan merupakan jumlah lalai untuk diketepikan.","Jumlah Persaraan Dipertingkat ialah empat kali ganda Jumlah Asas (sejak 2025). Ia jumlah paling tinggi yang boleh anda tokok untuk bayaran lebih tinggi.","Jumlah Asas dan Penuh anda ditetapkan seumur hidup mengikut tahun anda berusia 55. Jumlah Dipertingkat naik setiap tahun (SGD$456,400 pada 2027).","Pada 2027 Jumlah Asas ialah SGD$114,100 dan Jumlah Penuh ialah SGD$228,200."] },
+    s7:{ q:"Bolehkah saya menggunakan rumah saya untuk memenuhi Jumlah Persaraan?",
+      sum:"Boleh, jika anda memiliki hartanah dengan baki pajakan sehingga sekurang-kurangnya usia 95. Anda boleh mengikrarkannya dan mengetepikan Jumlah Persaraan Asas sahaja, kemudian mengeluarkan simpanan melebihi jumlah itu.",
+      pts:["Pertukarannya ialah Akaun Persaraan yang lebih kecil, jadi bayaran bulanan CPF LIFE anda akan lebih rendah.","Apabila anda menjual hartanah itu, anda mesti memulangkan hasil jualan ke CPF anda dan memulihkan Akaun Persaraan anda sehingga Jumlah Persaraan Penuh."] },
+    s8:{ q:"Adakah CPF LIFE lebih baik daripada anuiti swasta?",
+      sum:"CPF membandingkan Pelan Standardnya dengan tiga pelan pendapatan persaraan swasta yang popular. Didapati faedah efektif CPF LIFE lebih tinggi dalam hampir semua keadaan selepas mengambil kira bayaran dan wasiat.",
+      pts:["Ini perbandingan CPF sendiri, jadi lihat juga sebut harga daripada syarikat insurans untuk usia dan jumlah anda.","CPF LIFE membayar seumur hidup, dan premium anda memperoleh faedah CPF sehingga 6% setahun, tanpa risiko.","CPF LIFE berfungsi dengan mengumpulkan risiko, seperti insurans."] },
+    s9:{ q:"Bolehkah saya menukar pelan atau menokok selepas menyertai?",
+      sum:"Anda boleh menggunakan perkhidmatan “Plan my monthly payouts” untuk menukar pelan, menangguh atau memulakan semula bayaran. Menokok Akaun Persaraan anda menaikkan bayaran anda.",
+      pts:["Jika anda menukar pelan, CPF mengambil seluruh simpanan Akaun Persaraan anda, termasuk premium yang dipulangkan daripada pelan lama, sebagai premium bagi pelan baru.","Anda boleh menokok Akaun Persaraan anda, secara tunai atau pindahan, sehingga Jumlah Persaraan Dipertingkat.","Wang tokokan adalah untuk persaraan dan dibayar sebagai bayaran bulanan. Jika bayaran anda sudah bermula, semak halaman perkhidmatan untuk apa yang terpakai kepada anda."],
+      login:"Anda memerlukan Singpass untuk membuat perubahan." },
+    s10:{ q:"Adakah bayaran saya akan sejajar dengan kenaikan harga?",
+      sum:"Pelan Meningkat ialah jawapan CPF kepada kenaikan harga. Ia bermula lebih rendah, kemudian naik 2% setiap tahun seumur hidup.",
+      pts:["Pelan Standard membayar jumlah tetap. Ia bermula lebih tinggi daripada Meningkat, tetapi lebih rendah pada tahun-tahun kemudian.","CPF mencadangkan Meningkat jika anda bimbang kos sara hidup, dan Standard jika anda menjangka berbelanja kurang apabila semakin tua.","Menunggu sehingga usia 70 untuk bermula juga menaikkan bayaran anda, sehingga 7% bagi setiap tahun anda menangguh."] },
+    a1:{ q:"Tokok Akaun Khas (atau Akaun Persaraan) untuk memperoleh lebih banyak",
+      sum:"Simpanan dalam Akaun Khas, MediSave dan Persaraan memperoleh 4% setahun. Akaun Biasa memperoleh 2.5%. Jadi menokok Akaun Khas anda, atau Akaun Persaraan apabila anda berusia 55, mengembangkan wang persaraan anda dengan lebih pantas.",
+      pts:["Akaun Khas anda ditutup pada usia 55, jadi selepas itu tokokan masuk ke Akaun Persaraan anda.","Anda boleh menokok secara tunai melalui PayNow, atau dengan jumlah kecil yang tetap melalui GIRO, di cpf.gov.sg/topup.","Tokokan adalah untuk persaraan. Ia dibayar sebagai bayaran bulanan kemudian, bukan wang tunai untuk kegunaan lain."],
+      login:"Anda memerlukan Singpass untuk membuat tokokan." },
+    a2:{ q:"Dapatkan pelepasan cukai apabila saya menokok",
+      sum:"Anda boleh mendapat pelepasan cukai sehingga SGD$8,000 setahun bagi tokokan tunai ke Akaun Khas atau Persaraan anda sendiri, dan SGD$8,000 lagi bagi tokokan untuk insan tersayang. Itu sehingga SGD$16,000 setahun.",
+      pts:["Pelepasan hanya terpakai kepada tokokan tunai, sehingga Jumlah Persaraan Penuh tahun semasa.","SGD$8,000 untuk akaun anda sendiri dikongsi dengan tokokan ke Akaun MediSave anda sendiri.","Sejak 1 Januari 2025, tokokan tunai yang memperoleh geran padanan MRSS tidak lagi mendapat pelepasan cukai."] },
+    a3:{ q:"Tokok CPF ibu bapa atau keluarga saya",
+      sum:"Anda boleh menokok Akaun Khas atau Persaraan ahli keluarga, dan anda mendapat pelepasan cukai sehingga SGD$8,000 setahun untuknya, tambahan kepada SGD$8,000 untuk akaun anda sendiri.",
+      pts:["Pelepasan cukai diberikan kepada anda, orang yang memberi tokokan.","Pelepasan dikira hanya sehingga Jumlah Persaraan Penuh orang yang anda tokok.","Tokokan membina simpanan persaraan penerima dan dibayar kepada mereka sebagai bayaran bulanan semasa bersara.","Jika penerima meninggal dunia, baki tokokan dibayar kepada penama CPF mereka."],
+      login:"Anda memerlukan Singpass untuk membuat tokokan." },
+    a4:{ q:"Dapatkan faedah tambahan pada SGD$60,000 pertama saya",
+      sum:"Kerajaan membayar faedah tambahan pada SGD$60,000 pertama baki CPF gabungan anda. Di bawah 55 tahun, ia tambahan 1%. Dari usia 55, tambahan 2% pada SGD$30,000 pertama dan tambahan 1% pada SGD$30,000 seterusnya.",
+      pts:["Hanya sehingga SGD$20,000 daripada Akaun Biasa anda dikira.","Faedah tambahan yang diperoleh daripada simpanan Akaun Biasa dimasukkan ke Akaun Khas atau Persaraan anda.","Bersama kadar asas 4%, CPF menunjukkan kadar efektif sehingga 5% di bawah 55 tahun, dan sehingga 6% pada SGD$30,000 pertama dari usia 55.","Kadar pada halaman CPF yang saya semak adalah untuk 1 Julai hingga 30 September 2026. Ia disemak setiap suku tahun."] },
+    a5:{ q:"Pindahkan simpanan Akaun Biasa saya untuk memperoleh 4%",
+      sum:"Memindahkan wang daripada Akaun Biasa (2.5%) ke Akaun Khas atau Persaraan (4%) memperoleh lebih banyak faedah. Tetapi pindahan itu serta-merta dan tidak boleh dibatalkan.",
+      pts:["Di bawah 55 tahun, anda pindahkan dari Akaun Biasa ke Akaun Khas. Dari usia 55 Akaun Khas anda ditutup, jadi anda pindahkan ke Akaun Persaraan, sehingga Jumlah Persaraan Dipertingkat.","Simpan simpanan Akaun Biasa yang mencukupi untuk perumahan atau keperluan lain dahulu, kerana anda tidak boleh memindahkan wang itu kembali.","Di laman web: log masuk dengan Singpass, pilih pindahan CPF, masukkan jumlah, kemudian semak dan sahkan."],
+      login:"Anda memerlukan Singpass untuk membuat pindahan." },
+    a6:{ q:"Capai Jumlah Persaraan Penuh lebih awal",
+      sum:"Jumlah Persaraan Penuh ialah jumlah lalai untuk diketepikan bagi persaraan. Bagi yang berusia 55 pada 2026 ia ialah SGD$220,400, dan kekal sama seumur hidup sebaik sahaja anda berusia 55.",
+      pts:["Pada usia 55, CPF membuka Akaun Persaraan anda dan memindahkan simpanan Akaun Khas dahulu, kemudian Akaun Biasa, sehingga Jumlah Persaraan Penuh.","Jika anda kekurangan, tokokan tunai dan pindahan Akaun Biasa boleh menampung kekurangan itu sebelum bayaran bermula.","Sebaik sahaja anda mengetepikannya, anda boleh mengeluarkan simpanan Akaun Biasa dan Akaun Khas melebihi jumlah itu.","Ikrar hartanah membolehkan anda mengetepikan Jumlah Persaraan Asas sahaja (SGD$110,200 bagi 2026), tetapi bayaran anda akan lebih rendah."] },
+    a7:{ q:"Tangguhkan bayaran CPF LIFE saya untuk jumlah bulanan yang lebih tinggi",
+      sum:"Anda boleh bermula antara 65 dan 70 tahun. Bagi setiap tahun anda menunggu, bayaran bulanan anda meningkat sehingga 7%, yang boleh mencapai peningkatan 35% pada usia 70.",
+      pts:["Contoh CPF (Ogos 2026): seorang lelaki berusia 55 tahun dengan SGD$220,400 dalam Akaun Persaraannya pada Pelan Standard menerima kira-kira SGD$600 lebih sebulan jika bermula pada usia 70 berbanding 65.","Bayaran bermula secara automatik pada usia 70, walaupun anda tidak berbuat apa-apa.","Gunakan perkhidmatan “Plan my monthly payouts” untuk menangguh atau memulakan semula."],
+      login:"Anda memerlukan Singpass untuk menukar usia permulaan anda." },
+    a8:{ q:"Tokok sehingga Jumlah Persaraan Dipertingkat",
+      sum:"Dari usia 55 anda boleh menokok Akaun Persaraan anda sehingga Jumlah Persaraan Dipertingkat untuk bayaran bulanan yang lebih tinggi. Ia SGD$440,800 pada 2026 dan SGD$456,400 pada 2027.",
+      pts:["Sejak 2025 Jumlah Persaraan Dipertingkat ialah empat kali ganda Jumlah Persaraan Asas (ia SGD$308,700 pada 2024, kemudian SGD$426,000 pada 2025).","Akaun Persaraan memberi faedah yang sama seperti Akaun Khas.","Tokokan dan pindahan tidak boleh dibatalkan. Selepas 55 anda tidak boleh mengeluarkannya untuk perumahan, pelaburan atau keperluan lain."],
+      login:"Anda memerlukan Singpass untuk menokok." },
+    a9:{ q:"Terus bekerja atau berpendapatan lebih",
+      sum:"Mulai 1 Januari 2026, jumlah caruman CPF ialah 37% daripada gaji bagi usia 55 dan ke bawah, 34% bagi lebih 55 hingga 60, 25% bagi lebih 60 hingga 65, 16.5% bagi lebih 65 hingga 70, dan 12.5% bagi lebih 70.",
+      pts:["Mereka yang berusia lebih 55 hingga 65 melihat kadar mereka naik pada 2026. Kenaikan itu masuk ke Akaun Persaraan sehingga Jumlah Persaraan Penuh dicapai, kemudian ke Akaun Biasa.","Usia 55 dan ke bawah: majikan 17% dan anda 20%. Lebih 55 hingga 60: majikan 16% dan anda 18%.","Siling gaji bulanan untuk CPF naik kepada SGD$8,000 pada Januari 2026.","Kadar ini terpakai kepada gaji melebihi SGD$750 sebulan."] },
+    a10:{ q:"Dapatkan geran padanan Kerajaan (MRSS)",
+      sum:"Jika anda layak, Kerajaan memadankan tokokan tunai anda ke Akaun Persaraan dolar demi dolar, sehingga SGD$2,000 setahun, dengan had seumur hidup SGD$20,000.",
+      pts:["Ia untuk Warganegara Singapura berusia 55 tahun ke atas dengan simpanan Akaun Persaraan yang lebih rendah. Had umur 70 tahun dihapuskan pada 2025.","CPF menyemak kelayakan anda setiap tahun, jadi anda tidak perlu memohon. Semak di Papan Pemuka Persaraan anda atau di cpf.gov.sg/checkmrss.","Buat tokokan anda sebelum 31 Disember. Geran dikreditkan pada awal tahun berikutnya.","Tokokan yang memperoleh padanan tidak layak mendapat pelepasan cukai."],
+      login:"Log masuk dengan Singpass untuk menyemak sama ada anda layak." }
+  },
+
+  ta: {
+    s1:{ q:"எனக்குத் தொகை எப்போது கிடைக்கத் தொடங்கும்? காத்திருக்கலாமா?",
+      sum:"65 முதல் 70 வயதுக்குள் எந்த வயதிலும் CPF LIFE மாதாந்திரத் தொகையைப் பெறத் தொடங்கலாம். நீங்கள் ஒத்திவைத்தால், ஒத்திவைக்கும் ஒவ்வோர் ஆண்டுக்கும் உங்கள் மாதாந்திரத் தொகை 7% வரை அதிகரிக்கும்.",
+      pts:["70 வயதில் தொடங்கினால், 65 வயதில் தொடங்குவதை விட உங்கள் தொகை ஏறக்குறைய 35% வரை அதிகரிக்கலாம்.","நீங்கள் எந்த அறிவுறுத்தலும் தராவிட்டால், 70 வயதில் தொகை தானாகவே தொடங்கும். 70-ஐத் தாண்டி ஒத்திவைக்க முடியாது.","உங்கள் 65-ஆவது பிறந்த நாளுக்கு ஏறக்குறைய மூன்று மாதங்கள் முன்பு, உங்கள் தேர்வுகளை விளக்க CPF உங்களுக்கு எழுதும்.","ஒத்திவைக்க, அல்லது ஒத்திவைத்த பின் மீண்டும் தொடங்க, “Plan my monthly payouts” (என் மாதாந்திரத் தொகையைத் திட்டமிடு) சேவையைப் பயன்படுத்துங்கள்."],
+      login:"உங்கள் தொகை தொடங்கும் நேரத்தை மாற்ற Singpass தேவை." },
+    s2:{ q:"ஒவ்வொரு மாதமும் எனக்கு எவ்வளவு கிடைக்கும்?",
+      sum:"உங்கள் மாதாந்திரத் தொகை, உங்கள் ஓய்வுக் கணக்கில் உள்ள சேமிப்பு, நீங்கள் தேர்ந்தெடுக்கும் திட்டம், CPF வட்டி விகிதம், உங்கள் பாலினம், தொடங்கும்போது உங்கள் வயது ஆகியவற்றைப் பொறுத்தது.",
+      pts:["ஒவ்வொரு திட்டத்தின் கீழும் மாதாந்திரத் தொகையைக் காட்டும் இணைய மதிப்பீட்டுக் கருவி cpf.gov.sg/payout-இல் உள்ளது.","CPF தந்த எடுத்துக்காட்டு (2026 ஆகஸ்ட்): ஓய்வுக் கணக்கில் SGD$220,400 உள்ள 55 வயது ஆண், நிலையான திட்டத்தில், 65-க்குப் பதிலாக 70 வயதில் தொடங்கினால் மாதத்திற்கு ஏறக்குறைய SGD$600 கூடுதலாகப் பெறுவார்.","ஓய்வுக் கணக்கில் டாப்-அப் செய்தல் அல்லது ஒத்திவைத்தல், இரண்டுமே மதிப்பீட்டை உயர்த்தும்."],
+      login:"மதிப்பீட்டில் உங்கள் சொந்த ஓய்வுக் கணக்கு இருப்பைப் பயன்படுத்த Singpass மூலம் உள்நுழையுங்கள்." },
+    s3:{ q:"நான் சீக்கிரம் இறந்துவிட்டால், என் குடும்பத்திற்குப் பணம் கிடைக்குமா?",
+      sum:"ஆம். மீதமுள்ள CPF LIFE பிரீமியம் இருப்பும், உங்கள் மற்ற CPF சேமிப்பும் உங்கள் பயனாளிகளுக்குச் செலுத்தப்படும்.",
+      pts:["பிரீமியம் இருப்பு என்பது, நீங்கள் சேரும்போது உங்கள் ஓய்வுக் கணக்கிலிருந்து எடுக்கப்பட்ட தொகையிலிருந்து, நீங்கள் ஏற்கெனவே பெற்ற தொகையைக் கழித்தது.","அது உங்கள் CPF நியமனத்தின்படி செலுத்தப்படும்; எனவே ஒரு நியமனம் செய்யுங்கள்.","CPF நியமனம், CPF-ஐப் பயன்படுத்தி வாங்கிய சொத்தையும் CPF முதலீட்டுத் திட்ட முதலீடுகளையும் உள்ளடக்காது.","உங்கள் ஓய்வு முகப்புப் பக்கத்தின் “Monthly payouts” பகுதியில் உங்கள் பிரீமியம் இருப்பைப் பார்க்கலாம்."],
+      login:"உங்கள் சொந்த பிரீமியம் இருப்பைப் பார்க்க Singpass மூலம் உள்நுழையுங்கள்." },
+    s4:{ q:"எந்தத் திட்டத்தைத் தேர்ந்தெடுப்பது: நிலையான, அடிப்படை, அல்லது அதிகரிக்கும்?",
+      sum:"மூன்று திட்டங்கள் உள்ளன. நிலையான திட்டம் உயர்ந்த தொகையில் தொடங்கி நிலையாகத் தரும். அதிகரிக்கும் திட்டம் குறைவாகத் தொடங்கி ஆண்டுதோறும் 2% உயரும். அடிப்படைத் திட்டம் குறைந்த தொகையைத் தரும், பிறகு மேலும் குறையும்.",
+      pts:["அடிப்படைத் திட்டம் 2009-இல் வந்த பழைய திட்டம். உங்கள் சேமிப்பில் ஏறக்குறைய 10 முதல் 20% பிரீமியம் ஆகிறது; உங்கள் ஒருங்கிணைந்த CPF இருப்பு SGD$60,000-க்குக் கீழே குறைந்தால் தொகை குறையும். பல உறுப்பினர்களுக்கு நிலையான அல்லது அதிகரிக்கும் திட்டம் பொருத்தமாக இருப்பதாக CPF கூறுகிறது.","மூன்று திட்டங்களிலும் நீங்கள் வாழ்நாள் முழுவதும் தொகை பெறுவீர்கள்; உங்கள் பிரீமியத்திற்கு ஆபத்தில்லாத CPF வட்டி கிடைக்கும்; மீதமுள்ள பிரீமியம் உங்கள் பயனாளிகளுக்குச் செல்லும்.","70 வயதுக்குள் நீங்கள் எந்த அறிவுறுத்தலும் தராவிட்டால், நிலையான திட்டத்தில் சேர்க்கப்படுவீர்கள்."] },
+    s5:{ q:"என் பணத்தை ஒரே தொகையாக எடுக்க முடியுமா?",
+      sum:"ஒரு பகுதியை மட்டுமே. 55 வயதிலிருந்து SGD$5,000 எடுக்கலாம்; அல்லது உங்கள் முழு ஓய்வுத் தொகைக்கு மேல் உள்ள சாதாரணக் கணக்கு, சிறப்புக் கணக்குச் சேமிப்பை எடுக்கலாம். மீதம் உங்கள் மாதாந்திரத் தொகைக்காக வைக்கப்படும்.",
+      pts:["நீங்கள் 1958 அல்லது அதற்குப் பின் பிறந்தவராக இருந்தால், 65 வயதில் உங்கள் ஓய்வுச் சேமிப்பில் 20% வரை எடுக்கலாம். இதில் அந்த SGD$5,000-மும் அடங்கும்.","குத்தகைக் காலம் குறைந்தது 95 வயது வரை நீடிக்கும் சொத்து உள்ளவர்கள், அடிப்படை ஓய்வுத் தொகைக்கு மேல் உள்ள ஓய்வுக் கணக்குச் சேமிப்பை எடுக்கலாம்.","ரொக்க டாப்-அப், CPF மாற்றங்கள், அரசாங்க மானியங்களை எடுக்க முடியாது; ஏனெனில் அவை உங்கள் தொகையை உயர்த்துவதற்கானவை."],
+      login:"நீங்கள் எடுக்கக்கூடிய சரியான தொகையை உங்கள் ஓய்வு முகப்புப் பக்கம் காட்டும். Singpass தேவை." },
+    s6:{ q:"BRS, FRS, ERS என்றால் என்ன? எதை ஒதுக்கி வைக்க வேண்டும்?",
+      sum:"இவை 55 வயதில் ஒதுக்கி வைக்க வேண்டிய மூன்று சேமிப்பு நிலைகள். 2026-இல் 55 வயதை அடைவோருக்கு: அடிப்படை SGD$110,200, முழு SGD$220,400, மேம்படுத்தப்பட்ட SGD$440,800.",
+      pts:["முழு ஓய்வுத் தொகை, அடிப்படைத் தொகையின் இரு மடங்கு; ஒதுக்கி வைக்க வேண்டிய இயல்புநிலைத் தொகை இதுவே.","மேம்படுத்தப்பட்ட ஓய்வுத் தொகை, அடிப்படைத் தொகையின் நான்கு மடங்கு (2025 முதல்). அதிகத் தொகைக்காக நீங்கள் டாப்-அப் செய்யக்கூடிய உச்சவரம்பு இதுவே.","உங்கள் அடிப்படை, முழு ஓய்வுத் தொகைகள், நீங்கள் 55 வயதை அடையும் ஆண்டால் வாழ்நாள் முழுவதும் நிர்ணயிக்கப்படும். மேம்படுத்தப்பட்ட தொகை ஆண்டுதோறும் உயரும் (2027-இல் SGD$456,400).","2027-இல் அடிப்படைத் தொகை SGD$114,100, முழுத் தொகை SGD$228,200."] },
+    s7:{ q:"ஓய்வுத் தொகையை நிறைவு செய்ய என் வீட்டைப் பயன்படுத்தலாமா?",
+      sum:"ஆம், குத்தகைக் காலம் குறைந்தது 95 வயது வரை நீடிக்கும் சொத்து உங்களிடம் இருந்தால். அதை அடமானமாக வைத்து, அடிப்படை ஓய்வுத் தொகையை மட்டும் ஒதுக்கி, அதற்கு மேல் உள்ள சேமிப்பை எடுக்கலாம்.",
+      pts:["இதன் விலை, சிறிய ஓய்வுக் கணக்கு; எனவே உங்கள் CPF LIFE மாதாந்திரத் தொகை குறைவாக இருக்கும்.","சொத்தை விற்கும்போது, கிடைக்கும் தொகையை CPF-க்குத் திருப்பிச் செலுத்தி, உங்கள் ஓய்வுக் கணக்கை முழு ஓய்வுத் தொகை வரை மீட்டெடுக்க வேண்டும்."] },
+    s8:{ q:"தனியார் ஆண்டுத்தொகையை விட CPF LIFE சிறந்ததா?",
+      sum:"CPF தனது நிலையான திட்டத்தை மூன்று பிரபல தனியார் ஓய்வு வருமானத் திட்டங்களுடன் ஒப்பிட்டது. தொகைகளையும் மரபுச் சொத்தையும் கணக்கிட்ட பிறகு, கிட்டத்தட்ட எல்லாச் சூழல்களிலும் CPF LIFE-இன் பயனுள்ள வட்டி அதிகம் என்று அது கண்டது.",
+      pts:["இது CPF-ன் சொந்த ஒப்பீடு; எனவே உங்கள் வயதுக்கும் தொகைக்கும் காப்புறுதி நிறுவனங்களின் விலைப்புள்ளிகளையும் பாருங்கள்.","CPF LIFE வாழ்நாள் முழுவதும் தரும்; உங்கள் பிரீமியத்திற்கு ஆண்டுக்கு 6% வரை, ஆபத்தின்றி, CPF வட்டி கிடைக்கும்.","CPF LIFE, காப்புறுதியைப் போல ஆபத்தைப் பகிர்ந்து செயல்படுகிறது."] },
+    s9:{ q:"சேர்ந்த பிறகு திட்டத்தை மாற்றவோ டாப்-அப் செய்யவோ முடியுமா?",
+      sum:"திட்டத்தை மாற்ற, தொகையை ஒத்திவைக்க அல்லது மீண்டும் தொடங்க, “Plan my monthly payouts” சேவையைப் பயன்படுத்தலாம். உங்கள் ஓய்வுக் கணக்கில் டாப்-அப் செய்தால் தொகை உயரும்.",
+      pts:["நீங்கள் திட்டத்தை மாற்றினால், பழைய திட்டத்திலிருந்து திரும்பக் கிடைக்கும் பிரீமியம் உட்பட, உங்கள் ஓய்வுக் கணக்கின் முழுச் சேமிப்பையும் புதிய திட்டத்தின் பிரீமியமாக CPF எடுத்துக்கொள்ளும்.","உங்கள் ஓய்வுக் கணக்கில், ரொக்கமாகவோ மாற்றமாகவோ, மேம்படுத்தப்பட்ட ஓய்வுத் தொகை வரை டாப்-அப் செய்யலாம்.","டாப்-அப் பணம் ஓய்வுக்கானது; மாதாந்திரத் தொகையாக வழங்கப்படும். உங்கள் தொகை ஏற்கெனவே தொடங்கியிருந்தால், உங்களுக்கு என்ன பொருந்தும் என்பதை சேவைப் பக்கத்தில் பாருங்கள்."],
+      login:"மாற்றங்களைச் செய்ய Singpass தேவை." },
+    s10:{ q:"விலைவாசி உயர்வுக்கு ஏற்ப என் தொகை உயருமா?",
+      sum:"அதிகரிக்கும் திட்டம் விலைவாசி உயர்வுக்கான CPF-ன் பதில். இது குறைவாகத் தொடங்கி, வாழ்நாள் முழுவதும் ஆண்டுதோறும் 2% உயரும்.",
+      pts:["நிலையான திட்டம் ஒரே தொகையைத் தரும். அது அதிகரிக்கும் திட்டத்தை விட உயர்வாகத் தொடங்கும்; ஆனால் பிந்தைய ஆண்டுகளில் குறைவாக இருக்கும்.","வாழ்க்கைச் செலவு பற்றிக் கவலை இருந்தால் அதிகரிக்கும் திட்டத்தையும், வயதாகும்போது செலவு குறையும் என எதிர்பார்த்தால் நிலையான திட்டத்தையும் CPF பரிந்துரைக்கிறது.","70 வயது வரை காத்திருந்து தொடங்கினாலும் உங்கள் தொகை உயரும்; ஒத்திவைக்கும் ஒவ்வோர் ஆண்டுக்கும் 7% வரை."] },
+    a1:{ q:"சிறப்புக் கணக்கில் (அல்லது ஓய்வுக் கணக்கில்) டாப்-அப் செய்து அதிகம் ஈட்டுங்கள்",
+      sum:"சிறப்பு, மெடிசேவ், ஓய்வுக் கணக்குகளில் உள்ள சேமிப்புக்கு ஆண்டுக்கு 4% வட்டி கிடைக்கும். சாதாரணக் கணக்குக்கு 2.5%. எனவே உங்கள் சிறப்புக் கணக்கில் (55 வயதான பிறகு ஓய்வுக் கணக்கில்) டாப்-அப் செய்தால், உங்கள் ஓய்வுப் பணம் வேகமாக வளரும்.",
+      pts:["உங்கள் சிறப்புக் கணக்கு 55 வயதில் மூடப்படும்; அதன் பிறகு டாப்-அப்கள் உங்கள் ஓய்வுக் கணக்கிற்குச் செல்லும்.","cpf.gov.sg/topup-இல் PayNow மூலம் ரொக்கமாகவும், GIRO மூலம் சிறிய தொகைகளைத் தொடர்ந்தும் டாப்-அப் செய்யலாம்.","டாப்-அப்கள் ஓய்வுக்கானவை. அவை பின்னர் மாதாந்திரத் தொகையாக வழங்கப்படும்; வேறு பயன்பாட்டுக்கான ரொக்கமாக அல்ல."],
+      login:"டாப்-அப் செய்ய Singpass தேவை." },
+    a2:{ q:"டாப்-அப் செய்யும்போது வரிக் கழிவு பெறுங்கள்",
+      sum:"உங்கள் சொந்த சிறப்புக் கணக்கு அல்லது ஓய்வுக் கணக்கில் செய்யும் ரொக்க டாப்-அப்புகளுக்கு ஆண்டுக்கு SGD$8,000 வரை வரிக் கழிவு பெறலாம்; அன்புக்குரியவர்களின் கணக்குகளுக்கு மேலும் SGD$8,000. அது ஆண்டுக்கு SGD$16,000 வரை.",
+      pts:["கழிவு ரொக்க டாப்-அப்களுக்கு மட்டுமே பொருந்தும்; அந்த ஆண்டின் முழு ஓய்வுத் தொகை வரை.","உங்கள் சொந்தக் கணக்கிற்கான SGD$8,000, உங்கள் சொந்த மெடிசேவ் கணக்கில் செய்யும் டாப்-அப்களுடன் பகிரப்படும்.","2025 ஜனவரி 1 முதல், MRSS பொருத்த மானியம் பெறும் ரொக்க டாப்-அப்களுக்கு வரிக் கழிவு இல்லை."] },
+    a3:{ q:"என் பெற்றோர் அல்லது குடும்பத்தின் CPF-இல் டாப்-அப் செய்ய",
+      sum:"குடும்ப உறுப்பினர்களின் சிறப்பு அல்லது ஓய்வுக் கணக்கில் டாப்-அப் செய்யலாம்; அதற்கு ஆண்டுக்கு SGD$8,000 வரை வரிக் கழிவு கிடைக்கும். இது உங்கள் சொந்தக் கணக்கிற்கான SGD$8,000-க்கு மேலதிகமானது.",
+      pts:["வரிக் கழிவு, டாப்-அப் செய்யும் உங்களுக்கே கிடைக்கும்.","நீங்கள் டாப்-அப் செய்பவரின் முழு ஓய்வுத் தொகை வரை மட்டுமே கழிவு கணக்கிடப்படும்.","டாப்-அப்கள் பெறுபவரின் ஓய்வுச் சேமிப்பை உயர்த்தி, ஓய்வுக் காலத்தில் அவருக்கு மாதாந்திரத் தொகையாக வழங்கப்படும்.","பெறுபவர் காலமானால், மீதமுள்ள டாப்-அப்கள் அவருடைய CPF நியமனதாரர்களுக்குச் செல்லும்."],
+      login:"டாப்-அப் செய்ய Singpass தேவை." },
+    a4:{ q:"என் முதல் SGD$60,000-க்கு கூடுதல் வட்டி பெறுங்கள்",
+      sum:"உங்கள் ஒருங்கிணைந்த CPF இருப்பின் முதல் SGD$60,000-க்கு அரசாங்கம் கூடுதல் வட்டி தருகிறது. 55-க்குக் கீழ், கூடுதலாக 1%. 55 வயதிலிருந்து, முதல் SGD$30,000-க்கு கூடுதலாக 2%, அடுத்த SGD$30,000-க்கு கூடுதலாக 1%.",
+      pts:["உங்கள் சாதாரணக் கணக்கிலிருந்து அதிகபட்சம் SGD$20,000 மட்டுமே கணக்கில் சேரும்.","சாதாரணக் கணக்குச் சேமிப்புக்கான கூடுதல் வட்டி, உங்கள் சிறப்பு அல்லது ஓய்வுக் கணக்கில் சேர்க்கப்படும்.","4% அடிப்படை விகிதத்துடன், 55-க்குக் கீழ் 5% வரையும், 55 வயதிலிருந்து முதல் SGD$30,000-க்கு 6% வரையும் பயனுள்ள விகிதங்களை CPF காட்டுகிறது.","நான் பார்த்த CPF பக்கத்தின் விகிதங்கள் 2026 ஜூலை 1 முதல் செப்டம்பர் 30 வரைக்குரியவை. அவை காலாண்டுதோறும் மறுஆய்வு செய்யப்படும்."] },
+    a5:{ q:"4% ஈட்ட, என் சாதாரணக் கணக்குச் சேமிப்பை மாற்றுங்கள்",
+      sum:"சாதாரணக் கணக்கிலிருந்து (2.5%) சிறப்பு அல்லது ஓய்வுக் கணக்கிற்குப் (4%) பணத்தை மாற்றினால் அதிக வட்டி கிடைக்கும். ஆனால் மாற்றம் உடனடியாக நடக்கும்; திரும்பப் பெற முடியாது.",
+      pts:["55-க்குக் கீழ், சாதாரணக் கணக்கிலிருந்து சிறப்புக் கணக்கிற்கு மாற்றுவீர்கள். 55 வயதில் உங்கள் சிறப்புக் கணக்கு மூடப்படுவதால், மேம்படுத்தப்பட்ட ஓய்வுத் தொகை வரை ஓய்வுக் கணக்கிற்கு மாற்றுவீர்கள்.","முதலில் வீடு அல்லது பிற தேவைகளுக்குப் போதுமான சாதாரணக் கணக்குச் சேமிப்பை வைத்துக்கொள்ளுங்கள்; ஏனெனில் பணத்தைத் திரும்ப மாற்ற முடியாது.","இணையத்தளத்தில்: Singpass மூலம் உள்நுழைந்து, CPF மாற்றத்தைத் தேர்ந்தெடுத்து, தொகையை உள்ளிட்டு, சரிபார்த்து உறுதிப்படுத்துங்கள்."],
+      login:"மாற்றம் செய்ய Singpass தேவை." },
+    a6:{ q:"முழு ஓய்வுத் தொகையைச் சீக்கிரம் எட்டுங்கள்",
+      sum:"முழு ஓய்வுத் தொகை என்பது ஓய்வுக்காக ஒதுக்கி வைக்க வேண்டிய இயல்புநிலைத் தொகை. 2026-இல் 55 வயதை அடைவோருக்கு அது SGD$220,400; 55 வயதை அடைந்ததும் அது வாழ்நாள் முழுவதும் மாறாது.",
+      pts:["55 வயதில், CPF உங்கள் ஓய்வுக் கணக்கைத் திறந்து, முதலில் சிறப்புக் கணக்குச் சேமிப்பையும், பிறகு சாதாரணக் கணக்குச் சேமிப்பையும் முழு ஓய்வுத் தொகை வரை மாற்றும்.","பற்றாக்குறை இருந்தால், தொகை தொடங்கும் முன் ரொக்க டாப்-அப்களும் சாதாரணக் கணக்கு மாற்றங்களும் அந்த இடைவெளியை நிரப்பலாம்.","அதை ஒதுக்கிவிட்டால், அதற்கு மேல் உள்ள சாதாரண, சிறப்புக் கணக்குச் சேமிப்பை எடுக்கலாம்.","சொத்து அடமானம், அடிப்படை ஓய்வுத் தொகையை (2026-இல் SGD$110,200) மட்டும் ஒதுக்க அனுமதிக்கும்; ஆனால் உங்கள் தொகை குறைவாக இருக்கும்."] },
+    a7:{ q:"அதிக மாதாந்திரத் தொகைக்காக CPF LIFE தொகையை ஒத்திவையுங்கள்",
+      sum:"65 முதல் 70 வயதுக்குள் தொடங்கலாம். நீங்கள் காத்திருக்கும் ஒவ்வோர் ஆண்டுக்கும் உங்கள் மாதாந்திரத் தொகை 7% வரை உயரும்; 70 வயதில் அது 35% வரை அதிகரிக்கலாம்.",
+      pts:["CPF எடுத்துக்காட்டு (2026 ஆகஸ்ட்): ஓய்வுக் கணக்கில் SGD$220,400 உள்ள 55 வயது ஆண், நிலையான திட்டத்தில், 65-க்குப் பதிலாக 70 வயதில் தொடங்கினால் மாதத்திற்கு ஏறக்குறைய SGD$600 கூடுதலாகப் பெறுவார்.","நீங்கள் எதுவும் செய்யாவிட்டாலும், 70 வயதில் தொகை தானாகவே தொடங்கும்.","ஒத்திவைக்க அல்லது மீண்டும் தொடங்க “Plan my monthly payouts” சேவையைப் பயன்படுத்துங்கள்."],
+      login:"தொடங்கும் வயதை மாற்ற Singpass தேவை." },
+    a8:{ q:"மேம்படுத்தப்பட்ட ஓய்வுத் தொகை வரை டாப்-அப் செய்யுங்கள்",
+      sum:"55 வயதிலிருந்து, அதிக மாதாந்திரத் தொகைக்காக உங்கள் ஓய்வுக் கணக்கில் மேம்படுத்தப்பட்ட ஓய்வுத் தொகை வரை டாப்-அப் செய்யலாம். அது 2026-இல் SGD$440,800, 2027-இல் SGD$456,400.",
+      pts:["2025 முதல் மேம்படுத்தப்பட்ட ஓய்வுத் தொகை, அடிப்படை ஓய்வுத் தொகையின் நான்கு மடங்கு (2024-இல் SGD$308,700, பிறகு 2025-இல் SGD$426,000).","ஓய்வுக் கணக்கு, சிறப்புக் கணக்கின் அதே வட்டியைத் தரும்.","டாப்-அப்களையும் மாற்றங்களையும் திரும்பப் பெற முடியாது. 55-க்குப் பிறகு வீடு, முதலீடு அல்லது பிற தேவைகளுக்காக அவற்றை எடுக்க முடியாது."],
+      login:"டாப்-அப் செய்ய Singpass தேவை." },
+    a9:{ q:"தொடர்ந்து வேலை செய்யுங்கள் அல்லது அதிகம் ஈட்டுங்கள்",
+      sum:"2026 ஜனவரி 1 முதல், மொத்த CPF பங்களிப்பு: 55 வயதும் அதற்குக் கீழும் ஊதியத்தில் 37%, 55-க்கு மேல் 60 வரை 34%, 60-க்கு மேல் 65 வரை 25%, 65-க்கு மேல் 70 வரை 16.5%, 70-க்கு மேல் 12.5%.",
+      pts:["55-க்கு மேல் 65 வரை உள்ளவர்களுக்கு 2026-இல் விகிதங்கள் உயர்ந்தன. அந்த உயர்வு, முழு ஓய்வுத் தொகை எட்டப்படும் வரை ஓய்வுக் கணக்கிற்கும், பிறகு சாதாரணக் கணக்கிற்கும் செல்லும்.","55-ம் அதற்குக் கீழும்: முதலாளி 17%, நீங்கள் 20%. 55-க்கு மேல் 60 வரை: முதலாளி 16%, நீங்கள் 18%.","CPF-க்கான மாதாந்திர ஊதிய உச்சவரம்பு 2026 ஜனவரியில் SGD$8,000 ஆக உயர்ந்தது.","இந்த விகிதங்கள் மாதம் SGD$750-க்கு மேற்பட்ட ஊதியத்திற்குப் பொருந்தும்."] },
+    a10:{ q:"அரசாங்கத்தின் பொருத்த மானியத்தைப் (MRSS) பெறுங்கள்",
+      sum:"நீங்கள் தகுதி பெற்றால், உங்கள் ஓய்வுக் கணக்கில் செய்யும் ரொக்க டாப்-அப்புகளுக்கு அரசாங்கம் டாலருக்கு டாலர் பொருத்தி, ஆண்டுக்கு SGD$2,000 வரை, வாழ்நாள் உச்சவரம்பு SGD$20,000 உடன் வழங்கும்.",
+      pts:["ஓய்வுக் கணக்குச் சேமிப்பு குறைவாக உள்ள, 55 வயதும் அதற்கு மேலும் உள்ள சிங்கப்பூர்க் குடிமக்களுக்கு இது. 70 வயது வரம்பு 2025-இல் நீக்கப்பட்டது.","CPF ஆண்டுதோறும் உங்கள் தகுதியைச் சரிபார்க்கும்; எனவே நீங்கள் விண்ணப்பிக்கத் தேவையில்லை. உங்கள் ஓய்வு முகப்புப் பக்கத்தில் அல்லது cpf.gov.sg/checkmrss-இல் பாருங்கள்.","டிசம்பர் 31-க்குள் டாப்-அப் செய்யுங்கள். மானியம் அடுத்த ஆண்டின் தொடக்கத்தில் வரவு வைக்கப்படும்.","பொருத்த மானியம் பெறும் டாப்-அப்களுக்கு வரிக் கழிவு கிடையாது."],
+      login:"நீங்கள் தகுதி பெற்றவரா எனப் பார்க்க Singpass மூலம் உள்நுழையுங்கள்." }
+  }
+};
+
+/* ---------- extra UI strings for items hosted outside cpf.gov.sg ---------- */
+Object.assign(UI.en, { kwLabelOther:"Words to type in the website's search box (tap one to try it in the demo)", openOther:"Open on {site}", siteHeadOther:"{site} website (illustration)" });
+Object.assign(UI.zh, { kwLabelOther:"可在该网站搜索栏输入的词语（点一个词，在示范中试试）", openOther:"前往{site}", siteHeadOther:"{site}网站（示意图）" });
+Object.assign(UI.ms, { kwLabelOther:"Perkataan untuk ditaip dalam kotak carian laman web itu (ketik satu untuk mencubanya dalam demo)", openOther:"Buka di {site}", siteHeadOther:"Laman web {site} (ilustrasi)" });
+Object.assign(UI.ta, { kwLabelOther:"அந்த இணையத்தளத்தின் தேடல் பெட்டியில் தட்டச்சு செய்ய வேண்டிய சொற்கள் (செயல்விளக்கத்தில் முயல ஒன்றைத் தொடவும்)", openOther:"{site}-இல் திற", siteHeadOther:"{site} இணையத்தளம் (விளக்கப்படம்)" });
+
+/* ---------- Chinese ---------- */
+Object.assign(TX.zh, {
+  s11:{ q:"我会自动加入CPF LIFE吗？谁可以加入？",
+    sum:"所有65岁至80岁的公积金会员都可以加入CPF LIFE。没有最低储蓄要求，但您的入息取决于加入时退休账户里的储蓄。",
+    pts:["如果您在1958年1月1日或以后出生，而且开始领取入息时有至少SGD$60,000的退休储蓄，您会自动加入（适用于新加坡公民和永久居民）。","如果没有自动加入，您仍然可以选择加入。最迟可在80岁生日前一个月加入。","每月入息估算工具可以显示哪个计划适合您，以及预计入息。"] },
+  s12:{ q:"如果我没有加入CPF LIFE呢？",
+    sum:"如果没有加入CPF LIFE，您会留在退休总额计划（Retirement Sum Scheme）。您仍然每月领取入息，但储蓄用完后入息就会停止。",
+    pts:["入息的计算方式是可领最多20年。储蓄的额外利息有助于延长，最长可到90岁。","您可以在65岁至70岁之间随时开始领取。如果您在1958年以前出生，已过这个年龄，可以随时开始。","您之后仍可加入CPF LIFE，从65岁起到80岁生日前一个月都可以，这样就能终身领取入息。"],
+    login:"请用Singpass登录，开始领取入息或加入CPF LIFE。" },
+  s13:{ q:"每个月什么时候、怎样领到入息？",
+    sum:"公积金局在每月2号扣出您的入息，通常在第4个工作日前存入您的银行户头。如果您的银行支持FAST，可能更早收到。",
+    pts:["请向公积金局提供银行户头资料，入息才会存入正确的户头。","如果到70岁您还没有作出指示，入息会在您满70岁那个月自动开始，存入公积金局记录中的银行户头。","如果您延后，公积金局不会补发延后期间的入息。"],
+    login:"请用Singpass登录，查看或更新银行户头资料。" },
+  s14:{ q:"我的入息会增加或减少吗？",
+    sum:"CPF LIFE让您终身领取入息，但入息并非一成不变。公积金局表示，入息每年可能会按利率和会员的寿命等因素调整。",
+    pts:["公积金局说，入息的设计是稳定的，预计调整幅度会小而渐进。","收到保单信函后，您有30天可以更改或取消您的计划。","动用更多公积金储蓄来提高入息，是不能撤回的决定。"],
+    login:"更改需要使用Singpass。" },
+  s15:{ q:"开始领取后，如果我再存钱进退休账户，入息会增加吗？",
+    sum:"一般会。自2021年11月起，进入您退休账户的新款项会自动用来增加CPF LIFE保费，让您终身领取更高的入息。",
+    pts:["如果是基本计划，当调整后的每月入息至少增加SGD$10时就会这样做。公积金局会通知您新的金额。","如果您从退休账户领取“额外每月入息”（AMP），它不属于CPF LIFE，该账户余额用完就会停止。","为避免AMP结束后收入突然下降，您可以要求公积金局用退休账户余下的储蓄增加CPF LIFE保费。"] },
+  s16:{ q:"CPF LIFE入息需要缴税吗？",
+    sum:"不需要。新加坡国内税务局（IRAS）说，在新加坡收到的年金一般不用缴税，并以CPF LIFE每月入息为例。",
+    pts:["有些年金需要缴税，例如来自生意或合伙业务的年金、补充退休计划（SRS）的提款，或雇主代替退休金购买的保单。CPF LIFE不在其中。","如果您还有其他收入，请向IRAS查询您个人的情况。"] },
+  s17:{ q:"我可以不加入CPF LIFE，把储蓄全部提出来吗？",
+    sum:"可以，前提是您有其他终身收入来源。公积金局也说，如果您有退休金或私人年金，每月入息与CPF LIFE相同或更高，可以获得豁免。",
+    pts:["公积金局网页表示，有其他终身收入来源的人，可以选择不领取每月入息，并提出全部退休储蓄。","CPF LIFE页面说，如果您的退休金或私人年金保证每月入息与CPF LIFE相同或更高，可以申请豁免。","公积金局也建议，可以考虑在其他退休收入之外，加上CPF LIFE的终身入息。"] },
+  s18:{ q:"为什么男士和女士的入息不一样？",
+    sum:"CPF LIFE是终身入息，所以预期寿命越长，每月入息就越低。女性平均寿命较长，因此储蓄相同的话，男性领取的入息比女性高。",
+    pts:["您的入息取决于四项因素：加入时退休账户的余额、开始领取的时间（每延后一年最多增加7%）、公积金利率，以及预期寿命。","所用的利率有4%的底线，另外在您公积金总余额的头SGD$60,000可获最多2%的额外利息。"] },
+  s19:{ q:"为什么退休存款额每年都增加？",
+    sum:"公积金局给出三个原因：物价上涨、人们寿命更长，以及生活水平提高，所以需要更多储蓄才能在退休后维持同样的生活。",
+    pts:["如果您已经满55岁，每年的增加不会影响您。您的基本和全额退休存款额，由您满55岁那一年决定，终身不变。","公积金局举例：全额退休存款额在1987年是SGD$30,000。如果一直不变，今天每月只能领取约SGD$300。"] },
+  s20:{ q:"我在CPF LIFE里的钱安全吗？",
+    sum:"CPF LIFE的储蓄由新加坡政府担保。公积金局也保证，您终身领取的入息加上付给受益人的款项，总额不会少于您的CPF LIFE保费。",
+    pts:["您的保费享有最高每年6%的公积金利息，没有风险，并计入您的入息。","CPF LIFE是保险计划，不是投资产品。它是非营利的，由公积金局管理。","CPF LIFE靠分担风险运作：剩余保费的利息汇集起来，让所有会员都能终身领取入息。"] },
+  a11:{ q:"为医疗储蓄账户增存",
+    sum:"您可以用现金为自己或亲人的医疗储蓄账户增存，每年最多可获SGD$8,000的税务减免。这SGD$8,000与您为特别账户或退休账户增存的减免共用。",
+    pts:["医疗储蓄账户最多可收到的金额，是基本医疗保健额减去目前的余额。2026年65岁以下会员的基本医疗保健额是SGD$79,000。","增存到医疗储蓄账户不能撤回或退款。如果超过上限，多出的部分会不计利息退还给您。","自2026年1月1日起，符合资格的会员为医疗储蓄增存，每年可获最多SGD$1,000的配对津贴。获得配对的增存不享有税务减免。","要为配偶或兄弟姐妹增存并享有税务减免，对方上一年的收入须在SGD$8,000或以下，或者是残障人士。"],
+    login:"增存需要使用Singpass。" },
+  a12:{ q:"用GIRO设置小额定期增存",
+    sum:"您不需要一次过大额增存。您可以用GIRO设置小额的定期现金增存，这样就不必每次都填表。",
+    pts:["分两步：先与银行设置GIRO，再提交定期现金增存申请。两步都要完成。","55岁及以上的会员，还可以设置每月从普通账户转小额款项到自己的退休账户。","要更改定期安排，请删除后重新设置。","增存不能撤回，通常在公积金局收到款项后7个工作日内存入。"],
+    login:"设置需要使用Singpass。" },
+  a13:{ q:"年初增存，赚取更多利息",
+    sum:"每年在1月而不是12月增存，10年内您的增存最多可多赚20%的利息，因为公积金利息按月计算，并会滚存。",
+    pts:["公积金局的例子假设利率底线4%、头SGD$60,000最多2%的额外利息、每年增存SGD$8,000，起始余额为零。","请尽早在年初增存，确保在年底前处理完毕。12月申请的人多，处理时间可能较长。","公积金局建议在普通账户保留至少SGD$20,000，应付日后需要，并享有额外1%的利息。"] },
+  a14:{ q:"了解您的公积金缴款去了哪里",
+    sum:"您的公积金缴款会按年龄分配到普通账户、特别账户（或退休账户）和医疗储蓄账户。了解分配比例，有助于决定该增存哪个账户。",
+    pts:["35岁及以下：约62%存入普通账户，16%存入特别账户，22%存入医疗储蓄。35岁以上至45岁：约57%、19%和24%。","随着年龄增加，存入退休和医疗储蓄的比例会提高。55岁以上至60岁：约35%普通账户、34%退休账户、31%医疗储蓄。","从55岁起，您的缴款会先存入退休账户，直到全额退休存款额为止。"] },
+  a15:{ q:"用公积金投资计划投资",
+    sum:"公积金投资计划（CPFIS）让您把部分普通账户和特别账户的储蓄，投资在风险程度不同的产品。如果您选择不投资，储蓄仍会赚取无风险的公积金利息。",
+    pts:["您可以在普通账户预留SGD$20,000后，投资其余的储蓄；特别账户则要预留SGD$40,000。","用普通账户的储蓄，最多可把可投资储蓄的35%投资在股票，10%投资在黄金。","公积金局提醒，只有在您有信心赚得比无风险公积金利息更多时才投资。公积金投资计划的投资不在公积金提名的涵盖范围内。"] },
+  a16:{ q:"如果您在1973年或以前出生，请查看Majulah配套",
+    sum:"Majulah配套（Majulah Package）为1973年或以前出生的新加坡公民提供支持。其中的“赚与存奖励”会为符合资格的在职乐龄人士，每年增加SGD$400至SGD$1,000的公积金，收入较低者可获更多。",
+    pts:["配套也包括一次过的退休储蓄奖励（最多SGD$1,500），给公积金退休储蓄较少的人；以及医疗储蓄奖励（最多SGD$2,000）。","1973年或以前出生的新加坡人，都至少会获得配套的一个部分。","人力部网页说明了谁符合资格，以及款项何时存入。请查看哪些适用于您。"] },
+  a17:{ q:"自雇或自由工作者？自己建立公积金",
+    sum:"如果您是自雇人士，而且每年净贸易收入超过SGD$6,000，您必须缴交医疗储蓄。没有雇主替您缴交。",
+    pts:["即使医疗储蓄已达到基本医疗保健额，您仍须缴交。超出该额的医疗储蓄，会先转入您的特别账户或退休账户，再转入普通账户。","您也可以根据公积金自雇计划自愿缴款，增加退休和住房储蓄。","缴交医疗储蓄和自愿缴款，可能获得税务减免。IRAS网页有详细规定。"] },
+  a18:{ q:"了解花红如何计入公积金",
+    sum:"花红和其他额外薪金属于额外工资。每年计入公积金的额外工资有上限：SGD$102,000减去当年已缴公积金的普通工资。",
+    pts:["例子：如果您已缴公积金的普通工资是SGD$96,000（每月SGD$8,000），那么您的花红只有SGD$6,000需要缴公积金。","这个上限按每名雇主、每个日历年计算。","如果花红超过上限，超出部分不用缴公积金。用现金为特别账户或退休账户增存，是把这笔钱加入退休储蓄的方法之一。"] },
+  a19:{ q:"聪明地用公积金买房",
+    sum:"出售用公积金购买的房屋时，您要把动用的公积金，连同这笔钱本来可赚的利息，退回您自己的公积金账户。所以这笔钱仍然是您的退休储蓄。",
+    pts:["如果卖房所得在还清贷款后，不够退回全部款项，只要房屋以市价出售，您不需要补足差额。","如果您已超过55岁，退回的款项会用来补足退休账户的全额退休存款额，让您领取更高的每月入息。","所欠的利息，是这些钱留在普通账户本来可赚的利息。普通账户的利率是每年2.5%。"] },
+  a20:{ q:"收入较低？领取职工收入补助（WIS）",
+    sum:"职工收入补助（Workfare Income Supplement）为低收入工友增加收入和公积金储蓄。如果您是雇员，补助的60%会存入公积金，40%以现金发放。",
+    pts:["2025工作年度每年最高补助：30至34岁SGD$2,450，35至44岁SGD$3,500，45至59岁SGD$4,200，60岁及以上SGD$4,900。","如果您是自雇人士，10%以现金发放，90%存入医疗储蓄账户。","可使用公积金局的网上WIS计算器，估算您能领取的金额。"] }
+});
+
+/* ---------- Malay ---------- */
+Object.assign(TX.ms, {
+  s11:{ q:"Adakah saya terus masuk CPF LIFE, dan siapa boleh menyertai?",
+    sum:"Semua ahli CPF berumur 65 hingga 80 tahun boleh menyertai CPF LIFE. Tiada simpanan minimum, tetapi bayaran anda bergantung pada baki Akaun Persaraan anda semasa menyertai.",
+    pts:["Anda dimasukkan secara automatik jika dilahirkan pada atau selepas 1 Januari 1958 dan mempunyai sekurang-kurangnya SGD$60,000 simpanan persaraan apabila bayaran bermula (Warganegara dan Penduduk Tetap Singapura).","Jika tidak dimasukkan secara automatik, anda masih boleh memilih untuk menyertai. Umur terakhir untuk menyertai ialah sebulan sebelum anda berumur 80 tahun.","Penganggar bayaran bulanan menunjukkan pelan yang sesuai dan anggaran bayaran anda."] },
+  s12:{ q:"Bagaimana jika saya tidak berada dalam CPF LIFE?",
+    sum:"Jika anda tidak dalam CPF LIFE, anda kekal dalam Skim Jumlah Persaraan (Retirement Sum Scheme). Anda masih menerima bayaran bulanan, tetapi ia berhenti apabila simpanan persaraan anda habis.",
+    pts:["Bayaran anda dikira untuk bertahan sehingga 20 tahun. Faedah tambahan atas simpanan anda membantu melanjutkannya, sehingga umur 90 tahun.","Anda boleh mula bila-bila masa antara umur 65 hingga 70 tahun. Jika dilahirkan sebelum 1958, anda sudah melepasi umur itu dan boleh mula bila-bila masa.","Anda boleh menyertai CPF LIFE kemudian, bila-bila masa dari umur 65 sehingga sebulan sebelum berumur 80 tahun, untuk mendapat bayaran seumur hidup."],
+    login:"Log masuk dengan Singpass untuk memulakan bayaran atau menyertai CPF LIFE." },
+  s13:{ q:"Bila dan bagaimana saya dibayar setiap bulan?",
+    sum:"CPF mengeluarkan bayaran anda pada 2 haribulan, dan biasanya ia masuk ke akaun bank anda menjelang hari bekerja ke-4. Ia mungkin tiba lebih awal jika bank anda menyokong FAST.",
+    pts:["Berikan butiran akaun bank anda kepada CPF supaya bayaran masuk ke akaun yang betul.","Jika anda tidak memberi arahan menjelang umur 70, bayaran bermula secara automatik pada bulan anda berumur 70 dan masuk ke akaun bank yang ada dalam rekod CPF.","Jika anda menangguh, CPF tidak membuat bayaran balik untuk bulan-bulan yang anda tunggu."],
+    login:"Log masuk dengan Singpass untuk menyemak atau mengemas kini butiran akaun bank anda." },
+  s14:{ q:"Bolehkah bayaran saya naik atau turun?",
+    sum:"CPF LIFE membayar anda seumur hidup, tetapi bayaran tidak tetap selamanya. CPF berkata bayaran bulanan boleh dilaraskan setiap tahun mengikut faktor seperti kadar faedah dan jangka hayat ahli.",
+    pts:["CPF berkata bayaran direka supaya stabil, dan pelarasan dijangka kecil serta beransur-ansur.","Selepas menerima surat polisi, anda mempunyai 30 hari untuk menukar atau membatalkan pelan anda.","Menggunakan lebih banyak simpanan CPF untuk menaikkan bayaran anda ialah keputusan yang tidak boleh dibatalkan."],
+    login:"Anda memerlukan Singpass untuk membuat perubahan." },
+  s15:{ q:"Jika saya menambah wang ke Akaun Persaraan selepas bayaran bermula, adakah bayaran saya naik?",
+    sum:"Biasanya ya. Sejak November 2021, wang baru yang masuk ke Akaun Persaraan anda digunakan secara automatik untuk menaikkan premium CPF LIFE anda, jadi anda menerima bayaran lebih tinggi seumur hidup.",
+    pts:["Pada Pelan Asas, ini berlaku apabila bayaran bulanan yang disemak naik sekurang-kurangnya SGD$10. CPF akan memberitahu anda jumlah baru.","Jika anda menerima Bayaran Bulanan Tambahan (AMP) daripada Akaun Persaraan, ia bukan sebahagian daripada CPF LIFE dan berhenti apabila baki itu habis.","Untuk mengelakkan pendapatan anda turun mendadak apabila AMP tamat, anda boleh meminta CPF menggunakan baki simpanan Akaun Persaraan anda untuk menaikkan premium CPF LIFE."] },
+  s16:{ q:"Adakah saya membayar cukai ke atas bayaran CPF LIFE?",
+    sum:"Tidak. IRAS berkata anuiti yang diterima di Singapura umumnya tidak dikenakan cukai, dan menyebut bayaran bulanan CPF LIFE sebagai contoh.",
+    pts:["Sesetengah anuiti dikenakan cukai, seperti yang datang daripada perniagaan atau perkongsian, pengeluaran Skim Persaraan Tambahan (SRS), atau polisi yang dibeli majikan sebagai ganti pencen. CPF LIFE bukan salah satunya.","Jika anda mempunyai pendapatan lain, semak dengan IRAS untuk keadaan anda sendiri."] },
+  s17:{ q:"Bolehkah saya tidak menyertai CPF LIFE dan mengeluarkan simpanan saya?",
+    sum:"Boleh, jika anda mempunyai sumber pendapatan seumur hidup yang lain. CPF juga berkata anda boleh dikecualikan jika anda mempunyai pencen atau anuiti swasta yang membayar jumlah bulanan yang sama atau lebih tinggi daripada CPF LIFE.",
+    pts:["Halaman CPF berkata anda boleh memilih untuk tidak menerima bayaran bulanan dan mengeluarkan semua simpanan persaraan jika anda mempunyai sumber pendapatan seumur hidup yang lain.","Halaman CPF LIFE berkata anda boleh dikecualikan jika pencen atau anuiti swasta anda menjamin bayaran bulanan yang sama atau lebih tinggi.","CPF juga mencadangkan anda mempertimbangkan CPF LIFE sebagai tambahan kepada pendapatan persaraan anda yang lain."] },
+  s18:{ q:"Mengapa bayaran lelaki dan perempuan berbeza?",
+    sum:"CPF LIFE membayar seumur hidup, jadi jangka hayat yang lebih panjang bermakna bayaran bulanan yang lebih rendah. Wanita secara purata hidup lebih lama, jadi dengan simpanan yang sama, lelaki menerima bayaran lebih tinggi daripada wanita.",
+    pts:["Bayaran anda dikira daripada empat perkara: baki Akaun Persaraan semasa anda menyertai, bila anda bermula (sehingga 7% lebih bagi setiap tahun anda menangguh), kadar faedah CPF, dan jangka hayat.","Kadar faedah yang digunakan mempunyai paras terendah 4%, serta faedah tambahan sehingga 2% atas SGD$60,000 pertama baki CPF gabungan anda."] },
+  s19:{ q:"Mengapa Jumlah Persaraan naik setiap tahun?",
+    sum:"CPF memberi tiga sebab: harga naik, orang hidup lebih lama, dan taraf hidup bertambah baik, jadi lebih banyak simpanan diperlukan untuk gaya hidup yang sama semasa bersara.",
+    pts:["Jika anda sudah berumur 55 tahun, kenaikan tahunan tidak menjejaskan anda. Jumlah Persaraan Asas dan Penuh anda ditetapkan seumur hidup mengikut tahun anda berumur 55.","Contoh CPF: Jumlah Persaraan Penuh ialah SGD$30,000 pada 1987. Jika kekal di situ, ia hanya memberi kira-kira SGD$300 sebulan hari ini."] },
+  s20:{ q:"Adakah wang saya dalam CPF LIFE selamat?",
+    sum:"Simpanan CPF LIFE dijamin oleh Kerajaan Singapura. CPF juga menjamin bahawa jumlah bayaran yang anda terima ditambah dengan apa yang dibayar kepada benefisiari anda tidak kurang daripada premium CPF LIFE anda.",
+    pts:["Premium anda memperoleh faedah CPF sehingga 6% setahun, tanpa risiko, dan ini diambil kira dalam bayaran anda.","CPF LIFE ialah skim insurans, bukan pelaburan. Ia tidak berorientasikan keuntungan dan ditadbir oleh Lembaga CPF.","CPF LIFE berfungsi dengan mengumpulkan risiko: faedah atas baki premium dikumpulkan supaya semua ahli menerima bayaran selagi mereka hidup."] },
+  a11:{ q:"Tokok Akaun MediSave saya",
+    sum:"Anda boleh menokok Akaun MediSave anda atau orang tersayang secara tunai dan menuntut pelepasan cukai sehingga SGD$8,000 setahun. SGD$8,000 ini dikongsi dengan tokokan anda ke Akaun Khas atau Persaraan.",
+    pts:["Jumlah paling banyak yang boleh diterima Akaun MediSave ialah Jumlah Penjagaan Kesihatan Asas tolak baki semasa. Jumlah itu SGD$79,000 pada 2026 bagi ahli di bawah 65 tahun.","Tokokan ke MediSave tidak boleh dibatalkan atau dikembalikan. Jika melebihi had, lebihannya dikembalikan kepada anda tanpa faedah.","Mulai 1 Januari 2026, ahli yang layak mendapat geran padanan sehingga SGD$1,000 setahun atas tokokan MediSave. Tokokan yang dipadankan tidak mendapat pelepasan cukai.","Bagi pasangan atau adik-beradik menerima tokokan anda dengan pelepasan cukai, pendapatan mereka pada tahun sebelumnya mesti SGD$8,000 atau kurang, atau mereka cacat."],
+    login:"Anda memerlukan Singpass untuk membuat tokokan." },
+  a12:{ q:"Sediakan tokokan tetap kecil melalui GIRO",
+    sum:"Anda tidak perlu menokok dalam satu jumlah besar. Anda boleh menyediakan tokokan tunai berulang yang kecil melalui GIRO, supaya tidak perlu mengisi borang setiap kali.",
+    pts:["Ia dua langkah: sediakan GIRO dengan bank anda, kemudian hantar permintaan tokokan tunai berulang untuk persaraan. Kedua-dua langkah mesti dibuat.","Ahli berumur 55 tahun ke atas juga boleh menyediakan pindahan bulanan kecil daripada Akaun Biasa ke Akaun Persaraan sendiri.","Untuk menukar susunan berulang, padamkannya dan buat yang baru.","Tokokan tidak boleh dibatalkan dan biasanya dikreditkan dalam 7 hari bekerja selepas CPF menerima bayaran."],
+    login:"Anda memerlukan Singpass untuk membuat penyediaan." },
+  a13:{ q:"Tokok awal tahun untuk faedah lebih banyak",
+    sum:"Menokok pada Januari dan bukan Disember setiap tahun boleh memperoleh sehingga 20% lebih faedah atas tokokan anda dalam 10 tahun, kerana faedah CPF dikira setiap bulan dan berganda.",
+    pts:["Contoh CPF mengandaikan paras terendah faedah 4%, faedah tambahan sehingga 2% atas SGD$60,000 pertama, tokokan SGD$8,000 setahun dan baki permulaan SGD$0.","Tokok awal tahun supaya diproses sebelum akhir tahun. Pemprosesan boleh lebih lama pada Disember apabila ramai memohon.","CPF mencadangkan anda mengekalkan sekurang-kurangnya SGD$20,000 dalam Akaun Biasa untuk keperluan akan datang dan faedah tambahan 1%."] },
+  a14:{ q:"Ketahui ke mana caruman CPF anda pergi",
+    sum:"Caruman CPF anda dibahagikan antara akaun Biasa, Khas (atau Persaraan) dan MediSave mengikut umur. Mengetahui pembahagian ini membantu anda memutuskan akaun mana yang hendak ditokok.",
+    pts:["Umur 35 tahun ke bawah: kira-kira 62% ke Akaun Biasa, 16% ke Akaun Khas dan 22% ke MediSave. Lebih 35 hingga 45: kira-kira 57%, 19% dan 24%.","Bahagian untuk persaraan dan MediSave meningkat apabila anda semakin tua. Lebih 55 hingga 60: kira-kira 35% Biasa, 34% Persaraan dan 31% MediSave.","Dari umur 55, caruman anda masuk ke Akaun Persaraan dahulu, sehingga Jumlah Persaraan Penuh."] },
+  a15:{ q:"Labur CPF saya dengan Skim Pelaburan CPF",
+    sum:"CPFIS membolehkan anda melabur sebahagian simpanan Akaun Biasa dan Akaun Khas dalam produk dengan tahap risiko berbeza. Simpanan CPF anda terus memperoleh faedah tanpa risiko jika anda memilih untuk tidak melabur.",
+    pts:["Anda boleh melabur simpanan Akaun Biasa selepas mengetepikan SGD$20,000, dan simpanan Akaun Khas selepas mengetepikan SGD$40,000.","Daripada Akaun Biasa, anda boleh melabur sehingga 35% simpanan boleh laburan dalam saham dan 10% dalam emas.","CPF berkata labur hanya apabila anda yakin dapat mengatasi faedah CPF tanpa risiko, dan pelaburan CPFIS tidak dilindungi oleh penamaan CPF."] },
+  a16:{ q:"Semak Pakej Majulah jika anda dilahirkan pada 1973 atau lebih awal",
+    sum:"Pakej Majulah menyokong Warganegara Singapura yang dilahirkan pada 1973 atau lebih awal. Bonus Earn and Save memberi warga emas bekerja yang layak tokokan CPF SGD$400 hingga SGD$1,000 setahun, dengan pekerja berpendapatan lebih rendah mendapat lebih.",
+    pts:["Ia juga mempunyai Bonus Simpanan Persaraan sekali sahaja (sehingga SGD$1,500) untuk mereka yang simpanan persaraan CPFnya lebih rendah, dan Bonus MediSave (sehingga SGD$2,000).","Setiap rakyat Singapura yang dilahirkan pada 1973 atau lebih awal mendapat sekurang-kurangnya satu bahagian pakej.","Halaman MOM menjelaskan siapa yang layak dan bila wang dikreditkan. Semak apa yang terpakai kepada anda."] },
+  a17:{ q:"Bekerja sendiri atau pekerja bebas? Bina CPF anda sendiri",
+    sum:"Jika anda bekerja sendiri dan pendapatan perdagangan bersih anda melebihi SGD$6,000 setahun, anda mesti mencarum ke MediSave. Tiada majikan yang melakukannya untuk anda.",
+    pts:["Anda mesti terus mencarum ke MediSave walaupun sudah mencapai Jumlah Penjagaan Kesihatan Asas. Simpanan MediSave melebihi jumlah itu mengalir ke Akaun Khas atau Persaraan dahulu, kemudian ke Akaun Biasa.","Anda juga boleh membuat caruman sukarela di bawah Skim Bekerja Sendiri CPF untuk membina simpanan persaraan dan perumahan.","Caruman MediSave dan caruman sukarela mungkin mendapat pelepasan cukai. IRAS menerangkan peraturannya."] },
+  a18:{ q:"Ketahui bagaimana bonus dikira untuk CPF",
+    sum:"Bonus dan gaji tambahan lain dikira sebagai Gaji Tambahan. Jumlah yang dikenakan CPF dihadkan setiap tahun: SGD$102,000 tolak Gaji Biasa yang dikenakan CPF pada tahun itu.",
+    pts:["Contoh: jika Gaji Biasa anda yang dikenakan CPF ialah SGD$96,000 (SGD$8,000 sebulan), hanya SGD$6,000 bonus anda dikenakan CPF.","Had ini terpakai bagi setiap majikan setiap tahun kalendar.","Jika bonus anda melebihi had, lebihannya tidak dikenakan CPF. Tokokan tunai ke Akaun Khas atau Persaraan ialah satu cara untuk menambahnya ke simpanan persaraan anda."] },
+  a19:{ q:"Gunakan CPF untuk rumah anda dengan bijak",
+    sum:"Apabila anda menjual rumah yang dibeli dengan CPF, anda mengembalikan CPF yang digunakan, serta faedah yang akan diperoleh wang itu, ke akaun CPF anda sendiri. Jadi wang itu kekal milik anda untuk persaraan.",
+    pts:["Jika hasil jualan, selepas menjelaskan pinjaman, tidak cukup untuk memulangkan semuanya, anda tidak perlu menampung bezanya, selagi rumah dijual pada harga pasaran.","Jika anda berumur lebih 55 tahun, bayaran balik digunakan untuk Jumlah Persaraan Penuh dalam Akaun Persaraan anda, yang memberi bayaran bulanan lebih tinggi.","Faedah itu ialah apa yang akan diperoleh simpanan Akaun Biasa anda. Akaun Biasa membayar 2.5% setahun."] },
+  a20:{ q:"Dapatkan Tambahan Pendapatan Workfare jika gaji anda lebih rendah",
+    sum:"Tambahan Pendapatan Workfare (WIS) menambah pendapatan dan simpanan CPF pekerja berpendapatan lebih rendah. Jika anda pekerja, 60% WIS anda masuk ke CPF dan 40% dibayar tunai.",
+    pts:["Untuk Tahun Kerja 2025, jumlah paling banyak setahun ialah SGD$2,450 (umur 30 hingga 34), SGD$3,500 (35 hingga 44), SGD$4,200 (45 hingga 59) dan SGD$4,900 (60 ke atas).","Jika anda bekerja sendiri, 10% dibayar tunai dan 90% masuk ke Akaun MediSave anda.","Gunakan kalkulator WIS dalam talian CPF untuk menganggar jumlah yang mungkin anda terima."] }
+});
+
+/* ---------- Tamil ---------- */
+Object.assign(TX.ta, {
+  s11:{ q:"நான் தானாகவே CPF LIFE-இல் சேர்க்கப்படுவேனா? யார் சேரலாம்?",
+    sum:"65 முதல் 80 வயது வரையுள்ள அனைத்து CPF உறுப்பினர்களும் CPF LIFE-இல் சேரலாம். குறைந்தபட்ச சேமிப்பு இல்லை; ஆனால் உங்கள் தொகை, சேரும்போது உங்கள் ஓய்வுக் கணக்கில் உள்ள தொகையைப் பொறுத்தது.",
+    pts:["நீங்கள் 1958 ஜனவரி 1 அல்லது அதற்குப் பின் பிறந்து, தொகை தொடங்கும்போது குறைந்தது SGD$60,000 ஓய்வுச் சேமிப்பு இருந்தால், தானாகவே சேர்க்கப்படுவீர்கள் (சிங்கப்பூர்க் குடிமக்கள், நிரந்தரவாசிகள்).","தானாகச் சேர்க்கப்படாவிட்டாலும், நீங்கள் விரும்பினால் சேரலாம். சேர்வதற்கான கடைசி வயது, உங்களுக்கு 80 வயது ஆவதற்கு ஒரு மாதம் முன்பு.","மாதாந்திரத் தொகை மதிப்பீட்டுக் கருவி, எந்தத் திட்டம் உங்களுக்குப் பொருந்தும் என்பதையும் மதிப்பிடப்பட்ட தொகையையும் காட்டும்."] },
+  s12:{ q:"நான் CPF LIFE-இல் இல்லையென்றால் என்ன?",
+    sum:"நீங்கள் CPF LIFE-இல் இல்லையென்றால், ஓய்வுத் தொகைத் திட்டத்தில் (Retirement Sum Scheme) இருப்பீர்கள். மாதாந்திரத் தொகை கிடைக்கும்; ஆனால் ஓய்வுச் சேமிப்பு தீர்ந்ததும் அது நின்றுவிடும்.",
+    pts:["உங்கள் தொகை 20 ஆண்டுகள் வரை நீடிக்கும்படி கணக்கிடப்படுகிறது. சேமிப்பின் கூடுதல் வட்டி அதை 90 வயது வரை நீட்டிக்க உதவும்.","65 முதல் 70 வயதுக்குள் எப்போது வேண்டுமானாலும் தொடங்கலாம். நீங்கள் 1958-க்கு முன் பிறந்தவராக இருந்தால், அந்த வயதைக் கடந்துவிட்டதால் எப்போது வேண்டுமானாலும் தொடங்கலாம்.","வாழ்நாள் முழுவதும் தொகை பெற, 65 வயது முதல் 80 வயதுக்கு ஒரு மாதம் முன்பு வரை எப்போது வேண்டுமானாலும் பின்னர் CPF LIFE-இல் சேரலாம்."],
+    login:"தொகையைத் தொடங்க அல்லது CPF LIFE-இல் சேர Singpass மூலம் உள்நுழையுங்கள்." },
+  s13:{ q:"ஒவ்வொரு மாதமும் எப்போது, எப்படிப் பணம் கிடைக்கும்?",
+    sum:"உங்கள் தொகை மாதத்தின் 2-ஆம் தேதி எடுக்கப்பட்டு, பொதுவாக 4-ஆவது வேலை நாளுக்குள் உங்கள் வங்கிக் கணக்கில் வரும். உங்கள் வங்கி FAST-ஐ ஆதரித்தால் முன்கூட்டியே வரலாம்.",
+    pts:["சரியான கணக்கிற்குத் தொகை செல்ல, உங்கள் வங்கிக் கணக்கு விவரங்களை CPF-க்குக் கொடுங்கள்.","70 வயதுக்குள் நீங்கள் அறிவுறுத்தல் தராவிட்டால், உங்களுக்கு 70 வயதாகும் மாதத்தில் தொகை தானாகத் தொடங்கி, CPF-இன் பதிவில் உள்ள வங்கிக் கணக்கிற்குச் செல்லும்.","நீங்கள் ஒத்திவைத்தால், காத்திருந்த மாதங்களுக்கான தொகையை CPF பின்னர் வழங்காது."],
+    login:"உங்கள் வங்கிக் கணக்கு விவரங்களைப் பார்க்க அல்லது புதுப்பிக்க Singpass மூலம் உள்நுழையுங்கள்." },
+  s14:{ q:"என் தொகை கூடலாமா அல்லது குறையலாமா?",
+    sum:"CPF LIFE வாழ்நாள் முழுவதும் தொகை தரும்; ஆனால் தொகை என்றென்றும் ஒரே அளவில் இராது. வட்டி விகிதங்கள், உறுப்பினர்களின் ஆயுட்காலம் போன்றவற்றுக்கேற்ப மாதாந்திரத் தொகை ஆண்டுதோறும் சரிசெய்யப்படலாம் என்று CPF கூறுகிறது.",
+    pts:["தொகை நிலையாக இருக்கும்படி வடிவமைக்கப்பட்டுள்ளது; சரிசெய்தல்கள் சிறியதாகவும் படிப்படியாகவும் இருக்கும் என்று எதிர்பார்க்கப்படுகிறது.","உங்கள் பாலிசிக் கடிதம் கிடைத்த பின் உங்கள் திட்டத்தை மாற்ற அல்லது ரத்து செய்ய 30 நாட்கள் உண்டு.","தொகையை உயர்த்த அதிக CPF சேமிப்பைப் பயன்படுத்தும் முடிவை மீண்டும் மாற்ற முடியாது."],
+    login:"மாற்றங்களைச் செய்ய Singpass தேவை." },
+  s15:{ q:"தொகை தொடங்கிய பின் ஓய்வுக் கணக்கில் பணம் சேர்த்தால், என் தொகை உயருமா?",
+    sum:"பொதுவாக ஆம். 2021 நவம்பர் முதல், உங்கள் ஓய்வுக் கணக்கில் வரும் புதிய தொகை தானாகவே உங்கள் CPF LIFE பிரீமியத்தை உயர்த்தப் பயன்படுகிறது; எனவே வாழ்நாள் முழுவதும் அதிகத் தொகை கிடைக்கும்.",
+    pts:["அடிப்படைத் திட்டத்தில், திருத்தப்பட்ட மாதாந்திரத் தொகை குறைந்தது SGD$10 உயர்ந்தால் இது நடக்கும். புதிய தொகையை CPF உங்களுக்குத் தெரிவிக்கும்.","உங்கள் ஓய்வுக் கணக்கிலிருந்து கூடுதல் மாதாந்திரத் தொகை (AMP) பெற்றால், அது CPF LIFE-இன் பகுதி அல்ல; அந்த இருப்பு தீர்ந்ததும் நின்றுவிடும்.","AMP முடியும்போது உங்கள் வருமானம் திடீரெனக் குறையாமல் இருக்க, ஓய்வுக் கணக்கில் மீதமுள்ள சேமிப்பால் CPF LIFE பிரீமியத்தை உயர்த்தும்படி CPF-இடம் கேட்கலாம்."] },
+  s16:{ q:"CPF LIFE தொகைக்கு நான் வரி செலுத்த வேண்டுமா?",
+    sum:"இல்லை. சிங்கப்பூரில் பெறப்படும் ஆண்டுத்தொகைகளுக்கு (annuities) பொதுவாக வரி இல்லை என்று IRAS கூறுகிறது; CPF LIFE மாதாந்திரத் தொகையை அது எடுத்துக்காட்டாகக் குறிப்பிடுகிறது.",
+    pts:["சில ஆண்டுத்தொகைகளுக்கு வரி உண்டு; எ.கா. வணிகம் அல்லது கூட்டாண்மையிலிருந்து வருபவை, துணை ஓய்வுத் திட்டம் (SRS) பணம் எடுப்பு, அல்லது ஓய்வூதியத்துக்குப் பதிலாக முதலாளி வாங்கிய பாலிசி. CPF LIFE அவற்றில் ஒன்றல்ல.","உங்களுக்கு வேறு வருமானம் இருந்தால், உங்கள் நிலைக்கு IRAS-இடம் சரிபார்க்கவும்."] },
+  s17:{ q:"CPF LIFE-இல் சேராமல் என் சேமிப்பு முழுவதையும் எடுக்க முடியுமா?",
+    sum:"முடியும், உங்களுக்கு வேறு வாழ்நாள் வருமான ஆதாரம் இருந்தால். CPF LIFE-க்குச் சமமான அல்லது அதிகமான மாதாந்திரத் தொகை தரும் ஓய்வூதியம் அல்லது தனியார் ஆண்டுத்தொகை இருந்தால் விலக்கு பெறலாம் என்றும் CPF கூறுகிறது.",
+    pts:["வேறு வாழ்நாள் வருமான ஆதாரம் இருந்தால், மாதாந்திரத் தொகையைப் பெறாமல் ஓய்வுச் சேமிப்பு முழுவதையும் எடுக்கலாம் என்று CPF பக்கம் கூறுகிறது.","உங்கள் ஓய்வூதியம் அல்லது தனியார் ஆண்டுத்தொகை CPF LIFE-க்குச் சமமான அல்லது அதிகமான மாதாந்திரத் தொகையை உறுதிசெய்தால் விலக்கு பெறலாம் என்று CPF LIFE பக்கம் கூறுகிறது.","உங்கள் மற்ற ஓய்வு வருமானத்துடன் கூடுதலாக CPF LIFE-ஐப் பரிசீலிக்கவும் CPF பரிந்துரைக்கிறது."] },
+  s18:{ q:"ஆண்களுக்கும் பெண்களுக்கும் தொகை ஏன் வேறுபடுகிறது?",
+    sum:"CPF LIFE வாழ்நாள் முழுவதும் தருவதால், ஆயுட்காலம் அதிகமாக இருந்தால் மாதாந்திரத் தொகை குறைவாக இருக்கும். பெண்கள் சராசரியாக நீண்ட காலம் வாழ்வதால், அதே சேமிப்புக்கு ஆண்களுக்குப் பெண்களை விட அதிகத் தொகை கிடைக்கும்.",
+    pts:["உங்கள் தொகை நான்கு விஷயங்களால் தீர்மானிக்கப்படுகிறது: சேரும்போது ஓய்வுக் கணக்கு இருப்பு, தொடங்கும் நேரம் (ஒத்திவைக்கும் ஒவ்வோர் ஆண்டுக்கும் 7% வரை கூடுதல்), CPF வட்டி விகிதங்கள், ஆயுட்காலம்.","பயன்படுத்தப்படும் வட்டிக்கு 4% அடிப்படை உண்டு; உங்கள் ஒருங்கிணைந்த CPF இருப்பின் முதல் SGD$60,000-க்கு 2% வரை கூடுதல் வட்டியும் உண்டு."] },
+  s19:{ q:"ஓய்வுத் தொகை ஏன் ஆண்டுதோறும் உயர்கிறது?",
+    sum:"CPF மூன்று காரணங்களைக் கூறுகிறது: விலைகள் உயர்கின்றன, மக்கள் நீண்ட காலம் வாழ்கிறார்கள், வாழ்க்கைத் தரம் உயர்கிறது. எனவே ஓய்வுக் காலத்தில் அதே வாழ்க்கைக்கு அதிகச் சேமிப்பு தேவை.",
+    pts:["நீங்கள் ஏற்கெனவே 55 வயதை அடைந்திருந்தால், ஆண்டுதோறும் ஏற்படும் உயர்வு உங்களைப் பாதிக்காது. உங்கள் அடிப்படை, முழு ஓய்வுத் தொகைகள் 55 வயதை அடையும் ஆண்டால் வாழ்நாள் முழுவதும் நிர்ணயிக்கப்படும்.","CPF தரும் எடுத்துக்காட்டு: முழு ஓய்வுத் தொகை 1987-இல் SGD$30,000. அது அப்படியே இருந்திருந்தால், இன்று மாதத்திற்கு சுமார் SGD$300 மட்டுமே தரும்."] },
+  s20:{ q:"CPF LIFE-இல் உள்ள என் பணம் பாதுகாப்பானதா?",
+    sum:"CPF LIFE சேமிப்புக்கு சிங்கப்பூர் அரசாங்கம் உத்தரவாதம் அளிக்கிறது. நீங்கள் பெறும் மொத்தத் தொகையும் உங்கள் பயனாளிகளுக்குச் செலுத்தப்படுவதும் சேர்ந்து, உங்கள் CPF LIFE பிரீமியத்துக்குக் குறையாது என்றும் CPF உறுதியளிக்கிறது.",
+    pts:["உங்கள் பிரீமியத்துக்கு ஆண்டுக்கு 6% வரை, ஆபத்தின்றி, CPF வட்டி கிடைக்கும்; அது உங்கள் தொகையில் சேர்க்கப்படுகிறது.","CPF LIFE ஒரு காப்புறுதித் திட்டம், முதலீடு அல்ல. இது இலாப நோக்கற்றது; CPF வாரியம் நிர்வகிக்கிறது.","CPF LIFE ஆபத்தைப் பகிர்ந்து செயல்படுகிறது: மீதமுள்ள பிரீமியத்தின் வட்டி ஒன்றுதிரட்டப்பட்டு, எல்லா உறுப்பினர்களும் வாழும் வரை தொகை பெற உதவுகிறது."] },
+  a11:{ q:"என் மெடிசேவ் கணக்கில் டாப்-அப் செய்ய",
+    sum:"உங்கள் அல்லது அன்புக்குரியவரின் மெடிசேவ் கணக்கில் ரொக்கமாக டாப்-அப் செய்து, ஆண்டுக்கு SGD$8,000 வரை வரிக் கழிவு கோரலாம். இந்த SGD$8,000, உங்கள் சிறப்பு அல்லது ஓய்வுக் கணக்கு டாப்-அப்களுடன் பகிரப்படும்.",
+    pts:["மெடிசேவ் கணக்கு பெறக்கூடிய அதிகபட்சத் தொகை, அடிப்படை சுகாதாரத் தொகையிலிருந்து தற்போதைய இருப்பைக் கழித்ததாகும். 65-க்குக் கீழ் உள்ளவர்களுக்கு 2026-இல் அது SGD$79,000.","மெடிசேவ் டாப்-அப்பை மாற்றவோ திரும்பப் பெறவோ முடியாது. வரம்பைத் தாண்டினால், மிகுதி வட்டியின்றி உங்களுக்குத் திருப்பித் தரப்படும்.","2026 ஜனவரி 1 முதல், தகுதியுள்ள உறுப்பினர்களுக்கு மெடிசேவ் டாப்-அப்புகளுக்கு ஆண்டுக்கு SGD$1,000 வரை பொருத்த மானியம் உண்டு. பொருத்தம் பெறும் டாப்-அப்களுக்கு வரிக் கழிவு இல்லை.","துணைவர் அல்லது சகோதர சகோதரிக்கு வரிக் கழிவுடன் டாப்-அப் செய்ய, அவர்களின் முந்தைய ஆண்டு வருமானம் SGD$8,000 அல்லது அதற்குக் குறைவாக இருக்க வேண்டும், அல்லது அவர்கள் மாற்றுத்திறனாளியாக இருக்க வேண்டும்."],
+    login:"டாப்-அப் செய்ய Singpass தேவை." },
+  a12:{ q:"GIRO மூலம் சிறிய தொடர் டாப்-அப்களை அமைக்கவும்",
+    sum:"ஒரே பெரிய தொகையாக டாப்-அப் செய்யத் தேவையில்லை. GIRO மூலம் சிறிய தொடர் ரொக்க டாப்-அப்களை அமைக்கலாம்; ஒவ்வொரு முறையும் படிவம் நிரப்பத் தேவையில்லை.",
+    pts:["இது இரண்டு படிகள்: முதலில் உங்கள் வங்கியுடன் GIRO அமைக்கவும், பிறகு ஓய்வுக்கான தொடர் ரொக்க டாப்-அப் கோரிக்கையைச் சமர்ப்பிக்கவும். இரண்டு படிகளும் தேவை.","55 வயதும் அதற்கு மேலும் உள்ளவர்கள், தங்கள் சாதாரணக் கணக்கிலிருந்து தங்கள் ஓய்வுக் கணக்கிற்கு மாதம் சிறு தொகைகளை மாற்றவும் அமைக்கலாம்.","தொடர் ஏற்பாட்டை மாற்ற, அதை நீக்கிவிட்டுப் புதிதாக அமைக்கவும்.","டாப்-அப்களை மாற்ற முடியாது; CPF பணத்தைப் பெற்ற 7 வேலை நாட்களுக்குள் பொதுவாகச் சேர்க்கப்படும்."],
+    login:"அமைக்க Singpass தேவை." },
+  a13:{ q:"அதிக வட்டிக்காக ஆண்டின் தொடக்கத்தில் டாப்-அப் செய்யுங்கள்",
+    sum:"ஆண்டுதோறும் டிசம்பருக்குப் பதிலாக ஜனவரியில் டாப்-அப் செய்தால், 10 ஆண்டுகளில் உங்கள் டாப்-அப்களுக்கு 20% வரை கூடுதல் வட்டி கிடைக்கலாம்; ஏனெனில் CPF வட்டி மாதந்தோறும் கணக்கிடப்பட்டு கூட்டு வட்டியாகச் சேரும்.",
+    pts:["CPF-இன் எடுத்துக்காட்டு, 4% வட்டி அடிப்படை, முதல் SGD$60,000-க்கு 2% வரை கூடுதல் வட்டி, ஆண்டுக்கு SGD$8,000 டாப்-அப், தொடக்க இருப்பு SGD$0 எனக் கொள்கிறது.","ஆண்டு இறுதிக்குள் செயலாக்கப்படுவதை உறுதிசெய்ய, ஆண்டின் தொடக்கத்திலேயே டாப்-அப் செய்யுங்கள். டிசம்பரில் பலர் விண்ணப்பிப்பதால் செயலாக்கம் நீளலாம்.","எதிர்காலத் தேவைகளுக்கும் கூடுதல் 1% வட்டிக்கும், உங்கள் சாதாரணக் கணக்கில் குறைந்தது SGD$20,000 வைத்திருக்க CPF பரிந்துரைக்கிறது."] },
+  a14:{ q:"உங்கள் CPF பங்களிப்புகள் எங்கே செல்கின்றன என்பதை அறியுங்கள்",
+    sum:"உங்கள் CPF பங்களிப்புகள் வயதுக்கேற்ப சாதாரண, சிறப்பு (அல்லது ஓய்வு), மெடிசேவ் கணக்குகளுக்குப் பிரிக்கப்படுகின்றன. இந்தப் பிரிவை அறிந்தால், எதில் டாப்-அப் செய்வது என்று முடிவுசெய்ய உதவும்.",
+    pts:["35 வயதும் அதற்குக் கீழும்: சுமார் 62% சாதாரணக் கணக்கிற்கும், 16% சிறப்புக் கணக்கிற்கும், 22% மெடிசேவ்-க்கும். 35-க்கு மேல் 45 வரை: சுமார் 57%, 19%, 24%.","வயது கூடும்போது ஓய்வுக்கும் மெடிசேவ்-க்கும் செல்லும் பங்கு உயரும். 55-க்கு மேல் 60 வரை: சுமார் 35% சாதாரணம், 34% ஓய்வு, 31% மெடிசேவ்.","55 வயதிலிருந்து உங்கள் பங்களிப்புகள் முதலில் முழு ஓய்வுத் தொகை வரை உங்கள் ஓய்வுக் கணக்கிற்குச் செல்லும்."] },
+  a15:{ q:"CPF முதலீட்டுத் திட்டத்தில் என் CPF-ஐ முதலீடு செய்ய",
+    sum:"CPFIS மூலம் உங்கள் சாதாரண, சிறப்புக் கணக்குச் சேமிப்பின் ஒரு பகுதியை, வெவ்வேறு ஆபத்து நிலைகள் கொண்ட பொருட்களில் முதலீடு செய்யலாம். முதலீடு செய்யாவிட்டால், உங்கள் CPF சேமிப்பு ஆபத்தில்லாத வட்டியைத் தொடர்ந்து ஈட்டும்.",
+    pts:["சாதாரணக் கணக்கில் SGD$20,000-ஐ ஒதுக்கிய பின் மீதியையும், சிறப்புக் கணக்கில் SGD$40,000-ஐ ஒதுக்கிய பின் மீதியையும் முதலீடு செய்யலாம்.","சாதாரணக் கணக்கிலிருந்து, முதலீடு செய்யக்கூடிய சேமிப்பில் 35% வரை பங்குகளிலும், 10% வரை தங்கத்திலும் முதலீடு செய்யலாம்.","ஆபத்தில்லாத CPF வட்டியை விட அதிகம் ஈட்ட முடியும் என்ற நம்பிக்கை இருக்கும்போது மட்டுமே முதலீடு செய்யுங்கள் என்று CPF கூறுகிறது. CPFIS முதலீடுகள் CPF நியமனத்தில் அடங்காது."] },
+  a16:{ q:"நீங்கள் 1973 அல்லது அதற்கு முன் பிறந்தவர் என்றால் மஜுலா தொகுப்பைப் பாருங்கள்",
+    sum:"மஜுலா தொகுப்பு (Majulah Package) 1973 அல்லது அதற்கு முன் பிறந்த சிங்கப்பூர்க் குடிமக்களுக்கு ஆதரவளிக்கிறது. அதன் Earn and Save Bonus, தகுதியுள்ள வேலை செய்யும் மூத்தோருக்கு ஆண்டுக்கு SGD$400 முதல் SGD$1,000 வரை CPF டாப்-அப் தருகிறது; குறைந்த வருமானம் உள்ளவர்களுக்கு அதிகம்.",
+    pts:["CPF ஓய்வுச் சேமிப்பு குறைவாக உள்ளவர்களுக்கு ஒருமுறை மட்டும் வழங்கப்படும் ஓய்வுச் சேமிப்பு ஊக்கத்தொகை (அதிகபட்சம் SGD$1,500), மெடிசேவ் ஊக்கத்தொகை (அதிகபட்சம் SGD$2,000) ஆகியவையும் இதில் உண்டு.","1973 அல்லது அதற்கு முன் பிறந்த ஒவ்வொரு சிங்கப்பூரருக்கும் இந்தத் தொகுப்பின் குறைந்தது ஒரு பகுதி கிடைக்கும்.","யார் தகுதி பெறுவார்கள், பணம் எப்போது சேர்க்கப்படும் என்பதை MOM பக்கம் விளக்குகிறது. உங்களுக்கு எது பொருந்தும் என்று பாருங்கள்."] },
+  a17:{ q:"சுயதொழில் அல்லது ஃப்ரீலான்ஸரா? உங்கள் CPF-ஐ நீங்களே வளர்க்கவும்",
+    sum:"நீங்கள் சுயதொழில் செய்பவராகவும், உங்கள் ஆண்டு நிகர வணிக வருமானம் SGD$6,000-க்கு மேல் இருந்தால், மெடிசேவ்-க்குச் செலுத்த வேண்டும். உங்களுக்காக அதைச் செய்ய முதலாளி இல்லை.",
+    pts:["அடிப்படை சுகாதாரத் தொகையை எட்டிய பின்னும் நீங்கள் மெடிசேவ்-க்குச் செலுத்த வேண்டும். அந்தத் தொகைக்கு மேலுள்ள மெடிசேவ் சேமிப்பு முதலில் உங்கள் சிறப்பு அல்லது ஓய்வுக் கணக்கிற்கும், பின்னர் சாதாரணக் கணக்கிற்கும் செல்லும்.","ஓய்வு, வீட்டுச் சேமிப்பை வளர்க்க, CPF சுயதொழில் திட்டத்தின் கீழ் விருப்பப் பங்களிப்புகளையும் செய்யலாம்.","மெடிசேவ் பங்களிப்புகளுக்கும் விருப்பப் பங்களிப்புகளுக்கும் வரிக் கழிவு கிடைக்கலாம். விதிகளை IRAS விளக்குகிறது."] },
+  a18:{ q:"போனஸ் CPF-க்கு எப்படிக் கணக்கிடப்படுகிறது என்பதை அறியுங்கள்",
+    sum:"போனஸும் பிற கூடுதல் ஊதியமும் கூடுதல் ஊதியமாகக் (Additional Wages) கருதப்படுகின்றன. CPF செலுத்த வேண்டிய தொகைக்கு ஆண்டுதோறும் வரம்பு உண்டு: SGD$102,000-இலிருந்து அந்த ஆண்டு CPF செலுத்தப்பட்ட சாதாரண ஊதியத்தைக் கழித்தது.",
+    pts:["எடுத்துக்காட்டு: CPF செலுத்தப்பட்ட உங்கள் சாதாரண ஊதியம் SGD$96,000 (SGD$8,000 மாதம்) என்றால், உங்கள் போனஸில் SGD$6,000-க்கு மட்டுமே CPF பொருந்தும்.","இந்த வரம்பு ஒரு முதலாளிக்கு, ஒரு நாட்காட்டி ஆண்டுக்குப் பொருந்தும்.","போனஸ் வரம்பைத் தாண்டினால், மிகுதிக்கு CPF இல்லை. சிறப்பு அல்லது ஓய்வுக் கணக்கில் ரொக்க டாப்-அப் செய்வது, அதை ஓய்வுச் சேமிப்பில் சேர்க்கும் ஒரு வழி."] },
+  a19:{ q:"வீட்டுக்காக CPF-ஐ விவேகமாகப் பயன்படுத்துங்கள்",
+    sum:"CPF-ஐப் பயன்படுத்தி வாங்கிய வீட்டை விற்கும்போது, பயன்படுத்திய CPF-ஐயும், அந்தப் பணம் ஈட்டியிருக்கக்கூடிய வட்டியையும் உங்கள் சொந்த CPF கணக்கிற்குத் திருப்பிச் செலுத்துவீர்கள். எனவே அந்தப் பணம் உங்கள் ஓய்வுச் சேமிப்பாகவே இருக்கும்.",
+    pts:["கடனை அடைத்த பின் விற்பனைத் தொகை முழுத் திருப்பிச் செலுத்தலுக்குப் போதாவிட்டால், வீடு சந்தை விலையில் விற்கப்பட்டிருந்தால் வித்தியாசத்தை நீங்கள் ஈடுசெய்ய வேண்டியதில்லை.","நீங்கள் 55 வயதுக்கு மேல் இருந்தால், திருப்பிச் செலுத்தும் தொகை உங்கள் ஓய்வுக் கணக்கில் முழு ஓய்வுத் தொகைக்குப் பயன்படுத்தப்பட்டு, அதிக மாதாந்திரத் தொகையைத் தரும்.","அந்த வட்டி, உங்கள் சாதாரணக் கணக்குச் சேமிப்பு ஈட்டியிருக்கக்கூடியது. சாதாரணக் கணக்கு ஆண்டுக்கு 2.5% தருகிறது."] },
+  a20:{ q:"குறைந்த வருமானமா? வேலை வருமான மானியத்தைப் (WIS) பெறுங்கள்",
+    sum:"வேலை வருமான மானியம் (Workfare Income Supplement) குறைந்த வருமானத் தொழிலாளர்களின் வருமானத்தையும் CPF சேமிப்பையும் உயர்த்துகிறது. நீங்கள் ஊழியர் என்றால், உங்கள் WIS-இல் 60% CPF-க்கும் 40% ரொக்கமாகவும் வழங்கப்படும்.",
+    pts:["2025 வேலை ஆண்டுக்கு ஆண்டுக்கான அதிகபட்சம்: 30–34 வயது SGD$2,450, 35–44 SGD$3,500, 45–59 SGD$4,200, 60 மற்றும் அதற்கு மேல் SGD$4,900.","நீங்கள் சுயதொழில் செய்பவர் என்றால், 10% ரொக்கமாகவும் 90% உங்கள் மெடிசேவ் கணக்கிற்கும் செல்லும்.","எவ்வளவு கிடைக்கலாம் என மதிப்பிட, CPF-இன் இணைய WIS கணிப்பானைப் பயன்படுத்துங்கள்."] }
+});
+
+function t(key, vars){
+  const lang = state.settings.lang;
+  let s = (UI[lang] && UI[lang][key]) || UI.en[key] || key;
+  if (vars) for (const v in vars) s = s.split("{" + v + "}").join(vars[v]);
+  return s;
+}
+function tx(it){
+  const o = (TX[state.settings.lang] || {})[it.id] || {};
+  return { q:o.q || it.q, sum:o.sum || it.sum, pts:o.pts || it.pts, login:it.login ? (o.login || it.login) : "" };
+}
+
+/* ---------- state & helpers ---------- */
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const REDUCED = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const state = { cat:"seniors", openId:null, speaking:false, speakingId:null,
+                settings:{ audio:false, speed:"normal", lang:"en", size:1, gender:"any", timing:"auto", wait:true } };
+const demos = {};   // per item demo state
+
+try {
+  const saved = JSON.parse(localStorage.getItem("cpfGuideSettings") || "null");
+  if (saved && typeof saved === "object") {
+    state.settings.audio = !!saved.audio;
+    state.settings.speed = saved.speed === "slow" ? "slow" : "normal";
+    if (LANGS[saved.lang]) state.settings.lang = saved.lang;
+    if ([1,2,3].includes(+saved.size)) state.settings.size = +saved.size;
+    if (["any","female","male"].includes(saved.gender)) state.settings.gender = saved.gender;
+    if (saved.timing === "auto" || [3,5,8,12].includes(+saved.timing)) state.settings.timing = saved.timing === "auto" ? "auto" : +saved.timing;
+    if (saved.wait === false) state.settings.wait = false;
+  }
+} catch (e) { /* storage not available: use defaults */ }
+function saveSettings(){ try { localStorage.setItem("cpfGuideSettings", JSON.stringify(state.settings)); } catch(e){} }
+
+const warned = new Set();
+function warnOnce(k, m){ if (warned.has(k)) return; warned.add(k); toast(m); }
+const hostOf = u => { try { return new URL(u).host.replace(/^www\./, ""); } catch (e) { return ""; } };
+function findItem(id){ for (const c of Object.keys(DATA)) { const it = DATA[c].items.find(i => i.id === id); if (it) return it; } return null; }
+
+let toastTimer;
+function toast(msg){ const t = $("#toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("on"), 3200); }
+
+/* ---------- speech ---------- */
+const TTS = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
+let voices = [];
+function loadVoices(){ if (TTS) voices = speechSynthesis.getVoices() || []; }
+if (TTS) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
+const FEMALE = /female|woman|samantha|karen|moira|tessa|veena|fiona|victoria|allison|\bava\b|susan|zira|hazel|heera|linda|catherine|serena|\bkate\b|emma|\bamy\b|joanna|salli|kimberly|\bivy\b|nicole|libby|sonia|natasha|xiaoxiao|xiaoyi|huihui|yaoyao|tingting|ting-ting|sinji|sin-ji|meijia|mei-jia|jenny|\baria\b|michelle|yasmin|amira|pallavi|neerja|swara|shruti|kalpana|lekha|laura|elsa|paulina/i;
+const MALE = /(^|[\s_(-])male|\bman\b|daniel|\balex\b|\bfred\b|david|\bmark\b|george|james|richard|\bguy\b|ryan|oliver|rishi|thomas|aaron|arthur|gordon|kangkang|yunxi|yunyang|yunjian|yunze|valluvar|osman|liam|ravi|prabhat|hemant|\bsean\b|jorge|jacques|diego/i;
+function genderOf(v){ if (FEMALE.test(v.name)) return "female"; if (MALE.test(v.name)) return "male"; return "unknown"; }
+function voiceCandidates(){
+  const L = LANGS[state.settings.lang], out = [];
+  const add = v => { if (v && !out.includes(v)) out.push(v); };
+  for (const l of L.speech) voices.filter(v => v.lang.replace("_","-").toLowerCase() === l.toLowerCase()).forEach(add);
+  voices.filter(v => v.lang.toLowerCase().startsWith(L.prefix)).forEach(add);
+  return out;
+}
+function pickVoice(){
+  const c = voiceCandidates(), g = state.settings.gender;
+  if (g === "any") return { voice:c[0] || null, pitch:1, approx:false };
+  const m = c.find(v => genderOf(v) === g);
+  if (m) return { voice:m, pitch:1, approx:false };
+  return { voice:c[0] || null, pitch:g === "female" ? 1.25 : 0.75, approx:true };
+}
+const rate = () => state.settings.speed === "slow" ? 0.65 : 1;
+let spkToken = 0;
+function setSpeaking(on, id){ state.speaking = on; state.speakingId = on ? (id || null) : null; refreshSpeakUI(); }
+function stopSpeech(){ spkToken++; if (TTS) speechSynthesis.cancel(); setSpeaking(false); }
+function speak(text, opts = {}){
+  if (!TTS) { toast(t("noTts")); return; }
+  stopSpeech();
+  const token = ++spkToken;
+  const chunks = (text.match(/[^.!?]+[.!?]*\s*/g) || [text]).map(s => s.trim()).filter(Boolean);
+  let i = 0;
+  setSpeaking(true, opts.id);
+  if (voices.length) {
+    const pv0 = pickVoice();
+    if (state.settings.lang !== "en" && !pv0.voice) warnOnce("nv" + state.settings.lang, t("noVoice", { lang: LANGS[state.settings.lang].name }));
+    else if (pv0.approx) warnOnce("ng" + state.settings.lang + state.settings.gender, t("noGender", { g:t(state.settings.gender === "female" ? "voiceFemale" : "voiceMale").toLowerCase() }));
+  }
+  const next = () => {
+    if (token !== spkToken) return;
+    if (i >= chunks.length) { setSpeaking(false); if (opts.onend) opts.onend(); return; }
+    const u = new SpeechSynthesisUtterance(chunks[i++]);
+    const pv = pickVoice(), v = pv.voice;
+    if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = LANGS[state.settings.lang].speech[0]; }
+    u.pitch = pv.pitch;
+    u.rate = rate();
+    u.onend = next;
+    u.onerror = () => { if (token === spkToken) next(); };
+    speechSynthesis.speak(u);
+  };
+  next();
+}
+function refreshSpeakUI(){
+  $("#pill").classList.toggle("on", state.speaking);
+  $$(".listen").forEach(b => {
+    const on = state.speaking && state.speakingId === b.dataset.id;
+    b.textContent = on ? t("stopRead") : t("listen");
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+  });
+}
+function applyAudioSetting(){
+  document.body.classList.toggle("audio-on", state.settings.audio);
+  $("#audioSwitch").setAttribute("aria-checked", state.settings.audio ? "true" : "false");
+  $("#spNormal").setAttribute("aria-pressed", state.settings.speed === "normal");
+  $("#spSlow").setAttribute("aria-pressed", state.settings.speed === "slow");
+}
+
+/* ---------- rendering ---------- */
+function render(){
+  const cat = DATA[state.cat];
+  document.body.dataset.cat = state.cat;
+  $$(".tab").forEach(t => t.setAttribute("aria-selected", t.dataset.cat === state.cat));
+  $("#intro").innerHTML = t(state.cat === "seniors" ? "introSeniors" : "introAdults");
+  $("#list").innerHTML = cat.items.map((it, n) => itemHTML(it, n)).join("");
+  cat.items.forEach(it => { if (demos[it.id] && demos[it.id].shown) { $(`[data-demo="${it.id}"]`).classList.add("show"); renderDemo(it.id, false); } });
+  refreshSpeakUI();
+}
+
+function itemHTML(it, n){
+  const open = state.openId === it.id;
+  const d = demos[it.id] || (demos[it.id] = { kw:0, step:0, playing:false, shown:false });
+  const X = tx(it);
+  return `
+  <article class="item ${open ? "open" : ""}" data-id="${it.id}">
+    <h3 style="margin:0;font-size:inherit">
+      <button class="qbtn" data-act="toggle" aria-expanded="${open}" aria-controls="b-${it.id}">
+        <span class="num" aria-hidden="true">${n+1}</span>
+        <span class="qtext">${esc(X.q)}</span>
+        <span class="chev" aria-hidden="true">▾</span>
+      </button>
+    </h3>
+    <div class="body" id="b-${it.id}">
+      <div class="prov"><span class="pdot" aria-hidden="true"></span><strong>${esc(it.prov || t("providerName"))}</strong><span class="pdom">${esc(hostOf(it.url))}</span></div>
+      <div class="label">${esc(it.site ? t("kwLabelOther") : t("kwLabel"))}</div>
+      <div class="kws" lang="en">
+        ${it.kw.map((k, i) => `<button class="kw" data-act="kw" data-i="${i}" aria-pressed="${d.kw === i}">${esc(k)}</button>`).join("")}
+      </div>
+
+      <div class="answer">
+        <p>${esc(X.sum)}</p>
+        <ul>${X.pts.map(p => `<li>${esc(p)}</li>`).join("")}</ul>
+      </div>
+      ${X.login ? `<div class="badge"><strong>${esc(t("singpass"))}</strong> ${esc(X.login)}</div>` : ""}
+
+      <div class="actions">
+        <a class="btn primary" href="${esc(it.url)}" target="_blank" rel="noopener noreferrer">${esc(it.site ? t("openOther", { site:it.site }) : t("open"))}</a>
+        <button class="btn listen" data-act="listen" data-id="${it.id}" aria-pressed="false">${esc(t("listen"))}</button>
+        <button class="btn" data-act="demo" aria-expanded="${!!d.shown}">${esc(t("demoBtn"))}</button>
+      </div>
+      <p class="src">${esc(t("source"))} <a href="${esc(it.url)}" target="_blank" rel="noopener noreferrer">${esc(it.url)}</a></p>
+      ${it.links && it.links.length ? `<p class="src">${esc(t("more"))} ${it.links.map(l => `<a href="${esc(l.u)}" target="_blank" rel="noopener noreferrer">${esc(l.t)}</a>`).join(" &nbsp;|&nbsp; ")}</p>` : ""}
+
+      <div class="demo" data-demo="${it.id}">
+        <div class="frame">
+          <div class="urlbar"><span aria-hidden="true">🔒</span><span class="urlpill"></span></div>
+          <div class="screen"></div>
+          <div class="caption" aria-live="polite"></div>
+          <div class="dctrl">
+            <button class="btn" data-act="prev">${esc(t("back"))}</button>
+            <button class="btn primary" data-act="play">${esc(t("play"))}</button>
+            <button class="btn" data-act="next">${esc(t("next"))}</button>
+          </div>
+        </div>
+        <p class="dnote">${esc(t("note"))}</p>
+      </div>
+    </div>
+  </article>`;
+}
+
+/* ---------- demo ---------- */
+function getSteps(it, kw){
+  const site = it.site || "cpf.gov.sg";
+  const sc = (k, v) => t(k, v).split("cpf.gov.sg").join(site);
+  const s = [
+    { cap:sc("c1"), view:"url" },
+    { cap:t("c2"), view:"home", act:"actSearch" },
+    { cap:t("c3", { kw }), view:"type" },
+    { cap:t("c4", { title:it.title }), view:"results", act:"actResult" },
+    { cap:sc("c5"), view:"page" }
+  ];
+  if (it.login) s.push({ cap:t("c6"), view:"login", act:"actLogin" });
+  return s;
+}
+function stageHTML(view, it, kw){
+  const head = `<div class="site-head"><span>${esc(it.site ? t("siteHeadOther", { site:it.site }) : t("siteHead"))}</span><span aria-hidden="true">🔍</span></div>`;
+  const sk = `<div class="sk" style="width:92%"></div><div class="sk" style="width:70%"></div><div class="sk" style="width:82%"></div>`;
+  switch (view) {
+    case "url":     return `<p class="hint">${t("hintUrl")}</p>`;
+    case "home":    return head + `<button type="button" class="sbox hl" data-act="stageAct"><span class="ph">Search</span></button>` + sk;
+    case "type":    return head + `<div class="sbox hl"><span class="typed"></span><span class="caret"></span></div>` + sk;
+    case "results": return head + `<div class="sbox"><span>${esc(kw)}</span></div>
+                      <div class="result"><div class="sk" style="width:72%"></div><div class="sk" style="width:55%"></div></div>
+                      <button type="button" class="result target" lang="en" data-act="stageAct"><strong>${esc(it.title)}</strong><span class="sk" style="width:78%"></span><span class="tap" aria-hidden="true">👆</span></button>
+                      <div class="result"><div class="sk" style="width:62%"></div><div class="sk" style="width:84%"></div></div>`;
+    case "page":    return head + `<h4 class="pg-title" lang="en">${esc(it.title)}</h4><span class="found">${esc(t("found"))}</span>` + sk;
+    case "login":   return head + `<h4 class="pg-title" lang="en">${esc(it.title)}</h4><button type="button" class="fakebtn" data-act="stageAct">${esc(t("loginBtn"))}</button>` + sk;
+  }
+  return "";
+}
+function typeInto(el, text, d, ms){
+  clearInterval(d.tt);
+  if (!el) return;
+  if (REDUCED) { el.textContent = text; return; }
+  el.textContent = ""; let i = 0;
+  d.tt = setInterval(() => { i++; el.textContent = text.slice(0, i); if (i >= text.length) clearInterval(d.tt); }, ms || 70);
+}
+
+/* timing: how long each demo screen stays up */
+function isAction(s){ return !!(s.act && state.settings.wait); }
+function readMs(text){
+  const slow = state.settings.speed === "slow", lang = state.settings.lang;
+  let sec;
+  if (lang === "zh") sec = (text.match(/[\u4e00-\u9fff]/g) || []).length / (slow ? 3 : 5);
+  else {
+    const words = text.trim().split(/\s+/).length;
+    const wpm = lang === "ta" ? (slow ? 80 : 140) : (slow ? 100 : 180);
+    sec = words / wpm * 60;
+  }
+  return Math.min(25, Math.max(3.5, sec + 1.5)) * 1000;
+}
+function stepDelay(s, kw){
+  const tm = state.settings.timing;
+  if (tm !== "auto") return tm * 1000;
+  const base = state.settings.speed === "slow" ? 140 : 70;
+  const typing = s.view === "type" ? kw.length * base + 1200 : 0;
+  return Math.max(readMs(s.cap), typing);
+}
+function typeMs(s, kw, text){
+  const base = state.settings.speed === "slow" ? 140 : 70;
+  return Math.max(25, Math.min(base, stepDelay(s, kw) * 0.5 / Math.max(1, text.length)));
+}
+function stepText(s, n, total){ return t("stepOf", { n, total }) + s.cap; }
+
+function renderDemo(id, speakIt){
+  const it = findItem(id), d = demos[id], root = $(`[data-demo="${id}"]`);
+  if (!it || !root) return;
+  const kw = it.kw[d.kw];
+  const steps = getSteps(it, kw);
+  d.step = Math.max(0, Math.min(d.step, steps.length - 1));
+  const s = steps[d.step], act = isAction(s);
+  $(".screen", root).innerHTML = stageHTML(s.view, it, kw);
+  const cap = $(".caption", root);
+  cap.textContent = stepText(s, d.step + 1, steps.length) + (act ? "\n" + t(s.act) : "");
+  cap.classList.toggle("wait", !!d.waiting);
+  const pill = $(".urlpill", root);
+  if (s.view === "url") typeInto(pill, it.site || "cpf.gov.sg", d, typeMs(s, kw, it.site || "cpf.gov.sg"));
+  else { clearInterval(d.tt); pill.textContent = (s.view === "page" || s.view === "login") ? it.url.replace(/^https?:\/\//, "") : "www." + (it.site || "cpf.gov.sg"); }
+  if (s.view === "type") typeInto($(".typed", root), kw, d, typeMs(s, kw, kw));
+  $('[data-act="prev"]', root).disabled = d.step === 0;
+  $('[data-act="next"]', root).disabled = d.step === steps.length - 1;
+  $('[data-act="play"]', root).textContent = d.playing ? t("pause") : (d.step === steps.length - 1 ? t("replay") : t("play"));
+  $('[data-act="prev"]', root).textContent = t("back");
+  $('[data-act="next"]', root).textContent = t("next");
+  if (speakIt && state.settings.audio) speak(stepText(s, d.step + 1, steps.length) + (act ? " " + t(s.act) : ""), { id });
+}
+function stopDemo(id){
+  const d = demos[id]; if (!d) return;
+  d.playing = false; d.waiting = false; d.gen = (d.gen || 0) + 1;
+  clearTimeout(d.timer); clearInterval(d.tt);
+  const c = $(`[data-demo="${id}"] .caption`); if (c) c.classList.remove("wait");
+}
+function stopAllDemos(){ Object.keys(demos).forEach(stopDemo); }
+function playLoop(id){
+  const it = findItem(id), d = demos[id]; if (!d.playing) return;
+  const kw = it.kw[d.kw], steps = getSteps(it, kw), s = steps[d.step], last = d.step >= steps.length - 1;
+  const gen = d.gen = (d.gen || 0) + 1;
+  d.waiting = false; renderDemo(id, false);
+  const act = isAction(s);
+  let timerDone = act, speechDone = !state.settings.audio;
+  const go = () => {
+    if (!d.playing || d.gen !== gen) return;
+    if (act) {                       // wait for the person to tap; no timer
+      if (!speechDone) return;
+      d.waiting = true;
+      const c = $(`[data-demo="${id}"] .caption`); if (c) c.classList.add("wait");
+      return;
+    }
+    if (!(timerDone && speechDone)) return;
+    if (last) { d.playing = false; renderDemo(id, false); return; }
+    d.step++; playLoop(id);
+  };
+  if (!act) d.timer = setTimeout(() => { timerDone = true; go(); }, stepDelay(s, kw));
+  if (state.settings.audio) speak(stepText(s, d.step + 1, steps.length) + (act ? " " + t(s.act) : ""), { id, onend: () => { speechDone = true; go(); } });
+  else go();
+}
+
+/* ---------- events ---------- */
+$("#list").addEventListener("click", e => {
+  const btn = e.target.closest("[data-act]"); if (!btn) return;
+  const art = btn.closest(".item"); const id = art.dataset.id; const it = findItem(id); const d = demos[id];
+  switch (btn.dataset.act) {
+    case "toggle": {
+      stopSpeech(); stopAllDemos();
+      state.openId = state.openId === id ? null : id;
+      $$(".item").forEach(a => {
+        const o = a.dataset.id === state.openId;
+        a.classList.toggle("open", o);
+        $('[data-act="toggle"]', a).setAttribute("aria-expanded", o);
+      });
+      Object.keys(demos).forEach(k => { if (k !== state.openId) { demos[k].shown = false; const dm = $(`[data-demo="${k}"]`); if (dm) dm.classList.remove("show"); const db = $('[data-act="demo"]', dm ? dm.closest(".item") : document); if (db) db.setAttribute("aria-expanded", "false"); } });
+      if (state.openId) setTimeout(() => art.scrollIntoView({ block: "start", behavior: REDUCED ? "auto" : "smooth" }), 50);
+      break;
+    }
+    case "kw": {
+      stopDemo(id); stopSpeech();
+      d.kw = +btn.dataset.i; d.step = Math.max(d.step, 2);
+      $$('[data-act="kw"]', art).forEach((b, i) => b.setAttribute("aria-pressed", i === d.kw));
+      d.shown = true; $(`[data-demo="${id}"]`).classList.add("show");
+      $('[data-act="demo"]', art).setAttribute("aria-expanded", "true");
+      d.step = 2; renderDemo(id, false);
+      break;
+    }
+    case "listen": {
+      if (state.speaking && state.speakingId === id) { stopSpeech(); break; }
+      stopAllDemos();
+      const X = tx(it);
+      speak(`${X.q}. ${X.sum} ${X.pts.join(" ")}`, { id });
+      break;
+    }
+    case "demo": {
+      d.shown = !d.shown; stopDemo(id); stopSpeech();
+      $(`[data-demo="${id}"]`).classList.toggle("show", d.shown);
+      btn.setAttribute("aria-expanded", d.shown);
+      if (d.shown) { d.step = 0; renderDemo(id, true); }
+      break;
+    }
+    case "stageAct": {
+      const steps = getSteps(it, it.kw[d.kw]), last = d.step >= steps.length - 1;
+      if (d.playing) {
+        if (!isAction(steps[d.step])) break;
+        d.waiting = false; d.gen = (d.gen || 0) + 1; clearTimeout(d.timer); stopSpeech();
+        if (last) { d.playing = false; renderDemo(id, false); }
+        else { d.step++; d.timer = setTimeout(() => playLoop(id), 350); }
+      } else if (!last) {
+        stopSpeech(); d.step++; renderDemo(id, true);
+      }
+      break;
+    }
+    case "prev": stopDemo(id); stopSpeech(); d.step--; renderDemo(id, true); break;
+    case "next": stopDemo(id); stopSpeech(); d.step++; renderDemo(id, true); break;
+    case "play": {
+      if (d.playing) { stopDemo(id); stopSpeech(); renderDemo(id, false); break; }
+      const last = getSteps(it, it.kw[d.kw]).length - 1;
+      if (d.step >= last) d.step = 0;
+      d.playing = true; playLoop(id);
+      break;
+    }
+  }
+});
+
+$$(".tab").forEach(t => t.addEventListener("click", () => {
+  if (state.cat === t.dataset.cat) return;
+  stopSpeech(); stopAllDemos();
+  Object.values(demos).forEach(d => { d.shown = false; d.step = 0; });
+  state.cat = t.dataset.cat; state.openId = null;
+  render(); window.scrollTo({ top: 0, behavior: REDUCED ? "auto" : "smooth" });
+}));
+
+/* settings */
+const sheet = $("#sheet");
+function openSheet(){ sheet.classList.add("open"); $("#audioSwitch").focus(); }
+function closeSheet(){ sheet.classList.remove("open"); $("#openSettings").focus(); }
+$("#openSettings").addEventListener("click", openSheet);
+$("#closeSettings").addEventListener("click", closeSheet);
+sheet.addEventListener("click", e => { if (e.target === sheet) closeSheet(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && sheet.classList.contains("open")) closeSheet(); });
+$("#audioSwitch").addEventListener("click", () => {
+  state.settings.audio = !state.settings.audio;
+  if (!state.settings.audio) stopSpeech();
+  else if (!TTS) toast(t("noTts"));
+  applyAudioSetting(); saveSettings();
+});
+function setSpeed(v){ state.settings.speed = v; applyAudioSetting(); saveSettings(); }
+$("#spNormal").addEventListener("click", () => setSpeed("normal"));
+$("#spSlow").addEventListener("click", () => setSpeed("slow"));
+$("#testVoice").addEventListener("click", () => {
+  if (!state.settings.audio) { toast(t("audioFirst")); return; }
+  speak(t("testSpeech"));
+});
+$("#stopBtn").addEventListener("click", () => { stopAllDemos(); stopSpeech(); $$('[data-demo]').forEach(r => renderDemo(r.dataset.demo, false)); });
+window.addEventListener("pagehide", stopSpeech);
+
+/* language + text size */
+function applyLang(){
+  const lang = state.settings.lang;
+  document.documentElement.lang = LANGS[lang].html;
+  document.documentElement.dataset.size = String(state.settings.size);
+  document.title = t("title");
+  $$("[data-i18n]").forEach(e => { e.textContent = t(e.dataset.i18n); });
+  $("#openSettings").setAttribute("aria-label", t("settingsBtn"));
+  $$("#langSeg button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+  const sizeNames = { "1":t("sizeNormal"), "2":t("sizeLarge"), "3":t("sizeXL") };
+  $$("#sizeSeg button").forEach(b => {
+    b.setAttribute("aria-pressed", +b.dataset.size === state.settings.size);
+    b.setAttribute("aria-label", sizeNames[b.dataset.size]);
+    b.title = sizeNames[b.dataset.size];
+  });
+  applyMore();
+}
+function applyMore(){
+  $$("#voiceSeg button").forEach(b => b.setAttribute("aria-pressed", b.dataset.gender === state.settings.gender));
+  $$("#timeSeg button").forEach(b => {
+    const v = b.dataset.time;
+    b.textContent = v === "auto" ? t("timeAuto") : t("sec", { n:v });
+    b.setAttribute("aria-pressed", String(state.settings.timing) === v);
+  });
+  $("#waitSwitch").setAttribute("aria-checked", String(state.settings.wait));
+}
+$("#voiceSeg").addEventListener("click", e => {
+  const b = e.target.closest("[data-gender]"); if (!b) return;
+  state.settings.gender = b.dataset.gender; saveSettings(); applyMore();
+});
+$("#timeSeg").addEventListener("click", e => {
+  const b = e.target.closest("[data-time]"); if (!b) return;
+  state.settings.timing = b.dataset.time === "auto" ? "auto" : +b.dataset.time; saveSettings(); applyMore();
+  Object.keys(demos).forEach(k => { if (demos[k].playing) { stopDemo(k); stopSpeech(); renderDemo(k, false); } });
+});
+$("#waitSwitch").addEventListener("click", () => {
+  state.settings.wait = !state.settings.wait; saveSettings(); applyMore();
+  Object.keys(demos).forEach(k => { if (demos[k].shown) { stopDemo(k); stopSpeech(); renderDemo(k, false); } });
+});
+$("#langSeg").addEventListener("click", e => {
+  const b = e.target.closest("[data-lang]"); if (!b || b.dataset.lang === state.settings.lang) return;
+  stopSpeech(); stopAllDemos();
+  state.settings.lang = b.dataset.lang; saveSettings();
+  applyLang(); render();
+});
+$("#sizeSeg").addEventListener("click", e => {
+  const b = e.target.closest("[data-size]"); if (!b) return;
+  state.settings.size = +b.dataset.size; saveSettings(); applyLang();
+});
+
+/* start */
+applyAudioSetting();
+applyLang();
+render();
+</script>
+<script>
+(function(){
+  function preserveCpfLanguage(a){
+    if(!a.href || !/story[12]\.html/i.test(a.href)) return;
+    a.addEventListener('click',function(e){
+      if(typeof state==='undefined' || !state.settings || state.settings.lang!=='zh') return;
+      e.preventDefault();
+      const target=new URL(a.href,location.href).href;
+      const url='https://translate.google.com/translate?sl=en&tl=zh-CN&u='+encodeURIComponent(target);
+      window.open(url,'_blank','noopener,noreferrer');
+    });
+  }
+  document.querySelectorAll('a[href]').forEach(preserveCpfLanguage);
+})();
+</script>
+</body>
+</html>
+

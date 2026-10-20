@@ -1,0 +1,80 @@
+name: Daily News Update and Deploy
+run-name: ${{ inputs.recoveryWindow && format('News recovery {0}', inputs.recoveryWindow) || 'Daily News refresh' }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      recoveryWindow:
+        description: Optional edition window requested by the wake-up job
+        required: false
+        default: ''
+        type: string
+  schedule:
+    # UTC: Singapore is UTC+8. GitHub scheduled starts can be delayed.
+    - cron: '45 22 * * *'
+    - cron: '45 4 * * *'
+    - cron: '45 10 * * *'
+    # Backup 1 checks 2 hours later; Backup 2 checks 3 hours later.
+    # Both skip if that refresh window already completed.
+    - cron: '45 0 * * *'
+    - cron: '45 6 * * *'
+    - cron: '45 12 * * *'
+    - cron: '45 1 * * *'
+    - cron: '45 7 * * *'
+    - cron: '45 13 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: everyday-compass-pages
+  cancel-in-progress: false
+
+jobs:
+  update-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check whether this news edition is needed
+        id: refresh_check
+        env:
+          RECOVERY_WINDOW: ${{ inputs.recoveryWindow }}
+        shell: python
+        run: |
+          import json, os, sys
+          sys.path.insert(0, os.environ.get('GITHUB_WORKSPACE', os.getcwd()))
+          from datetime import datetime, timezone
+          from scripts.news_wakeup import latest_window, edition_fresh
+
+          needed = True
+          now = datetime.now(timezone.utc)
+          if os.environ.get('GITHUB_EVENT_NAME') == 'schedule' or os.environ.get('RECOVERY_WINDOW'):
+              try:
+                  with open('data/daily-news.json', encoding='utf-8') as fh:
+                      edition = json.load(fh)
+              except (OSError, ValueError):
+                  edition = {}
+              needed = not edition_fresh(edition, latest_window(now), now)
+          print('Refresh needed:', needed, '; latest window:', latest_window(now).isoformat())
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as fh:
+              fh.write(f"needed={'true' if needed else 'false'}\n")
+
+      - name: Generate latest Daily News
+        if: steps.refresh_check.outputs.needed == 'true'
+        run: python scripts/update_news.py
+      - name: Save generated news
+        if: steps.refresh_check.outputs.needed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/daily-news.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update Daily News"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
