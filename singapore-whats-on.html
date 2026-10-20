@@ -74,7 +74,6 @@ td{font-size:.9rem}
 .src-details li{margin:3px 0}
 .src-ok{color:#08706c;font-weight:800}.src-warn{color:#9b5600;font-weight:800}
 .warnbox{background:#fff0e2;border:1px solid #f0c9a0;color:#7a4300;border-radius:12px;padding:9px 12px;margin:8px 0;font-size:.9rem}
-.settings-link{display:block;text-align:center;margin:18px auto 40px;font-size:.8rem;color:var(--muted);background:none;border:0;cursor:pointer;text-decoration:underline}
 .hidden{display:none!important}
 .refreshbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
 .refresh-info{flex:1;min-width:220px;color:var(--muted);font-size:.9rem}
@@ -181,7 +180,8 @@ To request for What’s On adhoc request, click <a class="btn primary" href="htt
 <div id="emptyState" class="empty hidden">No current events to show right now. Please check back after the next weekly refresh.</div>
 
 <p class="footer-note"><b>Information checked 23 Sep 2026.</b> Always use the “Official Information” button before travelling because organisers may change timings, prices or programmes.<br>Everyday Compass · Simple, useful information for everyday life in Singapore</p>
-<button class="settings-link" onclick="openSettings()">⚙ Source settings</button>
+<!-- Owner request 2026-10-21: no public settings link or dot.
+Settings are opened from digital-tools/myweb/kwc.html via #admin-whats-on. -->
 </main>
 
 <!-- SETTINGS PANEL -->
@@ -710,7 +710,12 @@ async function reloadEventsNow(){renderSourceStatus(null); await loadScheduledFe
 document.addEventListener("keydown",e=>{if(e.key==="Escape") closeSettings()});
 render();
 renderSourceStatus(null);
-loadSources();
+// Open admin settings only when explicitly requested by the KWC admin hyperlink.
+function openAdminSettingsFromLink(){
+ if(location.hash === "#admin-whats-on") openSettings();
+}
+window.addEventListener("hashchange",openAdminSettingsFromLink);
+loadSources().then(openAdminSettingsFromLink);
 loadScheduledFeed();
 </script>
 </body>
