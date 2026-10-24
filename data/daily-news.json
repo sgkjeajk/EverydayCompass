@@ -1,6 +1,20 @@
 {
   "singapore": [
     {
+      "title": "65 harmful apps, 24 wrongly age-rated found in Singapore review of over 7,000 apps",
+      "url": "https://www.channelnewsasia.com/singapore/imda-review-app-store-harmful-wrong-age-rated-6485906",
+      "summary": "Sexual content, violent content and content facilitating vice and organised crime were the most prevalent types of harmful and inappropriate content found.",
+      "source": "CNA",
+      "published": "Sat, 24 Oct 2026 12:40:30 +0800"
+    },
+    {
+      "title": "Majority of parents and youths prefer tiered access to social media over outright ban: MDDI",
+      "url": "https://www.channelnewsasia.com/singapore/social-media-ban-teens-parents-access-6486036",
+      "summary": "Excessive use of social media ranked among the top concerns raised by more than 2,000 parents and youths in an engagement by the Ministry of Digital Development and Information.",
+      "source": "CNA",
+      "published": "Sat, 24 Oct 2026 12:40:25 +0800"
+    },
+    {
       "title": "Michelin-starred Nae:um's team opens Italian restaurant Osteria Da Su, with pastas from S$22",
       "url": "https://www.channelnewsasia.com/dining/osteria-da-su-naeum-italian-food-korean-chef-6485231",
       "summary": "Korean chef Park Su-ji, who lived and worked in Italy for a decade, makes Italian classics feel new again, from cacio e pepe with sesame seeds to handmade tortelli filled with galbi jjim.",
@@ -90,23 +104,16 @@
       "summary": "The inaugural fair runs from Nov 2 to 8 at VivoCity, with books in English, Malay, Chinese and Tamil, alongside poetry performances, storytelling sessions, author appearances and other literary activities.",
       "source": "CNA",
       "published": "Fri, 23 Oct 2026 16:03:09 +0800"
-    },
-    {
-      "title": "OCBC internet and mobile banking services restored after four-hour disruption",
-      "url": "https://www.channelnewsasia.com/singapore/ocbc-down-internet-mobile-banking-app-outage-downdetector-6485511",
-      "summary": "The bank also assured customers that their money is safe and that no customer data is compromised.",
-      "source": "CNA",
-      "published": "Fri, 23 Oct 2026 14:55:00 +0800"
-    },
-    {
-      "title": "Next phase of marriage and parenthood recommendations to cover work-life balance, education stress: Indranee",
-      "url": "https://www.channelnewsasia.com/singapore/marriage-parenthood-fertility-maternal-stress-indranee-6485331",
-      "summary": "Families need supportive environments, and government, employers, businesses and community organisations all have a part to play, says Minister in the Prime Minister’s Office Indranee Rajah.",
-      "source": "CNA",
-      "published": "Fri, 23 Oct 2026 14:23:00 +0800"
     }
   ],
   "world": [
+    {
+      "title": "Pentagon designates China-funded Confucius Institutes as US national security threat",
+      "url": "https://www.channelnewsasia.com/east-asia/pentagon-designates-china-funded-confucius-institutes-us-national-security-threat-6488301",
+      "summary": "US Defense Secretary Pete Hegseth accused China-funded Confucius Institutes of stealing intellectual property and spreading propaganda on American university campuses.",
+      "source": "CNA",
+      "published": "Sat, 24 Oct 2026 09:27:00 +0800"
+    },
     {
       "title": "Iran has detailed plans to hit Gulf undersea cables if war resumes, officials say",
       "url": "https://www.channelnewsasia.com/world/iran-war-gulf-undersea-cables-6487421",
@@ -204,15 +211,8 @@
       "summary": "",
       "source": "CNA",
       "published": "Fri, 23 Oct 2026 16:49:31 +0800"
-    },
-    {
-      "title": "China says US should stop discriminatory measures against Chinese research institutions",
-      "url": "https://www.channelnewsasia.com/east-asia/china-united-states-stop-discriminatory-measures-research-institutions-6485691",
-      "summary": "The comments were made in relation to the US Department of Defense putting US research funding restrictions on dozens of Chinese universities.",
-      "source": "CNA",
-      "published": "Fri, 23 Oct 2026 16:27:36 +0800"
     }
   ],
-  "generated_at": "2026-10-24T09:00:19+08:00",
+  "generated_at": "2026-10-24T13:04:41+08:00",
   "test_mode": false
 }
