@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-26T08:46:47+08:00",
+  "updated_at": "2026-10-26T13:19:12+08:00",
   "events": [
     {
       "title": "70 Years of RSP: Where Design Meets Humanity",
@@ -452,8 +452,8 @@
     {
       "title": "Heroic Moves: Chinese Martial…",
       "category": "Event / Exhibition",
-      "overview": "Apr 29, 2026 - Oct 30, 2026 Various locations Heroic Moves: Chinese Martial… Do you fantasise about using acupuncture point strikes to immobilise an annoying relative? Dream of… Exhibition Free",
-      "period": "Apr 29, 2026 - Oct 30, 2026",
+      "overview": "Apr 29, 2026 - Jan 17, 2027 Various locations Heroic Moves: Chinese Martial… Do you fantasise about using acupuncture point strikes to immobilise an annoying relative? Dream of… Exhibition Free",
+      "period": "Apr 29, 2026 - Jan 17, 2027",
       "time": "Check official information",
       "venue": "Singapore Chinese Cultural Centre",
       "link": "https://singaporeccc.org.sg/events/heroic-moves-chinese-martial-arts-in-singapore-popular-culture-travelling-exhibition/",
@@ -465,10 +465,9 @@
       "adult": "Check official information",
       "senior": "Check official information",
       "child": "Check official information",
-      "status": "Ending Soon",
-      "statusClass": "ending",
+      "status": "Ongoing",
+      "statusClass": "",
       "tags": [
-        "ending",
         "ongoing"
       ]
     },
@@ -2172,7 +2171,7 @@
       "url": "https://singaporeccc.org.sg/events/",
       "status": "ok",
       "count": 26,
-      "last_success": "2026-10-26T08:44:28+08:00",
+      "last_success": "2026-10-26T13:16:51+08:00",
       "error": "",
       "needs_reader_review": false
     },
@@ -2182,7 +2181,7 @@
       "url": "https://www.gardensbythebay.com.sg/en/things-to-do/calendar-of-events.html",
       "status": "ok",
       "count": 9,
-      "last_success": "2026-10-26T08:44:28+08:00",
+      "last_success": "2026-10-26T13:16:51+08:00",
       "error": "",
       "needs_reader_review": false
     },
@@ -2192,7 +2191,7 @@
       "url": "https://www.esplanade.com/whats-on",
       "status": "ok",
       "count": 28,
-      "last_success": "2026-10-26T08:44:28+08:00",
+      "last_success": "2026-10-26T13:16:51+08:00",
       "error": "",
       "needs_reader_review": false
     },
@@ -2212,7 +2211,7 @@
       "url": "https://www.nationalgallery.sg/sg/en/whats-on.html",
       "status": "ok",
       "count": 2,
-      "last_success": "2026-10-26T08:44:28+08:00",
+      "last_success": "2026-10-26T13:16:51+08:00",
       "error": "",
       "needs_reader_review": false
     },
@@ -2232,7 +2231,7 @@
       "url": "https://www.ura.gov.sg/get-involved/events-and-exhibitions/",
       "status": "ok",
       "count": 1,
-      "last_success": "2026-10-26T08:44:28+08:00",
+      "last_success": "2026-10-26T13:16:51+08:00",
       "error": "",
       "needs_reader_review": false
     },
@@ -2242,7 +2241,7 @@
       "url": "https://exhibitions.nlb.gov.sg/current-exhibitions/",
       "status": "ok",
       "count": 5,
-      "last_success": "2026-10-26T08:44:28+08:00",
+      "last_success": "2026-10-26T13:16:51+08:00",
       "error": "",
       "needs_reader_review": false
     },
@@ -2252,7 +2251,7 @@
       "url": "https://www.visitsingapore.com/things-to-do/top-things-to-do/",
       "status": "ok",
       "count": 12,
-      "last_success": "2026-10-26T08:44:28+08:00",
+      "last_success": "2026-10-26T13:16:51+08:00",
       "error": "",
       "needs_reader_review": false
     },
@@ -2262,7 +2261,7 @@
       "url": "https://www.catch.sg/Event?EventCategory=Free%20Events",
       "status": "ok",
       "count": 2,
-      "last_success": "2026-10-26T08:44:28+08:00",
+      "last_success": "2026-10-26T13:16:51+08:00",
       "error": "",
       "needs_reader_review": false
     }
