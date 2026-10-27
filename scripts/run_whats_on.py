@@ -29,6 +29,7 @@ from urllib.parse import urljoin, urlparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import update_events as ue  # noqa: E402
+import additional_sources as additional
 
 ROOT = ue.ROOT
 SOURCES_FILE = ROOT / "sources.json"
@@ -218,6 +219,8 @@ def generic_parse(html, key, today):
 
 
 def parse_source_html_v2(html, key, today):
+    if key in additional.KEYS:
+        return ue.dedupe(additional.parse(html, key, today, ue.SOURCES[key], ue.clean_event))
     structured = generic_parse(html, key, today)
     if key == "catch_sg":
         return [e for e in structured if e.get("adult") == "Free"]
@@ -262,6 +265,28 @@ def run(previous, sources, today=None, now=None, fetcher=None):
         payload = ue.update(prev, **kwargs)
         # Safety net: finished events never stay, even when every source failed.
         payload["events"] = [e for e in payload["events"] if not ue.is_expired(e, today)]
+
+    # Track each event's first date in the feed. Older events without history stay unknown.
+    def title_key(event):
+        return re.sub(r"[\W_]+", " ", ue.norm(event.get("title")).casefold()).strip()
+
+    previous_titles = {}
+    for old_event in previous.get("events", []):
+        if not isinstance(old_event, dict):
+            continue
+        key = title_key(old_event)
+        if key and (key not in previous_titles or not previous_titles[key]):
+            previous_titles[key] = old_event.get("date_added")
+    for event in payload["events"]:
+        if not isinstance(event, dict):
+            continue
+        key = title_key(event)
+        if event.get("date_added"):
+            continue
+        if key in previous_titles:
+            event["date_added"] = previous_titles[key]
+        else:
+            event["date_added"] = now.date().isoformat()
 
     old = {}
     for s in previous.get("sources", []) or []:

@@ -107,6 +107,8 @@ def extract_period(text):
 def official_link(url, key):
     parsed = urlparse(url)
     host = (parsed.hostname or "").lower()
+    if key == "eventbrite":
+        return parsed.scheme == "https" and any(host == h or host.endswith("." + h) for h in ("eventbrite.sg", "eventbrite.com"))
     allowed = SOURCES[key]["host"]
     return parsed.scheme == "https" and (host == allowed or host.endswith("." + allowed))
 
@@ -176,7 +178,7 @@ def status_for(period, today):
     if end and end < today:
         return "Expired", ""
     # Parse start where possible
-    m = MONTH_FIRST_RANGE.search(norm(period)) or DATE_RANGE.search(norm(period))
+    m = MONTH_FIRST_RANGE.search(norm(period)) or DATE_RANGE.search(norm(period)) or ISO_RANGE.search(norm(period))
     if m:
         end_d = parse_date(m.group("end"))
         start_d = parse_date(m.group("start"), end_d.year if end_d else today.year)
@@ -196,8 +198,8 @@ def richness(e):
     return sum(bool(norm(str(e.get(k,"")))) for k in fields) + len(e.get("tags", []))/10
 
 def event_identity(e):
-    title = re.sub(r"[^a-z0-9]+", " ", norm(e.get("title","")).lower()).strip()
-    venue = re.sub(r"[^a-z0-9]+", " ", norm(e.get("venue","")).lower()).strip()
+    title = re.sub(r"[\W_]+", " ", norm(e.get("title","")).casefold()).strip()
+    venue = re.sub(r"[\W_]+", " ", norm(e.get("venue","")).casefold()).strip()
     return (title, venue)
 
 def dedupe(events):
@@ -310,6 +312,9 @@ def source_specific_events(soup, key, today):
     out = []
     seen = set()
     for el, txt in text_blocks(soup):
+        # The museum also promotes touring exhibitions held overseas.
+        if key == "national_museum" and re.search(r"\b(?:Canterbury Museum|Christchurch,?\s+New Zealand)\b", txt, re.I):
+            continue
         period = extract_period(txt)
         if not period:
             continue
@@ -542,6 +547,10 @@ def fetch_esplanade_two_stage(listing_html, today, fetcher, max_details=80):
     return dedupe(events), errors
 
 DETAIL_PATHS = {
+    "eventbrite": re.compile(r"^/e/[^/]+/?$"),
+    "allevents": re.compile(r"^/singapore/[^/]+/[^/]+/?$"),
+    "nlb_calendar": re.compile(r"^/event/\d+/?$"),
+    "national_museum": re.compile(r"^/whats-on/(?:exhibition|programme)/[^/]+(?:/events)?/?$"),
     "visit_singapore": re.compile(r"^/whats-happening/all-happenings/events/[^/]+/?$"),
     "catch_sg": re.compile(r"^/Event/(?:[^/]+/)*[^/]*\d{8,}[^/]*$"),
     "gardens": re.compile(r"^/en/things-to-do/calendar-of-events/[^/]+\.html$"),
@@ -551,6 +560,9 @@ DETAIL_PATHS = {
 }
 
 def parse_official_detail(html, url, key, today):
+    if key in {"eventbrite", "allevents", "nlb_calendar"}:
+        import additional_sources
+        return additional_sources.parse(html, key, today, SOURCES[key], clean_event, base_url=url)
     soup = BeautifulSoup(html, "html.parser")
     structured = jsonld_events(soup, key, today)
     if structured:
@@ -608,6 +620,8 @@ def parse_official_detail(html, url, key, today):
     return [] if is_expired(e, today) else [e]
 
 def fetch_official_details(listing_html, key, today, fetcher, limit=12):
+    if key in {"eventbrite", "allevents", "nlb_calendar"}:
+        limit = 60
     pattern = DETAIL_PATHS.get(key)
     if not pattern:
         return []
@@ -620,7 +634,7 @@ def fetch_official_details(listing_html, key, today, fetcher, limit=12):
     def read(url):
         try:
             events = parse_official_detail(fetcher(url), url, key, today)
-            if not events and key == "catch_sg" and fetcher is fetch:
+            if not events and key in ("catch_sg", "nlb_calendar") and fetcher is fetch:
                 events = parse_official_detail(render_source(url), url, key, today)
             return events
         except Exception as exc:
@@ -631,7 +645,7 @@ def fetch_official_details(listing_html, key, today, fetcher, limit=12):
 
 
 def fetch(url, timeout=30):
-    r = requests.get(url, headers={"User-Agent": UA, "Accept-Language": "en-SG,en;q=0.9"}, timeout=timeout)
+    r = requests.get(url, headers={"User-Agent": UA, "Accept-Language": "en-SG,en;q=0.9", "Accept": "text/html,application/xhtml+xml"}, timeout=timeout)
     r.raise_for_status()
     if r.status_code != 200 or not r.content:
         raise ValueError(f"Official source returned HTTP {r.status_code} with no usable page; keeping previous events")
@@ -647,10 +661,15 @@ def render_source(url):
     """Read a public JavaScript listing; never interact with verification challenges."""
     from playwright.sync_api import sync_playwright
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True, args=["--disable-http2"])
+        # Use Chromium's normal protocol negotiation for Marina Bay Sands.
+        # Keep the existing compatibility setting for the other working sources.
+        args = [] if (urlparse(url).hostname or "").endswith("marinabaysands.com") else ["--disable-http2"]
+        browser = p.chromium.launch(headless=True, args=args)
         try:
             page = browser.new_page(locale="en-SG")
-            response = page.goto(url, wait_until="domcontentloaded", timeout=45000)
+            # Optional resources must not prevent reading an already loaded document.
+            response = page.goto(url, wait_until="commit", timeout=45000)
+            page.locator("body").wait_for(state="attached", timeout=20000)
             if response and response.status >= 400:
                 raise ValueError(f"Official browser page returned HTTP {response.status}")
             def check_verification():
@@ -662,6 +681,14 @@ def render_source(url):
             try:
                 if "catch.sg" in url and "/Event/" in urlparse(url).path:
                     page.wait_for_function("() => document.body.innerText.includes('Event Details')", timeout=20000)
+                elif (urlparse(url).hostname or "").endswith("onepa.gov.sg"):
+                    page.wait_for_function("""() => [...document.querySelectorAll('a[href]')].filter(a =>
+                        /\/events\/(?!search|neighbourhood-events$|arts-and-culture$|active-ageing$)/i.test(a.getAttribute('href') || '')).length > 2""", timeout=25000)
+                elif (urlparse(url).hostname or "").endswith("nparks.gov.sg"):
+                    page.wait_for_function("""() => document.querySelectorAll('article, [class*="event"], [class*="card"], [class*="listing"]').length > 20""", timeout=25000)
+                elif any(host in (urlparse(url).hostname or "") for host in ("eventbrite", "allevents", "libcal")):
+                    page.wait_for_function("""() => [...document.querySelectorAll('a[href]')].some(a =>
+                        /\\/e\\/|\\/singapore\\/[^/]+\\/|\\/event\\/\\d+/.test(a.getAttribute('href') || ''))""", timeout=25000)
                 else:
                     page.wait_for_function("""() => [...document.querySelectorAll('a[href]')].some(a =>
                         /calendar-of-events\\/.+|museum\\/(exhibitions|events|programmes)\\/.+|\\/Event\\/.*\\d{8}|whats-happening\\/.+/.test(a.getAttribute('href') || ''))""",
@@ -677,6 +704,53 @@ def render_source(url):
             browser.close()
 
 
+# Public official alternatives only. A challenge page is never a successful read.
+OFFICIAL_LISTING_ALTERNATIVES = {
+    "artscience": ["https://www.marinabaysands.com/museum.html"],
+    "onepa": [
+        "https://www.onepa.gov.sg/events/kopi-talks-and-dialogues",
+        "https://www.onepa.gov.sg/events/exhibition-and-fair",
+        "https://www.onepa.gov.sg/events/arts-and-culture",
+        "https://www.onepa.gov.sg/events/active-ageing",
+        "https://www.onepa.gov.sg/events/neighbourhood-parties",
+    ],
+}
+BROWSER_SOURCES = {"gardens", "artscience", "visit_singapore", "catch_sg", "national_museum", "eventbrite", "allevents", "nlb_calendar", "onepa", "nparks"}
+
+
+def read_source_events(cfg, key, today, fetcher):
+    urls = list(dict.fromkeys([cfg.get("listing_url", cfg["url"])]
+                             + OFFICIAL_LISTING_ALTERNATIVES.get(key, [])))
+    errors = []
+
+    def extract(html):
+        events = parse_source_html(html, key, today)
+        # Read official detail links before rendering the JavaScript listing.
+        return events or fetch_official_details(html, key, today, fetcher)
+
+    for url in urls:
+        try:
+            fresh = extract(fetcher(url))
+            if fresh:
+                return fresh
+            errors.append(f"{url}: zero usable events")
+        except Exception as exc:
+            errors.append(f"{url}: {exc}")
+            print(f"Official listing unavailable: {errors[-1]}", flush=True)
+    if fetcher is fetch and key in BROWSER_SOURCES:
+        for url in urls:
+            try:
+                fresh = extract(render_source(url))
+                if fresh:
+                    return fresh
+                errors.append(f"{url}: zero usable events after browser read")
+            except Exception as exc:
+                errors.append(f"{url}: {exc}")
+                print(f"Official browser read unavailable: {errors[-1]}", flush=True)
+    reason = errors[-1] if errors else "zero usable events"
+    raise ValueError(reason + "; preserving previous source records")
+
+
 def update(previous, today=None, fetcher=fetch):
     today = today or datetime.now(SGT).date()
     all_events = []
@@ -684,15 +758,8 @@ def update(previous, today=None, fetcher=fetch):
     for key, cfg in SOURCES.items():
         prev = previous_for(previous, key)
         try:
-            rendered = False
-            try:
-                html = fetcher(cfg.get("listing_url", cfg["url"]))
-            except Exception:
-                if fetcher is not fetch or key not in ("gardens", "artscience", "visit_singapore", "catch_sg"):
-                    raise
-                html = render_source(cfg.get("listing_url", cfg["url"]))
-                rendered = True
             if key == "esplanade":
+                html = fetcher(cfg.get("listing_url", cfg["url"]))
                 fresh, detail_errors = fetch_esplanade_two_stage(html, today, fetcher)
                 # If no detail links/results are usable, fall back to conservative listing parser.
                 if not fresh:
@@ -703,14 +770,7 @@ def update(previous, today=None, fetcher=fetch):
                 report[key] = {"status":"fresh", "count":len(fresh),
                                "detail_errors":len(detail_errors)}
             else:
-                fresh = parse_source_html(html, key, today)
-                if not fresh and not rendered and fetcher is fetch and key in ("gardens", "artscience", "visit_singapore", "catch_sg"):
-                    html = render_source(cfg.get("listing_url", cfg["url"]))
-                    fresh = parse_source_html(html, key, today)
-                if not fresh:
-                    fresh = fetch_official_details(html, key, today, fetcher)
-                if not fresh:
-                    raise ValueError("zero usable events; preserving previous source records")
+                fresh = read_source_events(cfg, key, today, fetcher)
                 all_events.extend(fresh)
                 report[key] = {"status":"fresh", "count":len(fresh)}
         except Exception as exc:

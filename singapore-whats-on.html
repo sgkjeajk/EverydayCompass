@@ -116,7 +116,7 @@ td{font-size:.9rem}
 <body>
 <header class="hero">
 <div class="wrap">
-<a class="hero-btn primary" href="https://sgkjeajk.github.io/EverydayCompass/" style="display:inline-block;text-decoration:none;margin-bottom:16px">← Return to Everyday Compass</a>
+<a class="hero-btn primary" href="https://myai118.github.io/EverydayCompass/" style="display:inline-block;text-decoration:none;margin-bottom:16px">← Return to Everyday Compass</a>
 <div class="eyebrow">Everyday Compass · Discover Singapore</div>
 <h1>Singapore What's On</h1>
 <p>One easy place to discover ongoing and upcoming exhibitions, cultural events, festivals and weekend happenings — with clear summaries, prices and practical visitor information.</p>
@@ -152,23 +152,29 @@ td{font-size:.9rem}
 <div><strong>Sources last checked successfully:</strong> <span id="srcSummary">Checking…</span></div>
 <details class="src-details"><summary>See the date for each source</summary><ul id="srcList"></ul></details>
 <div id="allFailed" class="warnbox hidden">⚠ The latest refresh could not read any source. The events below are the last known ones, with finished events removed.</div>
-<div><strong>Refreshed weekly</strong> · Events past their end date are removed automatically.</div>
+<div><strong>Refreshed daily around 4:15am Singapore time</strong> · Events past their end date are removed automatically.</div>
 </div>
 </div>
 </section>
 
 <div class="notice"><b>Important:</b><br>
-To request for What’s On adhoc request, click <a class="btn primary" href="https://sgkjeajk.github.io/EverydayCompass/" style="margin:6px 4px;text-decoration:none">Everyday Compass</a> followed by &lt;Contact&gt; to submit request
+To request for What’s On adhoc request, click <a class="btn primary" href="https://myai118.github.io/EverydayCompass/" style="margin:6px 4px;text-decoration:none">Everyday Compass</a> followed by &lt;Contact&gt; to submit request
 </div>
 
 <div class="section-head">
 <div><h2>⭐ Discover what's happening</h2><p>Understand the event at a glance before deciding where to go.</p></div>
-<div class="updated">Source priority: Official organiser websites</div>
+<div class="updated">Official organisers and event directories — confirm admission in the linked details</div>
 </div>
 
 <section id="timingsWrap" class="table-wrap" style="display:none" aria-label="Daily event opening timings">
-<p style="padding:12px">Published opening hours and session times for all current events. Hours may vary by day; check the official site before visiting. Click a column heading to reverse the order: earliest opening/session time, event start date, or venue A–Z. Unspecified times and dates stay at the bottom.</p>
-<table><thead><tr><th>Event</th><th scope="col" data-timing-sort="time" aria-sort="none"><button type="button" class="timing-sort" onclick="sortTimings('time')">Daily opening hours / sessions <span class="sort-arrow" aria-hidden="true">↕</span></button></th><th scope="col" data-timing-sort="period" aria-sort="none"><button type="button" class="timing-sort" onclick="sortTimings('period')">Event dates <span class="sort-arrow" aria-hidden="true">↕</span></button></th><th scope="col" data-timing-sort="venue" aria-sort="none"><button type="button" class="timing-sort" onclick="sortTimings('venue')">Venue <span class="sort-arrow" aria-hidden="true">↕</span></button></th><th>More</th></tr></thead>
+<div style="padding:12px 14px 0">
+<label style="display:flex;align-items:center;gap:10px;min-height:44px;width:fit-content;cursor:pointer"><input id="timingActiveOnly" type="checkbox" onchange="setTimingActiveOnly(this.checked)" style="width:20px;height:20px"> <b>Active events only (exclude upcoming)</b></label>
+<p style="margin:4px 0 8px;color:var(--muted);font-size:.9rem">Uses event dates in Singapore; opening hours are shown separately. Entries with unconfirmed start dates are hidden when this filter is on.</p>
+<p id="timingResultCount" role="status" aria-live="polite" style="margin:0 0 8px;color:var(--muted)"></p>
+<p id="timingEmpty" class="hidden" style="margin:0 0 12px">No events match these filters.</p>
+</div>
+<p style="padding:12px">Published opening hours and session times for all current events. Hours may vary by day; check the official site before visiting. Click a column heading to reverse the order: opening/session time, event start date, venue, date added, or free admission for Singaporeans. Date added starts with newest first; Free starts with Y first. Click again to reverse. Y = free general admission for Singapore citizens; N = payment required, including refundable fees. Blank = admission not confirmed or date not recorded. Blank values stay at the bottom.</p>
+<table><thead><tr><th>Event</th><th scope="col" data-timing-sort="time" aria-sort="none"><button type="button" class="timing-sort" onclick="sortTimings('time')">Daily opening hours / sessions <span class="sort-arrow" aria-hidden="true">↕</span></button></th><th scope="col" data-timing-sort="period" aria-sort="none"><button type="button" class="timing-sort" onclick="sortTimings('period')">Event dates <span class="sort-arrow" aria-hidden="true">↕</span></button></th><th scope="col" data-timing-sort="venue" aria-sort="none"><button type="button" class="timing-sort" onclick="sortTimings('venue')">Venue <span class="sort-arrow" aria-hidden="true">↕</span></button></th><th scope="col" data-timing-sort="date_added" aria-sort="none"><button type="button" class="timing-sort" onclick="sortTimings('date_added')">Date added <span class="sort-arrow" aria-hidden="true">↕</span></button></th><th scope="col" data-timing-sort="free" aria-sort="none"><button type="button" class="timing-sort" onclick="sortTimings('free')">Free (Singaporeans) <span class="sort-arrow" aria-hidden="true">↕</span></button></th><th>More</th></tr></thead>
 <tbody id="timingsBody"></tbody></table></section>
 <section id="cards" class="grid"></section>
 <section id="tableWrap" class="table-wrap">
@@ -177,9 +183,9 @@ To request for What’s On adhoc request, click <a class="btn primary" href="htt
 <tbody id="tableBody"></tbody>
 </table>
 </section>
-<div id="emptyState" class="empty hidden">No current events to show right now. Please check back after the next weekly refresh.</div>
+<div id="emptyState" class="empty hidden">No current events to show right now. Please check back after the next daily refresh.</div>
 
-<p class="footer-note"><b>Information checked 23 Sep 2026.</b> Always use the “Official Information” button before travelling because organisers may change timings, prices or programmes.<br>Everyday Compass · Simple, useful information for everyday life in Singapore</p>
+<p class="footer-note"><b>Information checked 23 Sep 2026.</b> Always check the linked event information before travelling because organisers may change timings, prices or programmes.<br>Everyday Compass · Simple, useful information for everyday life in Singapore</p>
 <!-- Owner request 2026-10-21: no public settings link or dot.
 Settings are opened from digital-tools/myweb/kwc.html via #admin-whats-on. -->
 </main>
@@ -188,7 +194,7 @@ Settings are opened from digital-tools/myweb/kwc.html via #admin-whats-on. -->
 <div id="overlay" class="overlay hidden" onclick="if(event.target===this)closeSettings()">
 <div class="panel" role="dialog" aria-modal="true" aria-labelledby="setTitle">
 <h2 id="setTitle">Source settings</h2>
-<p class="sub">These are the websites the weekly update searches for events. Maximum 20. Only secure (https) web addresses are accepted.</p>
+<p class="sub">These are the websites the daily update searches for events. Maximum 20. Only secure (https) web addresses are accepted.</p>
 <div><span class="src-count" id="srcCount"></span> <span id="srcOrigin" style="color:var(--muted);font-size:.85rem"></span></div>
 <div id="srcRows" style="margin-top:10px"></div>
 <div id="srcErrors" class="errors"></div>
@@ -200,15 +206,15 @@ Settings are opened from digital-tools/myweb/kwc.html via #admin-whats-on. -->
 <button class="btn outline" onclick="reloadPublishedSources()">Load published list</button>
 <button class="btn outline" onclick="downloadSources()">Download sources.json</button>
 <button class="btn outline" onclick="copySources()">Copy JSON</button>
-<button class="btn danger" onclick="resetSources()">Reset to the 8 defaults</button>
+<button class="btn danger" onclick="resetSources()">Reset to the 11 defaults</button>
 <button class="btn outline" onclick="closeSettings()">Close</button>
 </div>
-<p class="sub" style="margin-top:12px"><b>To make the weekly update use your list:</b> download <code>sources.json</code> and upload it to the main folder of your GitHub repository (same place as <code>events.json</code>). Saving here only keeps a draft in this browser; it does not change the live website. Every refresh reads the current published file, including newly added enabled sites. Alternatively, use <b>Publish source list</b> with the token below to save directly to GitHub and start a refresh. Browser drafts must be published or uploaded before the refresh can use them.</p>
+<p class="sub" style="margin-top:12px"><b>To make the daily update use your list:</b> download <code>sources.json</code> and upload it to the main folder of your GitHub repository (same place as <code>events.json</code>). Saving here only keeps a draft in this browser; it does not change the live website. Every refresh reads the current published file, including newly added enabled sites. Alternatively, use <b>Publish source list</b> with the token below to save directly to GitHub and start a refresh. Browser drafts must be published or uploaded before the refresh can use them.</p>
 
 <h3>🔄 Run What's On refresh</h3>
-<p class="sub">The refresh runs on GitHub (the same job that runs weekly). It looks for new events and removes finished ones, then updates the website. It can take a few minutes.</p>
+<p class="sub">The refresh runs on GitHub (the same job that runs daily). It looks for new events and removes finished ones, then updates the website. It can take a few minutes.</p>
 <div class="panel-actions" style="margin-top:0">
-<a class="btn primary" href="https://github.com/sgkjeajk/EverydayCompass/actions" target="_blank" rel="noopener">Open GitHub Actions ↗</a>
+<a class="btn primary" href="https://github.com/myai118/EverydayCompass/actions" target="_blank" rel="noopener">Open GitHub Actions ↗</a>
 <button class="btn outline" onclick="reloadEventsNow()">Reload events on this page</button>
 </div>
 <p class="sub" style="margin-top:8px">Simple way, no token: in GitHub Actions, click the refresh job on the left, then <b>Run workflow</b> → <b>Run workflow</b>.</p>
@@ -221,7 +227,7 @@ Settings are opened from digital-tools/myweb/kwc.html via #admin-whats-on. -->
 </div>
 <div class="panel-actions">
 <select id="ghWorkflow" aria-label="Refresh job" style="flex:1;min-width:200px;padding:9px 11px;border:1px solid var(--line);border-radius:11px"><option value="">— load jobs first —</option></select>
-<button class="btn primary" onclick="ghRun()">Run refresh now</button>
+<button class="btn primary" id="runWhatsOnRefreshBtn" onclick="ghRunWhatsOn()">Refresh What’s On now</button>
 <button class="btn outline" onclick="ghStatus()">Check latest run</button>
 </div>
 <div id="ghErr" class="errors"></div>
@@ -292,52 +298,69 @@ function currentEvents(){return events.filter(e=>!isExpired(e))}
 /* ---------- RENDERING ---------- */
 let activeFilter="all";
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function eventLinkLabel(e){
+ return ["eventbrite","allevents"].includes(e.source_key)?"Event details":"Official Information";
+}
 function eventCard(e){
 return `<article class="card event" data-tags="${e.tags.join(" ")}" data-search="${esc((e.title+" "+e.category+" "+e.overview+" "+e.venue).toLowerCase())}">
 <div class="card-body">
-<div class="topline"><div class="category">${e.category}</div><span class="status ${e.statusClass}">${e.status}</span></div>
-<h3>${e.title}</h3>
-<p class="overview">${e.overview}</p>
-<div class="why"><b>Why you may like this:</b> ${e.why}</div>
+<div class="topline"><div class="category">${esc(e.category||"")}</div><span class="status ${esc(e.statusClass||"")}">${esc(e.status||"")}</span></div>
+<h3>${esc(e.title||"")}</h3>
+<p class="overview">${esc(e.overview||"")}</p>
+<div class="why"><b>Why you may like this:</b> ${esc(e.why||"")}</div>
 <div class="meta">
-<div class="meta-item"><b>📅 Period</b>${e.period}</div>
-<div class="meta-item"><b>🕙 Time</b>${e.time}</div>
-<div class="meta-item"><b>📍 Venue</b>${e.venue}</div>
-<div class="meta-item"><b>🚇 Nearest MRT</b>${e.mrt}</div>
-<div class="meta-item"><b>⏱ Suggested visit</b>${e.duration}</div>
+<div class="meta-item"><b>📅 Period</b>${esc(e.period||"")}</div>
+<div class="meta-item"><b>🕙 Time</b>${esc(e.time||"")}</div>
+<div class="meta-item"><b>📍 Venue</b>${esc(e.venue||"")}</div>
+<div class="meta-item"><b>🚇 Nearest MRT</b>${esc(e.mrt||"")}</div>
+<div class="meta-item"><b>⏱ Suggested visit</b>${esc(e.duration||"")}</div>
 <div class="meta-item"><b>♿ Accessibility</b>${e.tags.includes("wheelchair")?"Wheelchair-friendly":"Check venue"}</div>
 </div>
 <div class="prices">
-<span class="price"><b>Adult:</b> ${e.adult}</span>
-<span class="price"><b>Senior:</b> ${e.senior}</span>
-<span class="price"><b>Child:</b> ${e.child}</span>
+<span class="price"><b>Adult:</b> ${esc(e.adult||"")}</span>
+<span class="price"><b>Senior:</b> ${esc(e.senior||"")}</span>
+<span class="price"><b>Child:</b> ${esc(e.child||"")}</span>
 </div>
 <div class="tags">${e.tags.filter(x=>["free","nostalgia","indoor","wheelchair"].includes(x)).map(x=>`<span class="tag">${x==="wheelchair"?"♿ Wheelchair":x[0].toUpperCase()+x.slice(1)}</span>`).join("")}</div>
 </div>
 <div class="card-actions">
-<a class="btn primary" href="${e.link}" target="_blank" rel="noopener">Official Information ↗</a>
+<a class="btn primary" href="${esc(e.link||"")}" target="_blank" rel="noopener">${eventLinkLabel(e)} ↗</a>
 <a class="btn secondary" href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(e.venue)}" target="_blank" rel="noopener">Directions</a>
 </div>
 </article>`;
 }
 function tableRow(e){
 return `<tr class="event" data-tags="${e.tags.join(" ")}" data-search="${esc((e.title+" "+e.category+" "+e.overview+" "+e.venue).toLowerCase())}">
-<td><b>${e.title}</b><br><span style="color:#617789">${e.overview}</span></td>
-<td>${e.period}</td><td>${e.time}</td><td>${e.venue}<br><small>${e.mrt}</small></td>
-<td>Adult: ${e.adult}<br>Senior: ${e.senior}<br>Child: ${e.child}</td>
+<td><b>${esc(e.title||"")}</b><br><span style="color:#617789">${esc(e.overview||"")}</span></td>
+<td>${esc(e.period||"")}</td><td>${esc(e.time||"")}</td><td>${esc(e.venue||"")}<br><small>${esc(e.mrt||"")}</small></td>
+<td>Adult: ${esc(e.adult||"")}<br>Senior: ${esc(e.senior||"")}<br>Child: ${esc(e.child||"")}</td>
 <td>${e.tags.includes("wheelchair")?"♿ Wheelchair-friendly":"Check venue"}</td>
-<td><a href="${e.link}" target="_blank" rel="noopener"><b>Official site ↗</b></a></td></tr>`;
+<td><a href="${esc(e.link||"")}" target="_blank" rel="noopener"><b>${eventLinkLabel(e)} ↗</b></a></td></tr>`;
+}
+function formatAddedDate(value){
+ const m=String(value||"").match(/^(\d{4})-(\d{2})-(\d{2})$/);
+ if(!m)return "";
+ const months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+ return Number(m[3])+" "+months[Number(m[2])-1]+" "+m[1];
+}
+function freeForSingaporeans(e){
+ const admission=String(e.adult||"").trim();
+ if(/^(?:local general admission:\s*)?free(?:\s+admission)?(?:\s*[·—-]\s*booking required)?$/i.test(admission)
+  ||/\bfree\s+for\s+singapore\s+citizens?\b/i.test(admission))return "Y";
+ if(/(?:SGD|SG|S)?\$\s*\d/i.test(admission))return "N";
+ return null;
 }
 function timingRow(e){
  const published=String(e.time||"").trim();
  const hours=!published||/^(check official information|check official site|tbc|tba|unknown|n\/a)$/i.test(published)
   ?"Not available — check official site":published;
  return `<tr class="event" data-tags="${esc((e.tags||[]).join(" "))}" data-search="${esc((e.title+" "+e.category+" "+e.overview+" "+e.venue).toLowerCase())}">
-<td><b>${esc(e.title||"")}</b></td><td>${esc(hours)}</td><td>${esc(e.period||"")}</td><td>${esc(e.venue||"")}</td>
-<td><a href="${esc(e.link||"#")}" target="_blank" rel="noopener"><b>Official site ↗</b></a></td></tr>`;
+<td><b>${esc(e.title||"")}</b></td><td>${esc(hours)}</td><td>${esc(e.period||"")}</td><td>${esc(e.venue||"")}</td><td>${esc(formatAddedDate(e.date_added))}</td><td>${esc(freeForSingaporeans(e)||"")}</td>
+<td><a href="${esc(e.link||"#")}" target="_blank" rel="noopener"><b>${eventLinkLabel(e)} ↗</b></a></td></tr>`;
 }
 /* ---------- DAILY TIMINGS SORT ---------- */
 let timingSort={key:null,direction:1};
+let timingActiveOnly=false;
 function openingMinutes(text){
  const source=String(text||'').split(/last\s+(?:entry|admission)/i)[0];
  const tokens=[...source.matchAll(/\b(\d{1,2})(?:[:.](\d{2}))?\s*(am|pm)?\b/gi)];
@@ -372,10 +395,28 @@ function eventStartKey(e){
  const month=MONTHS[m.slice(0,3).toLowerCase()];
  return y+'-'+pad(month)+'-'+pad(Number(d));
 }
+function timingEventIsActive(e){
+ if(isExpired(e))return false;
+ const start=eventStartKey(e);
+ if(start)return start<=todaySGT();
+ if(/upcoming|not yet|opening soon/i.test(String(e.status||""))||(e.tags||[]).includes("upcoming"))return false;
+ return /\b(permanent|ongoing|daily|every day|open-ended)\b/i.test(String(e.period||""));
+}
+function setTimingActiveOnly(value){
+ timingActiveOnly=Boolean(value);
+ renderTimings(currentEvents());
+ applyFilters();
+}
 function sortedTimingEvents(list){
  if(!timingSort.key)return list;
  const key=timingSort.key,dir=timingSort.direction;
- const value=e=>key==='time'?openingMinutes(e.time):key==='period'?eventStartKey(e):(String(e.venue||'').trim()||null);
+ const value=e=>{
+  if(key==='time')return openingMinutes(e.time);
+  if(key==='period')return eventStartKey(e);
+  if(key==='date_added')return /^\d{4}-\d{2}-\d{2}$/.test(e.date_added||'')?e.date_added:null;
+  if(key==='free')return freeForSingaporeans(e);
+  return String(e.venue||'').trim()||null;
+ };
  return list.map((event,index)=>({event,index,value:value(event)})).sort((a,b)=>{
   if(a.value===null||b.value===null)return a.value===b.value?a.index-b.index:a.value===null?1:-1;
   const c=typeof a.value==='number'?a.value-b.value:String(a.value).localeCompare(String(b.value),'en',{numeric:true,sensitivity:'base'});
@@ -383,7 +424,7 @@ function sortedTimingEvents(list){
  }).map(x=>x.event);
 }
 function renderTimings(list){
- document.getElementById('timingsBody').innerHTML=sortedTimingEvents(list).map(timingRow).join('');
+ document.getElementById('timingsBody').innerHTML=sortedTimingEvents(list.filter(e=>!timingActiveOnly||timingEventIsActive(e))).map(timingRow).join('');
  document.querySelectorAll('[data-timing-sort]').forEach(th=>{
   const active=th.dataset.timingSort===timingSort.key;
   th.setAttribute('aria-sort',active?(timingSort.direction===1?'ascending':'descending'):'none');
@@ -391,8 +432,8 @@ function renderTimings(list){
  });
 }
 function sortTimings(key){
- if(!['time','period','venue'].includes(key))return;
- timingSort= {key,direction:timingSort.key===key?-timingSort.direction:1};
+ if(!['time','period','venue','date_added','free'].includes(key))return;
+ timingSort= {key,direction:timingSort.key===key?-timingSort.direction:(key==='date_added'||key==='free'?-1:1)};
  renderTimings(currentEvents());applyFilters();
 }
 /* ---------- END DAILY TIMINGS SORT ---------- */
@@ -423,6 +464,10 @@ function applyFilters(){
   const okS=!q||el.dataset.search.includes(q);
   el.classList.toggle("hidden",!(okF&&okS));
  });
+ const timingRows=[...document.querySelectorAll("#timingsBody tr.event")];
+ const timingVisible=timingRows.filter(row=>!row.classList.contains("hidden")).length;
+ document.getElementById("timingResultCount").textContent=timingVisible+" event"+(timingVisible===1?"":"s")+" shown";
+ document.getElementById("timingEmpty").classList.toggle("hidden",timingVisible>0);
 }
 function setView(v){
  if(v!=="timings"&&activeFilter==="timings"){
@@ -490,14 +535,73 @@ async function loadScheduledFeed(){
 /* ---------- SOURCE SETTINGS ---------- */
 const MAX_SOURCES=20;
 const DEFAULT_SOURCES=[
- {id:"sccc",name:"Singapore Chinese Cultural Centre",url:"https://singaporeccc.org.sg/events/",enabled:true},
- {id:"gardens",name:"Gardens by the Bay",url:"https://www.gardensbythebay.com.sg/en/things-to-do/calendar-of-events.html",enabled:true},
- {id:"esplanade",name:"Esplanade",url:"https://www.esplanade.com/whats-on",enabled:true},
- {id:"national_museum",name:"National Museum of Singapore",url:"https://www.nationalmuseum.nhb.gov.sg/whats-on/exhibition/exhibitions",enabled:true},
- {id:"national_gallery",name:"National Gallery Singapore",url:"https://www.nationalgallery.sg/sg/en/whats-on.html",enabled:true},
- {id:"artscience",name:"ArtScience Museum",url:"https://www.marinabaysands.com/museum/whats-on.html",enabled:true},
- {id:"ura",name:"Urban Redevelopment Authority",url:"https://www.ura.gov.sg/get-involved/events-and-exhibitions/",enabled:true},
- {id:"nlb",name:"National Library Board",url:"https://exhibitions.nlb.gov.sg/current-exhibitions/",enabled:true}
+  {
+    "id": "sccc",
+    "name": "Singapore Chinese Cultural Centre",
+    "url": "https://singaporeccc.org.sg/events/",
+    "enabled": true
+  },
+  {
+    "id": "gardens",
+    "name": "Gardens by the Bay",
+    "url": "https://www.gardensbythebay.com.sg/en/things-to-do/calendar-of-events.html",
+    "enabled": true
+  },
+  {
+    "id": "esplanade",
+    "name": "Esplanade",
+    "url": "https://www.esplanade.com/whats-on",
+    "enabled": true
+  },
+  {
+    "id": "national_museum",
+    "name": "National Museum of Singapore",
+    "url": "https://www.nationalmuseum.nhb.gov.sg/whats-on/exhibition/exhibitions",
+    "enabled": true
+  },
+  {
+    "id": "national_gallery",
+    "name": "National Gallery Singapore",
+    "url": "https://www.nationalgallery.sg/sg/en/whats-on.html",
+    "enabled": true
+  },
+  {
+    "id": "ura",
+    "name": "Urban Redevelopment Authority",
+    "url": "https://www.ura.gov.sg/get-involved/events-and-exhibitions/",
+    "enabled": true
+  },
+  {
+    "id": "nlb",
+    "name": "National Library Board",
+    "url": "https://exhibitions.nlb.gov.sg/current-exhibitions/",
+    "enabled": true
+  },
+  {
+    "id": "visit_singapore",
+    "name": "Visit Singapore",
+    "url": "https://www.visitsingapore.com/things-to-do/top-things-to-do/",
+    "listing_url": "https://www.visitsingapore.com/whats-happening/all-happenings/",
+    "enabled": true
+  },
+  {
+    "id": "catch_sg",
+    "name": "Catch.sg — Free Events",
+    "url": "https://www.catch.sg/Event?EventCategory=Free%20Events",
+    "enabled": true
+  },
+  {
+    "id": "allevents",
+    "name": "AllEvents Singapore — Free Events",
+    "url": "https://allevents.in/singapore/free-events",
+    "enabled": true
+  },
+  {
+    "id": "nlb_calendar",
+    "name": "NLB GoLibrary — All Events",
+    "url": "https://nlb.libcal.com/calendar/public",
+    "enabled": true
+  }
 ];
 const LS_KEY="ec_whatson_sources_v1";
 let sources=[];
@@ -513,7 +617,7 @@ async function loadSources(){
   try{const d=JSON.parse(draft); if(Array.isArray(d.sources)){sources=d.sources.slice(0,MAX_SOURCES); sourceOrigin="(draft saved in this browser)"; return;}}catch(e){}
  }
  try{
-  const res=await fetch("https://raw.githubusercontent.com/sgkjeajk/EverydayCompass/main/sources.json?t="+Date.now(),{cache:"no-store"});
+  const res=await fetch("https://raw.githubusercontent.com/myai118/EverydayCompass/main/sources.json?t="+Date.now(),{cache:"no-store"});
   if(res.ok){const d=await res.json(); if(Array.isArray(d.sources)){sources=d.sources.slice(0,MAX_SOURCES); sourceOrigin="(from sources.json)"; return;}}
  }catch(e){}
  sources=DEFAULT_SOURCES.map(s=>({...s})); sourceOrigin="(built-in defaults)";
@@ -521,7 +625,7 @@ async function loadSources(){
 async function reloadPublishedSources(){
  if(!confirm("Discard your current edits and load the published source list?")) return;
  try{
-  const r=await fetch("https://raw.githubusercontent.com/sgkjeajk/EverydayCompass/main/sources.json?t="+Date.now(),{cache:"no-store"});
+  const r=await fetch("https://raw.githubusercontent.com/myai118/EverydayCompass/main/sources.json?t="+Date.now(),{cache:"no-store"});
   if(!r.ok) throw new Error("HTTP "+r.status);
   const data=await r.json();
   if(!Array.isArray(data.sources)) throw new Error("Invalid source list");
@@ -578,7 +682,7 @@ function saveSources(){
  const errs=validate(), er=document.getElementById("srcErrors"), ok=document.getElementById("srcOk");
  ok.textContent=""; er.textContent=errs.join("\n"); if(errs.length) return;
  const p=cleanPayload();
- if(lsSet(JSON.stringify(p))){sources=p.sources; sourceOrigin="(draft saved in this browser)"; drawRows(); ok.textContent="Draft saved in this browser. To use it for the weekly update, download sources.json and upload it to GitHub.";}
+ if(lsSet(JSON.stringify(p))){sources=p.sources; sourceOrigin="(draft saved in this browser)"; drawRows(); ok.textContent="Draft saved in this browser. To use it for the daily update, download sources.json and upload it to GitHub.";}
  else er.textContent="Could not save in this browser (storage blocked). Use Download or Copy instead.";
 }
 
@@ -623,7 +727,7 @@ async function copySources(){
  catch(e){document.getElementById("srcErrors").textContent="Copy was blocked by the browser. Use Download instead.";}
 }
 function resetSources(){
- if(!confirm("Replace the list with the 8 default sources? Your saved draft in this browser will be cleared.")) return;
+ if(!confirm("Replace the list with the 11 default sources? Your saved draft in this browser will be cleared.")) return;
  lsDel(); sources=DEFAULT_SOURCES.map(s=>({...s})); sourceOrigin="(built-in defaults)"; drawRows();
  document.getElementById("srcErrors").textContent=""; document.getElementById("srcOk").textContent="Reset to defaults.";
 }
@@ -647,7 +751,7 @@ function renderExpiryCheck(){
 }
 
 /* ---------- RUN REFRESH (GitHub Actions) ---------- */
-const GH_REPO="sgkjeajk/EverydayCompass", GH_REF="main";
+const GH_REPO="myai118/EverydayCompass", GH_REF="main";
 let ghToken="";
 function ghHeaders(json){
  const h={"Accept":"application/vnd.github+json","Authorization":"Bearer "+ghToken,"X-GitHub-Api-Version":"2022-11-28"};
@@ -675,7 +779,7 @@ async function ghLoadWorkflows(){
   const d=await r.json(), sel=document.getElementById("ghWorkflow"); sel.textContent="";
   const list=(d.workflows||[]).filter(w=>w.state==="active");
   if(!list.length){ghMsg("","No active jobs found in the repository.");return;}
-  list.forEach(w=>{const o=document.createElement("option"); o.value=w.id; o.textContent=w.name+" ("+w.path+")"; sel.append(o);});
+  list.forEach(w=>{const o=document.createElement("option"); o.value=w.id; o.textContent=w.name+" ("+w.path+")"; o.dataset.path=w.path||""; sel.append(o);});
   ghMsg("Found "+list.length+" job(s). Choose the one that refreshes What's On / news, then press Run.","");
  }catch(e){ghMsg("","Could not reach GitHub. Check your internet connection.");}
 }
@@ -690,6 +794,14 @@ async function ghRun(){
   if(r.status===204){ghMsg("Refresh started. Checking its status in a few seconds…",""); setTimeout(ghStatus,6000);}
   else ghMsg("",ghHttpError(r.status));
  }catch(e){ghMsg("","Could not reach GitHub. Check your internet connection.");}
+}
+async function ghRunWhatsOn(){
+ if(!ghNeedToken()) return;
+ const sel=document.getElementById("ghWorkflow");
+ const option=[...sel.options].find(o=>/whats-on-weekly\.yml$/i.test(o.dataset.path||"")||/what.?s on daily refresh/i.test(o.textContent));
+ if(!option){ghMsg("","Load jobs first. The What’s On refresh workflow could not be identified.");return;}
+ sel.value=option.value;
+ await ghRun();
 }
 async function ghStatus(){
  if(!ghNeedToken()) return;
