@@ -1,6 +1,34 @@
 {
   "singapore": [
     {
+      "title": "Paramore's Hayley Williams to bring solo concert tour to Singapore in February 2027",
+      "url": "https://www.channelnewsasia.com/entertainment/hayley-williams-ssolo-concert-singapore-2027-6548481",
+      "summary": "The Paramore frontwoman will perform in Singapore on Feb 26, 2027, as part of The Hayley Williams Show, which focuses on her solo music. The venue, ticket prices and sale dates have yet to be announced.",
+      "source": "CNA",
+      "published": "Fri, 13 Nov 2026 13:16:00 +0800"
+    },
+    {
+      "title": "Fifth person charged in Singapore over alleged fraud conspiracy linked to Nvidia chips",
+      "url": "https://www.channelnewsasia.com/singapore/man-charged-fraud-nvidia-chips-6548606",
+      "summary": "Shi Bingzhe was handed 41 charges for allegedly consenting to money laundering offences committed by two companies where he was a key officer.",
+      "source": "CNA",
+      "published": "Fri, 13 Nov 2026 13:05:00 +0800"
+    },
+    {
+      "title": "Some Singapore government systems affected by Microsoft outage: GovTech",
+      "url": "https://www.channelnewsasia.com/singapore/microsoft-outage-govtech-6548566",
+      "summary": "Emergency services remain fully operational, said the agency.",
+      "source": "CNA",
+      "published": "Fri, 13 Nov 2026 12:27:00 +0800"
+    },
+    {
+      "title": "Woman who conspired to abuse 4-year-old Megan Khung, helped dispose of her body given 13 years’ jail",
+      "url": "https://www.channelnewsasia.com/singapore/nouvelle-chua-jail-megan-khung-high-court-6545786",
+      "summary": "Nouvelle Chua Ruoshi was friends with Megan’s mother and her boyfriend, who subjected the child to repeated abuse from 2019 to 2020.",
+      "source": "CNA",
+      "published": "Fri, 13 Nov 2026 10:51:00 +0800"
+    },
+    {
       "title": "24-year-old cyclist dies in Changi accident involving tipper truck",
       "url": "https://www.channelnewsasia.com/singapore/cyclist-accident-changi-fatal-eastern-region-6548116",
       "summary": "There were at least three accidents involving cyclists in Singapore’s eastern region in less than two days this week.",
@@ -76,41 +104,27 @@
       "summary": "The Ministry of Health says there is no evidence so far that patient safety and care have been compromised while the Cyber Security Agency says it's monitoring the situation.",
       "source": "CNA",
       "published": "Thu, 12 Nov 2026 18:03:00 +0800"
-    },
-    {
-      "title": "Wheelock Place renamed Landmark Orchard after Hongkong Land acquisition",
-      "url": "https://www.channelnewsasia.com/singapore/wheelock-place-renamed-landmark-orchard-hong-kong-6545291",
-      "summary": "The Orchard Road property has been known as Wheelock Place since 1996.",
-      "source": "CNA",
-      "published": "Thu, 12 Nov 2026 15:53:00 +0800"
-    },
-    {
-      "title": "‘We need to be exposed’: Gavin Lee's Lions welcome Brazil, Paraguay challenge",
-      "url": "https://www.channelnewsasia.com/sport/singapore-lions-brazil-paraguay-football-matches-6545346",
-      "summary": "Brazil are sixth in FIFA's world rankings, while Paraguay sit 33rd, underlining the scale of the task facing the Lions, who are ranked 149th.",
-      "source": "CNA",
-      "published": "Thu, 12 Nov 2026 15:49:00 +0800"
-    },
-    {
-      "title": "PUB trials remote-controlled pump vehicle, road sensors to tackle flooding",
-      "url": "https://www.channelnewsasia.com/singapore/pump-vehicle-road-sensors-pub-trials-6544941",
-      "summary": "The pump vehicle can be remotely manoeuvred into flooded areas, navigating uneven terrain and staircases.",
-      "source": "CNA",
-      "published": "Thu, 12 Nov 2026 14:00:27 +0800"
-    },
-    {
-      "title": "Travellers can now use DBS PayLah! at over 100 million merchants across China",
-      "url": "https://www.channelnewsasia.com/singapore/dbs-paylah-china-100-million-merchants-payment-6545051",
-      "summary": "Users can pay by scanning a merchant's QR code or presenting their own for merchants to scan, without additional transaction fees.",
-      "source": "CNA",
-      "published": "Thu, 12 Nov 2026 13:48:18 +0800"
     }
   ],
   "world": [
     {
-      "title": "Microsoft Outlook outage: Tech giant works to restore access as disruptions spark concerns",
+      "title": "Australia's spy agency, federal police hit by Microsoft outage",
+      "url": "https://www.channelnewsasia.com/world/australia-spy-agency-federal-police-microsoft-outage-6548446",
+      "summary": "Home Affairs Minister Tony Burke said Microsoft told him it did not believe the outage was caused by a cyber attack.",
+      "source": "CNA",
+      "published": "Fri, 13 Nov 2026 11:08:00 +0800"
+    },
+    {
+      "title": "Who is Colette Kress, the interim CEO replacing Jensen Huang at Nvidia",
+      "url": "https://www.channelnewsasia.com/world/colette-kress-nvidia-interim-ceo-replacing-jensen-huang-6548251",
+      "summary": "Colette Kress often pushed back against Jensen Huang’s riskier AI bets. Now Nvidia’s longtime CFO is running the company while it searches for a new CEO.",
+      "source": "CNA",
+      "published": "Fri, 13 Nov 2026 10:56:00 +0800"
+    },
+    {
+      "title": "Microsoft Outlook outage: Governments, businesses affected worldwide as tech giant struggles to restore services",
       "url": "https://www.channelnewsasia.com/world/microsoft-outlook-outage-email-teams-live-6548071",
-      "summary": "Microsoft is working to restore access to Outlook following widespread disruptions that have affected users.",
+      "summary": "The outage has affected some government systems in Singapore, but authorities assured the public that emergency services remain fully operational.",
       "source": "CNA",
       "published": "Fri, 13 Nov 2026 09:57:00 +0800"
     },
@@ -119,7 +133,7 @@
       "url": "https://www.channelnewsasia.com/east-asia/china-access-nvidia-chips-us-congress-jensen-huang-6546746",
       "summary": "",
       "source": "CNA",
-      "published": "Fri, 13 Nov 2026 07:13:39 +0800"
+      "published": "Fri, 13 Nov 2026 07:13:00 +0800"
     },
     {
       "title": "Commentary: I don’t want AI in my online search. What options do I have?",
@@ -157,9 +171,9 @@
       "published": "Fri, 13 Nov 2026 03:28:00 +0800"
     },
     {
-      "title": "Microsoft outage drags on for hours, disrupting Outlook, Teams for thousands, including Singapore users",
+      "title": "Microsoft battling to fix global Outlook outage, as disruption drags on for more than 12 hours",
       "url": "https://www.channelnewsasia.com/business/microsoft-global-outage-outlook-teams-thousands-users-6547306",
-      "summary": "Microsoft attributed the connectivity issues to \"elevated load\" on its infrastructure across multiple regions.",
+      "summary": "Microsoft says it is not aware of any malicious activity causing the global outage, as it continues efforts to identify the underlying problem and restore affected services.",
       "source": "CNA",
       "published": "Fri, 13 Nov 2026 02:32:00 +0800"
     },
@@ -192,27 +206,13 @@
       "published": "Fri, 13 Nov 2026 00:25:24 +0800"
     },
     {
-      "title": "Nvidia CEO Jensen Huang resigns amid deepening scandal, leaving AI chip giant at crossroads",
-      "url": "https://www.channelnewsasia.com/world/nvidia-ceo-jensen-huang-resigns-6546526",
-      "summary": "Chief Financial Officer Colette Kress will take over as interim CEO. Jensen Huang, who co-founded Nvidia, will not remain on the board.",
+      "title": "Trump says ex Apple CEO Cook is 'a legend', should replace Huang at Nvidia",
+      "url": "https://www.channelnewsasia.com/world/trump-ex-apple-ceo-cook-legend-should-replace-huang-nvidia-6547016",
+      "summary": "Donald Trump has maintained close ties with both Tim Cook and Jensen Huang, who have courted the US president as their companies navigated his administration’s policies.",
       "source": "CNA",
-      "published": "Thu, 12 Nov 2026 22:01:00 +0800"
-    },
-    {
-      "title": "Eight dead after Brooklyn apartment building collapses, NY mayor says",
-      "url": "https://www.channelnewsasia.com/world/brooklyn-new-york-city-apartment-collapse-zohran-mamdani-6546476",
-      "summary": "The cause of the collapse of the 1930-era building was not immediately clear.",
-      "source": "CNA",
-      "published": "Thu, 12 Nov 2026 21:37:00 +0800"
-    },
-    {
-      "title": "Global AI stocks sink as Nvidia CEO's exit deepens sector concerns",
-      "url": "https://www.channelnewsasia.com/business/ai-stocks-nvidia-global-market-6546411",
-      "summary": "As the centrepiece of the AI ecosystem, Nvidia finances infrastructure built around its chips - a strategy that has drawn scrutiny over circular funding and now risks weighing on the sector as its crisis deepens.",
-      "source": "CNA",
-      "published": "Thu, 12 Nov 2026 21:15:00 +0800"
+      "published": "Fri, 13 Nov 2026 00:03:00 +0800"
     }
   ],
-  "generated_at": "2026-11-13T10:55:18+08:00",
+  "generated_at": "2026-11-13T15:21:56+08:00",
   "test_mode": false
 }
