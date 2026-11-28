@@ -1,6 +1,13 @@
 {
   "singapore": [
     {
+      "title": "Why I walked over 200km across Spain in 9 days after burning out at work",
+      "url": "https://www.channelnewsasia.com/travel/spain-camino-de-santiago-walk-career-burnout-6562446",
+      "summary": "A panic attack and a mid-career crisis led this writer to set off on this long, arduous walk. What did he learn in the end?",
+      "source": "CNA",
+      "published": "Sat, 28 Nov 2026 08:14:40 +0800"
+    },
+    {
       "title": "'Lacks basic respect': For jobseekers, being ghosted by recruiters and employers can add to emotional toll",
       "url": "https://www.channelnewsasia.com/singapore/jobseekers-search-employment-ghosting-delayed-replies-6587516",
       "summary": "In Singapore, 64 per cent of workers cite long delays as their biggest frustration in the hiring process, according to a 2026 report by job site Indeed.",
@@ -97,16 +104,16 @@
       "summary": "The Consumer Protection Review Panel released seven recommendations across several areas, including prepayment losses and pressure selling.",
       "source": "CNA",
       "published": "Fri, 27 Nov 2026 12:07:00 +0800"
-    },
-    {
-      "title": "Radio DJ Edward Russell leaving Class 95 after 5 years: 'The timing just felt right for now'",
-      "url": "https://www.channelnewsasia.com/entertainment/edward-russell-bidding-farewell-class-95-6586271",
-      "summary": "The Cartunes DJ has no major plans lined up, apart from a few hosting gigs and spending Christmas with his family in London.",
-      "source": "CNA",
-      "published": "Fri, 27 Nov 2026 11:43:00 +0800"
     }
   ],
   "world": [
+    {
+      "title": "Russia says shot down more than 1,200 Ukraine drones overnight",
+      "url": "https://www.channelnewsasia.com/world/russia-ukraine-shot-down-drones-overnight-6589261",
+      "summary": "Ukraine also reported hundreds of Russian drones fired at several regions, with one person killed and five injured.",
+      "source": "CNA",
+      "published": "Sat, 28 Nov 2026 15:41:00 +0800"
+    },
     {
       "title": "Commentary: Nvidia’s ‘great man theory’ is flawed",
       "url": "https://www.channelnewsasia.com/commentary/nvidia-reinstate-jensen-huang-ceo-great-man-theory-flawed-6587156",
@@ -204,15 +211,8 @@
       "summary": "If Prime Minister Christopher Luxon cannot reach a deal to form a ruling coalition, New Zealand will have to hold fresh elections.",
       "source": "CNA",
       "published": "Fri, 27 Nov 2026 11:08:55 +0800"
-    },
-    {
-      "title": "Zelenskyy says Russia preparing new mass strike in coming days",
-      "url": "https://www.channelnewsasia.com/world/russia-ukraine-zelenskyy-mass-strike-warning-6585961",
-      "summary": "The warning was the second issued by the Ukraine president this week.",
-      "source": "CNA",
-      "published": "Fri, 27 Nov 2026 11:06:45 +0800"
     }
   ],
-  "generated_at": "2026-11-28T07:21:45+08:00",
+  "generated_at": "2026-11-28T16:28:45+08:00",
   "test_mode": false
 }
